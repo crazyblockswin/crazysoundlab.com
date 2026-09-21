@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "game",
+      "name": "Game",
+      "icon": "🎮",
+      "builtIn": true
+    },
+    {
+      "id": "scifi",
+      "name": "Sci-Fi",
+      "icon": "🚀",
+      "builtIn": true
+    },
+    {
+      "id": "horror",
+      "name": "Horror",
+      "icon": "👻",
+      "builtIn": true
+    },
+    {
+      "id": "nature",
+      "name": "Nature",
+      "icon": "🌿",
+      "builtIn": true
+    },
+    {
+      "id": "foley",
+      "name": "Foley",
+      "icon": "🎬",
+      "builtIn": true
+    },
+    {
+      "id": "alarms",
+      "name": "Alarms",
+      "icon": "🚨",
+      "builtIn": true
+    },
+    {
+      "id": "people",
+      "name": "People",
+      "icon": "👥",
+      "builtIn": true
+    },
+    {
+      "id": "animals",
+      "name": "Animals",
+      "icon": "🐾",
+      "builtIn": true
+    }
+  ],
+  "sounds": []
+}
