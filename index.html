@@ -1053,7 +1053,7 @@ if(commentForm){
 }
 
 let currentType='footstep', currentBuffer=null, currentWav=null, liveCtx=null, currentSource=null, previewGain=null, currentSample=null, currentOriginalBlob=null, currentOriginalName='', currentSampleOriginalBuffer=null, currentSampleTargetSeconds=0, currentReplacement=false;
-let voiceLayerRecord=null, voiceLayerBuffer=null, voiceLayerBufferKey='', voiceLayerLoading=null;
+let voiceLayerRecord=null, voiceLayerBuffer=null, voiceLayerBufferKey='', voiceLayerLoading=null, voiceLayerLoadingKey='';
 let loopEnabled=false;
 let currentSelectedSoundButton=null;
 const DEFAULT_CATEGORIES=[
@@ -2175,30 +2175,43 @@ function updateVoiceLayerPanel(){
 }
 async function ensureVoiceLayerDecoded(){
   if(!voiceLayerRecord)return null;
-  const key=voiceLayerRecord.file||voiceLayerRecord.synthType||voiceLayerRecord.id;
+  const record=voiceLayerRecord;
+  const key=record.file||record.synthType||record.id;
   if(voiceLayerBuffer && voiceLayerBufferKey===key)return voiceLayerBuffer;
-  if(voiceLayerLoading)return voiceLayerLoading;
-  voiceLayerLoading=(async()=>{
+  if(voiceLayerLoading && voiceLayerLoadingKey===key)return voiceLayerLoading;
+
+  voiceLayerLoadingKey=key;
+  const pending=(async()=>{
     try{
       let buf=null;
-      if(voiceLayerRecord.synthType){
+      if(record.synthType){
         const dur=2.5,rate=44100,ctx=new OfflineAudioContext(1,Math.ceil(rate*(dur+.25)),rate);
-        synth(ctx,voiceLayerRecord.synthType,dur);
+        synth(ctx,record.synthType,dur);
         buf=await ctx.startRendering();
       }else{
         liveCtx ||= new (window.AudioContext||window.webkitAudioContext)();
         if(liveCtx.state==='suspended')await liveCtx.resume();
-        const ab=await loadSampleBytes(voiceLayerRecord.file);
+        const ab=await loadSampleBytes(record.file);
         buf=await liveCtx.decodeAudioData(ab.slice(0));
       }
-      voiceLayerBuffer=buf;voiceLayerBufferKey=key;updateVoiceLayerLengthUI(buf);updateVoiceLayerFadeUI(buf);return buf;
+      // Do not let an older, slower request overwrite a newer sound choice.
+      if(voiceLayerRecord!==record)return null;
+      voiceLayerBuffer=buf;voiceLayerBufferKey=key;
+      updateVoiceLayerLengthUI(buf);updateVoiceLayerFadeUI(buf);
+      return buf;
     }catch(e){
-      console.error(e);voiceLayerBuffer=null;voiceLayerBufferKey='';
-      $('#status').textContent='That added sound could not be loaded. Choose another sound.';
+      console.error(e);
+      if(voiceLayerRecord===record){
+        voiceLayerBuffer=null;voiceLayerBufferKey='';
+        $('#status').textContent=`${record.name||'The added sound'} could not be loaded. Choose it again or try another sound.`;
+      }
       return null;
-    }finally{voiceLayerLoading=null}
+    }finally{
+      if(voiceLayerLoading===pending){voiceLayerLoading=null;voiceLayerLoadingKey='';}
+    }
   })();
-  return voiceLayerLoading;
+  voiceLayerLoading=pending;
+  return pending;
 }
 function voiceLayerLengthSeconds(buf){
   if(!buf)return 0;
@@ -2295,12 +2308,12 @@ async function renderReplacementMix(){
   let layerBuf=null,layerStart=0,voiceStart=0;
   if(isVoiceLabInMixer() && voiceLayerRecord){
     layerBuf=await ensureVoiceLayerDecoded();
-    if(layerBuf){
-      const trimmedLayerDur=voiceLayerLengthSeconds(layerBuf);
-      const timing=voiceLayerTiming(targetDur,trimmedLayerDur);
-      voiceStart=timing.voiceStart;
-      layerStart=timing.layerStart;
-    }
+    // If the user asked for voice + sound, never silently fall back to voice-only.
+    if(!layerBuf)throw new Error('VOICE_LAYER_LOAD_FAILED');
+    const trimmedLayerDur=voiceLayerLengthSeconds(layerBuf);
+    const timing=voiceLayerTiming(targetDur,trimmedLayerDur);
+    voiceStart=timing.voiceStart;
+    layerStart=timing.layerStart;
   }
   const layerDuration=layerBuf ? voiceLayerLengthSeconds(layerBuf) : 0;
   const layerEnd=layerBuf ? layerStart+layerDuration : 0;
@@ -3486,7 +3499,8 @@ async function generate(){
   try{
     if(currentReplacement){
       $('#status').textContent=currentType==='crazyMixer'?'Applying Crazy Mixer settings…':'Applying your mixer settings to the upgraded recording…';
-      await renderReplacementMix();
+      const mixed=await renderReplacementMix();
+      if(!mixed)throw new Error('MIX_NOT_READY');
       $('#play').disabled=false;$('#download').disabled=false;setWorkflow(4,false);
       $('#status').textContent=currentType==='crazyMixer'
         ? (isVoiceLabInMixer() && voiceLayerRecord ? `Voice + ${voiceLayerRecord.name} mix ready. Download it, or change settings and mix again.` : 'Crazy Mix ready. Download it, or change sliders and mix again.')
@@ -3502,7 +3516,16 @@ async function generate(){
     setWorkflow(4,false);
     $('#status').textContent='Step 4: your sound is ready. Download it, or Generate & Play again for a new variation.';
     playCurrent();
-  }catch(e){console.error(e);$('#status').textContent='This browser could not generate or mix the sound.'}
+  }catch(e){
+    console.error(e);
+    $('#play').disabled=true;$('#download').disabled=true;
+    if(e?.message==='VOICE_LAYER_LOAD_FAILED'){
+      const name=voiceLayerRecord?.name||'The added sound';
+      $('#status').textContent=`${name} did not finish loading, so no voice-only mix was created. Choose the sound again and wait for READY.`;
+    }else{
+      $('#status').textContent='This browser could not generate or mix the sound.';
+    }
+  }
   finally{$('#generate').disabled=false}
 }
 async function playCurrent(){
@@ -4235,15 +4258,36 @@ $('#voiceLayerCategory')?.addEventListener('change',()=>{
   $('#voiceLayerRemove').disabled=true;
   $('#voiceLayerApply').disabled=true;
 });
-$('#voiceLayerSound')?.addEventListener('change',e=>{
+$('#voiceLayerSound')?.addEventListener('change',async e=>{
   const rec=voiceLayerCandidates().find(r=>r.id===e.target.value)||null;
-  voiceLayerRecord=rec;voiceLayerBuffer=null;voiceLayerBufferKey='';
+  voiceLayerRecord=rec;voiceLayerBuffer=null;voiceLayerBufferKey='';voiceLayerLoading=null;voiceLayerLoadingKey='';
   $('#voiceLayerLength').value=100;$('#voiceLayerFadeIn').value=0;$('#voiceLayerFadeOut').value=0;updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);
   $('#voiceLayerRemove').disabled=!rec;
-  $('#voiceLayerApply').disabled=!rec;
+  const apply=$('#voiceLayerApply');
+  apply.disabled=true;
+  apply.textContent='🎛️ APPLY CRAZY MIX & PLAY';
   $('#voiceLayerToggle').textContent=rec?'🎧 CHANGE ADDED SOUND':'➕ ADD A SOUND TO VOICE';
-  if(rec)ensureVoiceLayerDecoded();
-  invalidateVoiceLayerMix(rec ? `${rec.name} added to the voice. Shorten the added sound if needed, then click APPLY CRAZY MIX & PLAY.` : 'Choose a sound to layer with the voice.');
+
+  if(!rec){
+    invalidateVoiceLayerMix('Choose a sound to layer with the voice.');
+    return;
+  }
+
+  apply.textContent=`⏳ LOADING ${rec.name.toUpperCase()}…`;
+  invalidateVoiceLayerMix(`Loading ${rec.name} for the voice mix…`);
+  const loaded=await ensureVoiceLayerDecoded();
+  // The user may have picked a different sound while this one was loading.
+  if(voiceLayerRecord!==rec)return;
+
+  if(loaded){
+    apply.disabled=false;
+    apply.textContent='🎛️ APPLY CRAZY MIX & PLAY';
+    $('#status').textContent=`${rec.name} READY. Shorten it if needed, then click APPLY CRAZY MIX & PLAY.`;
+  }else{
+    apply.disabled=true;
+    apply.textContent='⚠ COULD NOT LOAD — CHOOSE AGAIN';
+    $('#status').textContent=`${rec.name} could not be loaded. Choose it again or try another sound.`;
+  }
 });
 $('#voiceLayerVolume')?.addEventListener('input',e=>{
   $('#voiceLayerVolumeValue').textContent=e.target.value+'%';
@@ -4272,8 +4316,8 @@ $('#voiceLayerApply')?.addEventListener('click',async()=>{
   finally{ btn.disabled=!voiceLayerRecord; }
 });
 $('#voiceLayerRemove')?.addEventListener('click',()=>{
-  voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey='';voiceLayerLoading=null;
-  $('#voiceLayerSound').value='';$('#voiceLayerLength').value=100;$('#voiceLayerFadeIn').value=0;$('#voiceLayerFadeOut').value=0;updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);$('#voiceLayerRemove').disabled=true;$('#voiceLayerApply').disabled=true;$('#voiceLayerToggle').textContent='➕ ADD A SOUND TO VOICE';
+  voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey='';voiceLayerLoading=null;voiceLayerLoadingKey='';
+  $('#voiceLayerSound').value='';$('#voiceLayerLength').value=100;$('#voiceLayerFadeIn').value=0;$('#voiceLayerFadeOut').value=0;updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);$('#voiceLayerRemove').disabled=true;$('#voiceLayerApply').disabled=true;$('#voiceLayerApply').textContent='🎛️ APPLY CRAZY MIX & PLAY';$('#voiceLayerToggle').textContent='➕ ADD A SOUND TO VOICE';
   invalidateVoiceLayerMix('Added sound removed. The voice is ready to mix by itself.');
 });
 $('#voiceDownload').addEventListener('click',downloadVoiceLab);
