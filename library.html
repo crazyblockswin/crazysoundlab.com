@@ -25,6 +25,7 @@ header{
   backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
 }
 .head{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0}
+.brand-home{text-decoration:none;color:inherit}.brand-home:visited{color:inherit}.brand-home:hover{filter:brightness(1.06)}
 .brand{display:flex;align-items:center;gap:14px}
 .logo{width:44px;height:44px;border-radius:12px;overflow:hidden;border:1px solid rgba(67,239,255,.35);box-shadow:0 0 16px rgba(67,239,255,.14)}
 .logo img{width:100%;height:100%;object-fit:cover}
@@ -45,6 +46,18 @@ header{
   color:#cce8d6;line-height:1.4;font-size:12px
 }
 .reference strong{color:#bdf8d1}
+.studio-return-link{
+  color:#dffcff;
+  font-weight:800;
+  text-decoration:underline;
+  text-decoration-thickness:1.5px;
+  text-underline-offset:3px;
+  text-shadow:0 0 9px rgba(67,239,255,.18);
+}
+.studio-return-link:hover{
+  color:#7ff3ff;
+  text-shadow:0 0 12px rgba(67,239,255,.38);
+}
 .stats{
   margin:10px 0 0;
   color:#aebfd1;
@@ -87,10 +100,10 @@ header{
 <body>
 <header>
   <div class="wrap head">
-    <div class="brand">
+    <a class="brand brand-home" href="https://crazysoundlab.com/" aria-label="Crazy Voice and Sound Lab home">
       <div class="logo"><img src="crazy-voice-sound-logo.png" alt="Crazy Voice and Sound Lab logo"></div>
       <div><b>Crazy Voice and Sound Lab</b><small>Complete Sound Library</small></div>
-    </div>
+    </a>
     <a class="back" href="index.html">← BACK TO CRAZY SOUND LAB</a>
   </div>
 </header>
@@ -98,7 +111,7 @@ header{
 <main class="wrap">
   <section class="hero">
     <h1>📚 COMPLETE <span>SOUND LIBRARY</span></h1>
-    <div class="reference"><strong>REFERENCE LIBRARY:</strong> Browse every sound currently available in Crazy Voice and Sound Lab. This page is for reference only. To play, customize, mix, or download a sound, return to the main studio and choose its category.</div>
+    <div class="reference"><strong>REFERENCE LIBRARY:</strong> Browse every sound currently available in Crazy Voice and Sound Lab. This page is for reference only. To play, customize, mix, or download a sound, <a class="studio-return-link" href="index.html#categoryBar">return to the main studio and choose its category.</a></div>
     <div class="stats" id="stats">Loading sound library…</div>
   </section>
 

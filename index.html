@@ -30,6 +30,7 @@ header{
   backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
 }
 .head{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:11px 0;flex-wrap:nowrap;position:relative}
+.brand-home{text-decoration:none;color:inherit}.brand-home:visited{color:inherit}.brand-home:hover{filter:brightness(1.06)}
 .brand{display:flex;align-items:center;gap:14px;flex:0 0 auto;white-space:nowrap}
 .brand-text{display:flex;flex-direction:column;gap:3px}
 .logo{
@@ -834,13 +835,13 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 <body>
 <header>
   <div class="wrap head">
-    <div class="brand">
+    <a class="brand brand-home" href="https://crazysoundlab.com/" aria-label="Crazy Voice and Sound Lab home">
       <div class="logo"><img src="crazy-voice-sound-logo.png" alt="Crazy Voice and Sound Lab logo"></div>
       <div class="brand-text">
         <b>Crazy Voice and Sound Lab</b>
         <small>Interactive Sound Studio</small>
       </div>
-    </div>
+    </a>
     <a class="how-it-works-link" href="how-it-works.txt" target="_blank" rel="noopener" aria-label="Open How It Works instructions in a new tab">❔ HOW IT WORKS</a>
     <div class="header-motto"><span>CREATE VOICES. CREATE SOUNDS. MAKE THEM YOURS.</span></div>
   </div>
