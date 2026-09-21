@@ -48,6 +48,31 @@ header{
   white-space:nowrap;line-height:1.1;flex:0 1 auto
 }
 .header-motto span{color:#fff;background:none;-webkit-text-fill-color:#fff}
+
+.how-it-works-link{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:3;display:inline-flex;align-items:center;justify-content:center;
+  min-height:38px;padding:9px 16px;border-radius:11px;
+  border:1px solid rgba(98,245,155,.48);
+  background:linear-gradient(180deg,rgba(18,42,31,.96),rgba(6,18,13,.98));
+  color:#bdf8d1;text-decoration:none;font-size:12px;font-weight:950;
+  letter-spacing:.055em;white-space:nowrap;
+  text-shadow:0 0 9px rgba(98,245,155,.38);
+  box-shadow:0 4px 10px rgba(0,0,0,.34),0 0 16px rgba(98,245,155,.15),inset 0 1px 0 rgba(255,255,255,.09);
+  transition:transform .14s ease,filter .14s ease,box-shadow .14s ease;
+}
+.how-it-works-link:hover{
+  filter:brightness(1.15);transform:translate(-50%,-52%);
+  box-shadow:0 6px 12px rgba(0,0,0,.38),0 0 22px rgba(98,245,155,.28),inset 0 1px 0 rgba(255,255,255,.13);
+}
+.how-it-works-link:active{transform:translate(-50%,-47%)}
+.how-it-works-link:focus-visible{outline:2px solid #bdf8d1;outline-offset:3px}
+@media(max-width:980px){.how-it-works-link{font-size:10px;padding:8px 10px;letter-spacing:.035em}}
+@media(max-width:760px){
+  .how-it-works-link{position:static;transform:none;min-height:34px;margin-left:auto;padding:7px 9px;font-size:9px}
+  .how-it-works-link:hover,.how-it-works-link:active{transform:none}
+  .header-motto{display:none}
+}
 .pill{
   color:var(--green);border:1px solid rgba(98,245,155,.28);background:rgba(98,245,155,.07);
   padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800
@@ -812,6 +837,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <small>Interactive Sound Studio</small>
       </div>
     </div>
+    <a class="how-it-works-link" href="how-it-works.txt" target="_blank" rel="noopener" aria-label="Open How It Works instructions in a new tab">❔ HOW IT WORKS</a>
     <div class="header-motto"><span>CREATE VOICES. CREATE SOUNDS. MAKE THEM YOURS.</span></div>
   </div>
 </header>
@@ -847,7 +873,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
     <div class="voice-lab-grid">
       <div class="voice-script">
         <label for="voiceScript">YOUR SCRIPT</label>
-        <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So please be patient and have some fun!</textarea>
+        <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So be patient and have some real fun!</textarea>
       </div>
       <div class="voice-settings">
         <div class="voice-setting"><label for="voiceChoice">BUILT-IN VOICE</label><select id="voiceChoice">
