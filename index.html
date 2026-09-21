@@ -649,6 +649,10 @@ header::after{
   box-shadow:0 1px 3px rgba(0,0,0,.72),0 0 22px var(--glow),inset 0 3px 9px rgba(0,0,0,.46),inset 0 -16px 26px var(--glow);
 }
 .category-dashboard .cat[data-cat="all"]{--c1:#2a3038;--c2:#0c1015;--accent:#d8dde7;--glow:rgba(214,222,235,.22)}
+.category-dashboard .library-link{
+  --c1:#2a3038;--c2:#0c1015;--accent:#d8dde7;--glow:rgba(214,222,235,.22);
+  text-decoration:none;display:grid;place-items:center;
+}
 .category-dashboard .cat[data-cat="game"]{--c1:#14373b;--c2:#061417;--accent:#59f0d2;--glow:rgba(89,240,210,.30)}
 .category-dashboard .cat[data-cat="scifi"]{--c1:#211744;--c2:#090614;--accent:#ae92ff;--glow:rgba(174,146,255,.34)}
 .category-dashboard .cat[data-cat="horror"]{--c1:#3b1029;--c2:#14050d;--accent:#ff6fb1;--glow:rgba(255,111,177,.30)}
@@ -2524,11 +2528,22 @@ function bindCategoryButton(btn){
 function buildCategoryBar(){
   const bar=$('#categoryBar'); if(!bar)return;
   bar.innerHTML='';
-  const cats=[{id:'all',name:'ALL',icon:''},...(libraryData.categories||DEFAULT_CATEGORIES)];
+
+  const libraryLink=document.createElement('a');
+  libraryLink.className='cat library-link';
+  libraryLink.href='library.html';
+  libraryLink.textContent='📚 LIBRARY';
+  libraryLink.setAttribute('aria-label','Open the complete sound library reference page');
+  bar.appendChild(libraryLink);
+
+  const cats=(libraryData.categories||DEFAULT_CATEGORIES);
   cats.forEach((c,i)=>{
-    const b=document.createElement('button'); b.className='cat'+(i===0?' on':''); b.dataset.cat=c.id;
-    b.textContent=(c.icon?c.icon+' ':'')+(c.id==='all'?'ALL':String(c.name||c.id).toUpperCase());
-    bindCategoryButton(b); bar.appendChild(b);
+    const b=document.createElement('button');
+    b.className='cat'+(i===0?' on':'');
+    b.dataset.cat=c.id;
+    b.textContent=(c.icon?c.icon+' ':'')+String(c.name||c.id).toUpperCase();
+    bindCategoryButton(b);
+    bar.appendChild(b);
   });
 }
 
