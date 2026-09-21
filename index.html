@@ -879,7 +879,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
     <div class="voice-lab-grid">
       <div class="voice-script">
         <label for="voiceScript">YOUR SCRIPT</label>
-        <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So be patient and have some real fun!</textarea>
+        <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So be patient and have some fun!</textarea>
       </div>
       <div class="voice-settings">
         <div class="voice-setting"><label for="voiceChoice">BUILT-IN VOICE</label><select id="voiceChoice">
@@ -976,7 +976,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
           <div class="voice-layer-grid">
             <div class="voice-layer-field"><label for="voiceLayerCategory"><span>Category</span></label><select id="voiceLayerCategory"></select></div>
             <div class="voice-layer-field"><label for="voiceLayerSound"><span>Sound</span></label><select id="voiceLayerSound"><option value="">Choose a sound…</option></select></div>
-            <div class="voice-layer-field"><label for="voiceLayerVolume"><span>Added Sound Volume</span><span class="voice-layer-volume" id="voiceLayerVolumeValue">35%</span></label><input id="voiceLayerVolume" type="range" min="0" max="100" value="35"></div>
+            <div class="voice-layer-field"><label for="voiceLayerVolume"><span>Added Sound Volume</span><span class="voice-layer-volume" id="voiceLayerVolumeValue">90%</span></label><input id="voiceLayerVolume" type="range" min="0" max="100" value="90"></div>
             <div class="voice-layer-field"><label for="voiceLayerLength"><span>Added Sound Length</span><span class="voice-layer-length-value" id="voiceLayerLengthValue">Full</span></label><input id="voiceLayerLength" type="range" min="1" max="100" step="1" value="100" disabled></div>
             <div class="voice-layer-field"><label for="voiceLayerFadeIn"><span>Added Sound Fade In</span><span class="voice-layer-fade-value" id="voiceLayerFadeInValue">None</span></label><input id="voiceLayerFadeIn" type="range" min="0" max="100" step="1" value="0" disabled></div>
             <div class="voice-layer-field"><label for="voiceLayerFadeOut"><span>Added Sound Fade Out</span><span class="voice-layer-fade-value" id="voiceLayerFadeOutValue">None</span></label><input id="voiceLayerFadeOut" type="range" min="0" max="100" step="1" value="0" disabled></div>
@@ -2429,7 +2429,7 @@ async function renderReplacementMix(){
     const layerSource=ctx.createBufferSource();
     layerSource.buffer=layerBuf;
     const layerGain=ctx.createGain();
-    const layerVolume=Math.max(0,Math.min(1,(+($('#voiceLayerVolume')?.value||35))/100));
+    const layerVolume=Math.max(0,Math.min(1,(+($('#voiceLayerVolume')?.value||90))/100));
     const layerPeak=Math.pow(layerVolume,1.25);
     const layerFadeIn=voiceLayerFadeSeconds('in',layerDuration);
     const layerFadeOut=voiceLayerFadeSeconds('out',layerDuration);
