@@ -732,8 +732,8 @@ header::after{
 .voice-lab{margin:0 0 14px;padding:16px;border-radius:18px;border:1px solid rgba(255,133,213,.36);background:linear-gradient(180deg,rgba(27,13,38,.97),rgba(7,10,18,.99));box-shadow:0 14px 32px rgba(0,0,0,.38),0 0 24px rgba(217,140,255,.10),inset 0 1px 0 rgba(255,255,255,.08)}
 .voice-lab-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.voice-lab-title{display:flex;align-items:center;gap:10px}.voice-lab-title b{font-size:17px;letter-spacing:.04em}.voice-lab-title small{display:block;color:#a9b8ca;font-size:10px;margin-top:2px}.voice-engine-status{padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);font-size:10px;font-weight:950;letter-spacing:.05em;color:#ffc878;background:#171108}.voice-engine-status.ready{color:#aef8c7;border-color:rgba(98,245,155,.35);background:rgba(98,245,155,.07);box-shadow:0 0 14px rgba(98,245,155,.09)}
 .voice-lab-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);gap:12px}.voice-script{display:grid;gap:7px}.voice-script label,.voice-setting label{font-size:11px;font-weight:900;color:#dce9f7}.voice-script textarea{width:100%;min-height:122px;resize:vertical;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.11);background:#070c14;color:#fff;font:inherit;line-height:1.45}.voice-script textarea:focus{outline:none;border-color:rgba(217,140,255,.65);box-shadow:0 0 16px rgba(217,140,255,.12)}
+.voice-pause-help{margin-top:1px;padding:8px 10px;border-radius:9px;border:1px solid rgba(217,140,255,.17);background:rgba(217,140,255,.045);color:#9fb1c5;font-size:10px;line-height:1.45}.voice-pause-help b{color:#f0d9ff;letter-spacing:.04em}.voice-pause-help code{display:inline-block;min-width:24px;padding:1px 5px;border-radius:5px;background:#0a0f18;border:1px solid rgba(255,255,255,.10);color:#ffb8e7;font-family:Consolas,monospace;font-weight:900;text-align:center}.voice-pause-help span{display:block;margin-top:3px;color:#71869c}
 .voice-settings{display:grid;grid-template-columns:1fr;gap:9px}.voice-setting{padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.07);background:rgba(4,8,14,.55)}.voice-setting select{width:100%;margin-top:7px;padding:10px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:#080d15;color:#fff;font-weight:800}.voice-setting input[type=range]{margin-top:8px}.voice-setting-line{display:flex;justify-content:space-between;gap:10px}.voice-setting-line span:last-child{color:#f0a8ff;font-weight:950}
-.voice-pause-note{display:block;margin-top:6px;color:#8195aa;font-size:9px;line-height:1.35}
 .voice-lab-actions{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;gap:8px;margin-top:12px}.voice-lab-actions button{min-height:44px;padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-weight:950;cursor:pointer}.voice-lab-actions button:disabled{opacity:.38;cursor:not-allowed}.voice-generate{border:0!important;color:#16051b!important;background:linear-gradient(90deg,#ff85d5,#b88cff)!important;box-shadow:0 0 20px rgba(217,140,255,.16)}.voice-to-mixer{border-color:rgba(67,239,255,.34)!important;color:#dffcff!important;background:rgba(67,239,255,.08)!important}.voice-download{min-height:44px;padding:10px 14px;border-radius:11px;border:1px solid rgba(98,245,155,.30)!important;color:#bdf8d1!important;background:rgba(98,245,155,.07)!important;font-weight:950;cursor:pointer}.voice-download:disabled{opacity:.38;cursor:not-allowed}.voice-lab-bottom{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(290px,.85fr);gap:10px;align-items:center;margin-top:9px}.voice-lab-status{min-height:20px;color:#f3f7fb;font-size:14px;font-weight:600;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.45;letter-spacing:0;text-shadow:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}.voice-lab-note{margin-top:8px;color:#73879d;font-size:10px;line-height:1.4}
 
 /* v8.1 — slightly stronger Voice Lab panel definition */
@@ -932,6 +932,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       <div class="voice-script">
         <label for="voiceScript">YOUR SCRIPT</label>
         <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Replace this text with your own. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So be patient and most important, have fun!</textarea>
+        <div class="voice-pause-help"><b>PAUSE MARKS:</b> <code>#</code> short &nbsp; <code>##</code> medium &nbsp; <code>###</code> long <span>Example: Come on Bear # we are going home.</span></div>
       </div>
       <div class="voice-settings">
         <div class="voice-setting"><label for="voiceChoice">BUILT-IN VOICE</label><select id="voiceChoice">
@@ -940,17 +941,6 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
           <option value="bf_emma">Emma — British Female</option><option value="bf_isabella">Isabella — British Female</option><option value="bm_fable">Fable — British Male</option><option value="bm_george">George — British Male</option>
         </select></div>
         <div class="voice-setting"><div class="voice-setting-line"><label for="voiceSpeed">VOICE SPEED</label><span id="voiceSpeedValue">1.00×</span></div><input id="voiceSpeed" type="range" min="0.70" max="1.35" step="0.05" value="1.00"></div>
-        <div class="voice-setting"><label for="voiceWordPause">WORD PAUSE</label><select id="voiceWordPause">
-          <option value="0" selected>Normal — Natural Speech</option>
-          <option value="0.02">0.02 Second Between Words</option>
-          <option value="0.03">0.03 Second Between Words</option>
-          <option value="0.04">0.04 Second Between Words</option>
-          <option value="0.5">0.5 Second Between Words</option>
-          <option value="1">1 Second Between Words</option>
-          <option value="2">2 Seconds Between Words</option>
-          <option value="3">3 Seconds Between Words</option>
-          <option value="5">5 Seconds Between Words</option>
-        </select><small class="voice-pause-note">Trims built-in word padding, then adds only the pause you choose. Longer scripts take longer to create.</small></div>
       </div>
     </div>
     <div class="voice-lab-actions">
@@ -4267,67 +4257,80 @@ async function voiceAudioSamples(rawAudio){
   const decoded=await liveCtx.decodeAudioData(await rawAudio.toBlob().arrayBuffer());
   return {samples:decoded.getChannelData(0).slice(),sampleRate:decoded.sampleRate};
 }
-function trimVoiceWordSilence(samples,sampleRate){
+function trimVoicePhraseEdgeSilence(samples,sampleRate){
   if(!samples||!samples.length)return samples;
-
-  // Kokoro adds noticeable quiet padding when a single word is generated by itself.
-  // Measure short windows, find the actual spoken part, then keep only a tiny safety pad.
-  const windowSize=Math.max(1,Math.round(sampleRate*0.008)); // 8 ms windows
-  const windowCount=Math.ceil(samples.length/windowSize);
-  const rms=new Float32Array(windowCount);
-  let peakRms=0;
-
-  for(let w=0;w<windowCount;w++){
-    const start=w*windowSize,end=Math.min(samples.length,start+windowSize);
+  const windowSize=Math.max(1,Math.round(sampleRate*0.010));
+  const count=Math.ceil(samples.length/windowSize);
+  const rms=new Float32Array(count);
+  let peak=0;
+  for(let w=0;w<count;w++){
+    const a=w*windowSize,b=Math.min(samples.length,a+windowSize);
     let sum=0;
-    for(let i=start;i<end;i++)sum+=samples[i]*samples[i];
-    const value=Math.sqrt(sum/Math.max(1,end-start));
-    rms[w]=value;
-    if(value>peakRms)peakRms=value;
+    for(let i=a;i<b;i++)sum+=samples[i]*samples[i];
+    const r=Math.sqrt(sum/Math.max(1,b-a));
+    rms[w]=r;if(r>peak)peak=r;
   }
-
-  if(peakRms<0.0001)return samples;
-  const threshold=Math.max(0.0015,peakRms*0.035);
-  let first=0,last=windowCount-1;
-  while(first<windowCount && rms[first]<threshold)first++;
-  while(last>first && rms[last]<threshold)last--;
-  if(first>=windowCount)return samples;
-
-  // Keep about 18 ms around the spoken word so consonants do not get clipped.
-  const safetyWindows=Math.max(1,Math.ceil((sampleRate*0.018)/windowSize));
-  first=Math.max(0,first-safetyWindows);
-  last=Math.min(windowCount-1,last+safetyWindows);
-  const startSample=first*windowSize;
-  const endSample=Math.min(samples.length,(last+1)*windowSize);
-  return samples.slice(startSample,endSample);
+  if(peak<0.0001)return samples;
+  const threshold=Math.max(0.0012,peak*0.025);
+  let first=0,last=count-1;
+  while(first<count&&rms[first]<threshold)first++;
+  while(last>first&&rms[last]<threshold)last--;
+  if(first>=count)return samples;
+  const safety=Math.max(2,Math.ceil((sampleRate*0.035)/windowSize));
+  first=Math.max(0,first-safety);last=Math.min(count-1,last+safety);
+  return samples.slice(first*windowSize,Math.min(samples.length,(last+1)*windowSize));
 }
-async function generateVoiceWithWordPause(tts,text,options,pauseSeconds){
-  if(!(pauseSeconds>0)){
+function parseVoicePauseScript(text){
+  const parts=text.split(/(#+)/g);
+  const items=[];
+  for(const part of parts){
+    if(!part)continue;
+    if(/^#+$/.test(part)){
+      if(!items.length)continue;
+      const marks=Math.min(3,part.length);
+      items.push({pause:marks===1?0.25:marks===2?0.60:1.20});
+    }else{
+      const phrase=part.trim();
+      if(phrase)items.push({text:phrase});
+    }
+  }
+  while(items.length&&items[items.length-1].pause)items.pop();
+  return items;
+}
+async function generateVoiceWithHashPauses(tts,text,options){
+  if(!text.includes('#')){
     const audio=await tts.generate(text,options);
     if(!audio||typeof audio.toBlob!=='function')throw new Error('The browser did not return usable voice audio.');
     return audio.toBlob();
   }
-  const words=text.match(/\S+/g)||[];
-  if(!words.length)throw new Error('Type a script first.');
+  const items=parseVoicePauseScript(text);
+  const phraseCount=items.filter(x=>x.text).length;
+  if(!phraseCount)throw new Error('Type some words as well as the pause marks.');
   const chunks=[];
-  let sampleRate=0,totalSamples=0;
-  for(let i=0;i<words.length;i++){
-    $('#voiceLabStatus').textContent=`Creating word ${i+1} of ${words.length} — ${pauseSeconds} second pause…`;
-    const raw=await tts.generate(words[i],options);
+  let sampleRate=0,total=0,done=0;
+  for(const item of items){
+    if(item.pause){
+      chunks.push({pause:item.pause});
+      if(sampleRate)total+=Math.round(sampleRate*item.pause);
+      continue;
+    }
+    done++;
+    $('#voiceLabStatus').textContent=`Creating natural phrase ${done} of ${phraseCount}…`;
+    const raw=await tts.generate(item.text,options);
     let part=await voiceAudioSamples(raw);
     if(!sampleRate)sampleRate=part.sampleRate;
     if(part.sampleRate!==sampleRate)part={samples:resampleVoiceSamples(part.samples,part.sampleRate,sampleRate),sampleRate};
-    part.samples=trimVoiceWordSilence(part.samples,sampleRate);
-    chunks.push(part.samples);
-    totalSamples+=part.samples.length;
-    if(i<words.length-1)totalSamples+=Math.round(sampleRate*pauseSeconds);
+    part.samples=trimVoicePhraseEdgeSilence(part.samples,sampleRate);
+    chunks.push({samples:part.samples});
   }
-  const joined=new Float32Array(totalSamples);
+  // Calculate after sample rate is known so leading marker oddities cannot affect timing.
+  total=0;
+  for(const chunk of chunks)total+=chunk.samples?chunk.samples.length:Math.round(sampleRate*chunk.pause);
+  const joined=new Float32Array(total);
   let offset=0;
-  const silenceSamples=Math.round(sampleRate*pauseSeconds);
-  for(let i=0;i<chunks.length;i++){
-    joined.set(chunks[i],offset);offset+=chunks[i].length;
-    if(i<chunks.length-1)offset+=silenceSamples;
+  for(const chunk of chunks){
+    if(chunk.samples){joined.set(chunk.samples,offset);offset+=chunk.samples.length;}
+    else offset+=Math.round(sampleRate*chunk.pause);
   }
   return voiceFloatSamplesToWav(joined,sampleRate||24000);
 }
@@ -4341,11 +4344,10 @@ async function generateVoiceLab(){
   try{
     const tts=await ensureVoiceEngine();
     setVoiceBadge('VOICE LAB: CREATING…',true);
-    const pauseSeconds=+$('#voiceWordPause').value||0;
-    $('#voiceLabStatus').textContent=pauseSeconds>0
-      ? `Hang on — creating your voice with ${pauseSeconds} second pauses between words…`
+    $('#voiceLabStatus').textContent=text.includes('#')
+      ? 'Hang on — creating your voice with natural phrase pauses…'
       : "Hang on — we're generating your voice now.....";
-    voiceLabBlob=await generateVoiceWithWordPause(tts,text,{voice:$('#voiceChoice').value,speed:+$('#voiceSpeed').value},pauseSeconds);
+    voiceLabBlob=await generateVoiceWithHashPauses(tts,text,{voice:$('#voiceChoice').value,speed:+$('#voiceSpeed').value});
     if(voiceLabUrl)URL.revokeObjectURL(voiceLabUrl);
     voiceLabUrl=URL.createObjectURL(voiceLabBlob);
     voiceLabAudio=new Audio(voiceLabUrl);
@@ -4354,8 +4356,7 @@ async function generateVoiceLab(){
     setVoiceLabButtons(true);
     updateVoiceLayerPanel();
     setVoiceBadge('VOICE LAB: READY',true);
-    const pauseDone=+$('#voiceWordPause').value||0;
-    $('#voiceLabStatus').textContent=pauseDone>0?`Voice created with ${pauseDone} second pauses between words. Play it, download it, or send it into Crazy Mixer.`:'Voice created. Play it, download it, or send it into Crazy Mixer.';
+    $('#voiceLabStatus').textContent='Voice created. Play it, download it, or send it into Crazy Mixer.';
     voiceLabAudio.addEventListener('ended',()=>{$('#voiceStop').disabled=true;$('#voicePlay').disabled=false});
   }catch(e){
     console.error(e);
