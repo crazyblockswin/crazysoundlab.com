@@ -716,6 +716,105 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "dog-talking.mp3",
       "file": "sounds/animals/dog-talking.mp3"
+    },
+    {
+      "id": "sound-mud6ky8w",
+      "category": "people",
+      "name": "Angry Crowd",
+      "description": "angry crowd",
+      "icon": "🧑‍🤝‍",
+      "filename": "angry-crowd.mp3",
+      "file": "sounds/people/angry-crowd.mp3"
+    },
+    {
+      "id": "sound-mud6mcz3",
+      "category": "people",
+      "name": "Applause",
+      "description": "applause",
+      "icon": "👏",
+      "filename": "applause.mp3",
+      "file": "sounds/people/applause.mp3"
+    },
+    {
+      "id": "sound-mud6oxrk",
+      "category": "people",
+      "name": "Crowd Laughing",
+      "description": "crowd laughing",
+      "icon": "🔊",
+      "filename": "crowd-laughing.mp3",
+      "file": "sounds/people/crowd-laughing.mp3"
+    },
+    {
+      "id": "sound-mud6ppp4",
+      "category": "people",
+      "name": "Deep Breath Sigh",
+      "description": "deep breath sigh",
+      "icon": "🔊",
+      "filename": "deep-breath-sigh.mp3",
+      "file": "sounds/people/deep-breath-sigh.mp3"
+    },
+    {
+      "id": "sound-mud6qgll",
+      "category": "people",
+      "name": "Gasp",
+      "description": "gasp",
+      "icon": "🔊",
+      "filename": "gasp.mp3",
+      "file": "sounds/people/gasp.mp3"
+    },
+    {
+      "id": "sound-mud6rayg",
+      "category": "people",
+      "name": "Luffy Laugh",
+      "description": "luffy laugh",
+      "icon": "🔊",
+      "filename": "luffy-laugh.mp3",
+      "file": "sounds/people/luffy-laugh.mp3"
+    },
+    {
+      "id": "sound-mud6rwps",
+      "category": "people",
+      "name": "MMMMM",
+      "description": "mmmmm",
+      "icon": "🔊",
+      "filename": "mmm.mp3",
+      "file": "sounds/people/mmm.mp3"
+    },
+    {
+      "id": "sound-mud6t0xt",
+      "category": "people",
+      "name": "Restaurant",
+      "description": "people in restaurant",
+      "icon": "🔊",
+      "filename": "restaurant.mp3",
+      "file": "sounds/people/restaurant.mp3"
+    },
+    {
+      "id": "sound-mud6tqeg",
+      "category": "people",
+      "name": "Screaming",
+      "description": "screaming",
+      "icon": "🔊",
+      "filename": "screaming.mp3",
+      "file": "sounds/people/screaming.mp3"
+    },
+    {
+      "id": "sound-mud6up1k",
+      "category": "people",
+      "name": "Small Group Laughing",
+      "description": "small group laughing",
+      "icon": "🔊",
+      "filename": "small-group-laughing.mp3",
+      "file": "sounds/people/small-group-laughing.mp3"
+    },
+    {
+      "id": "sound-mud6vls5",
+      "category": "people",
+      "name": "Stadium Roar",
+      "description": "Stadium Roar Concert",
+      "icon": "🔊",
+      "filename": "stadium-roar.mp3",
+      "file": "sounds/people/stadium-roar.mp3"
     }
   ]
 };
