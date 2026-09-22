@@ -734,7 +734,12 @@ header::after{
 .voice-lab-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);gap:12px}.voice-script{display:grid;gap:7px}.voice-script label,.voice-setting label{font-size:11px;font-weight:900;color:#dce9f7}.voice-script textarea{width:100%;min-height:122px;resize:vertical;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.11);background:#070c14;color:#fff;font:inherit;line-height:1.45}.voice-script textarea:focus{outline:none;border-color:rgba(217,140,255,.65);box-shadow:0 0 16px rgba(217,140,255,.12)}
 .voice-pause-help{margin-top:1px;padding:8px 10px;border-radius:9px;border:1px solid rgba(217,140,255,.17);background:rgba(217,140,255,.045);color:#9fb1c5;font-size:10px;line-height:1.45}.voice-pause-help b{color:#f0d9ff;letter-spacing:.04em}.voice-pause-help code{display:inline-block;min-width:24px;padding:1px 5px;border-radius:5px;background:#0a0f18;border:1px solid rgba(255,255,255,.10);color:#ffb8e7;font-family:Consolas,monospace;font-weight:900;text-align:center}.voice-pause-help span{display:block;margin-top:3px;color:#71869c}
 .voice-settings{display:grid;grid-template-columns:1fr;gap:9px}.voice-setting{padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.07);background:rgba(4,8,14,.55)}.voice-setting select{width:100%;margin-top:7px;padding:10px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:#080d15;color:#fff;font-weight:800}.voice-setting input[type=range]{margin-top:8px}.voice-setting-line{display:flex;justify-content:space-between;gap:10px}.voice-setting-line span:last-child{color:#f0a8ff;font-weight:950}
-.voice-lab-actions{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;gap:8px;margin-top:12px}.voice-lab-actions button{min-height:44px;padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-weight:950;cursor:pointer}.voice-lab-actions button:disabled{opacity:.38;cursor:not-allowed}.voice-generate{border:0!important;color:#16051b!important;background:linear-gradient(90deg,#ff85d5,#b88cff)!important;box-shadow:0 0 20px rgba(217,140,255,.16)}.voice-to-mixer{border-color:rgba(67,239,255,.34)!important;color:#dffcff!important;background:rgba(67,239,255,.08)!important}.voice-download{min-height:44px;padding:10px 14px;border-radius:11px;border:1px solid rgba(98,245,155,.30)!important;color:#bdf8d1!important;background:rgba(98,245,155,.07)!important;font-weight:950;cursor:pointer}.voice-download:disabled{opacity:.38;cursor:not-allowed}.voice-lab-bottom{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(290px,.85fr);gap:10px;align-items:center;margin-top:9px}.voice-lab-status{min-height:20px;color:#f3f7fb;font-size:14px;font-weight:600;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.45;letter-spacing:0;text-shadow:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}.voice-lab-note{margin-top:8px;color:#73879d;font-size:10px;line-height:1.4}
+.voice-lab-actions{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;gap:8px;margin-top:12px}.voice-lab-actions button{min-height:44px;padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-weight:950;cursor:pointer}.voice-lab-actions button:disabled{opacity:.38;cursor:not-allowed}.voice-generate{border:0!important;color:#16051b!important;background:linear-gradient(90deg,#ff85d5,#b88cff)!important;box-shadow:0 0 20px rgba(217,140,255,.16)}
+@keyframes voiceGenerateNeedsUpdate{0%,100%{transform:scale(1);box-shadow:0 0 20px rgba(217,140,255,.18)}50%{transform:scale(1.018);box-shadow:0 0 28px rgba(255,133,213,.58),0 0 42px rgba(184,140,255,.28)}}
+.voice-generate.needs-update{animation:voiceGenerateNeedsUpdate 1.35s ease-in-out infinite;color:#19051d!important;filter:brightness(1.12)}
+.voice-generate.working{animation:none!important;filter:brightness(.95);box-shadow:0 0 25px rgba(217,140,255,.35)!important}
+.voice-lab-status.needs-update{color:#ffd5f0;font-weight:850;text-shadow:0 0 10px rgba(255,133,213,.20)}
+.voice-to-mixer{border-color:rgba(67,239,255,.34)!important;color:#dffcff!important;background:rgba(67,239,255,.08)!important}.voice-download{min-height:44px;padding:10px 14px;border-radius:11px;border:1px solid rgba(98,245,155,.30)!important;color:#bdf8d1!important;background:rgba(98,245,155,.07)!important;font-weight:950;cursor:pointer}.voice-download:disabled{opacity:.38;cursor:not-allowed}.voice-lab-bottom{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(290px,.85fr);gap:10px;align-items:center;margin-top:9px}.voice-lab-status{min-height:20px;color:#f3f7fb;font-size:14px;font-weight:600;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.45;letter-spacing:0;text-shadow:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}.voice-lab-note{margin-top:8px;color:#73879d;font-size:10px;line-height:1.4}
 
 /* v8.1 — slightly stronger Voice Lab panel definition */
 .voice-lab{
@@ -4166,6 +4171,42 @@ function setVoiceLabButtons(ready){
   $('#voiceDownload').disabled=!ready;
   $('#voiceDownloadMp3').disabled=!ready;
 }
+function markVoiceLabNeedsGenerate(message='SCRIPT CHANGED — CLICK GENERATE VOICE AGAIN'){
+  // Once the script/settings change, the previously generated recording no longer matches.
+  stopVoiceLab();
+  if(voiceLabUrl){try{URL.revokeObjectURL(voiceLabUrl)}catch(e){}}
+  voiceLabBlob=null;
+  voiceLabUrl='';
+  voiceLabAudio=null;
+  setVoiceLabButtons(false);
+  updateVoiceLayerPanel();
+  const btn=$('#voiceGenerate');
+  const status=$('#voiceLabStatus');
+  if(btn){
+    btn.classList.add('needs-update');
+    btn.classList.remove('working');
+    btn.textContent='🎙️ GENERATE UPDATED VOICE';
+  }
+  if(status){
+    status.classList.add('needs-update');
+    status.textContent=message;
+  }
+}
+function setVoiceLabWorkingState(isWorking){
+  const btn=$('#voiceGenerate');
+  const status=$('#voiceLabStatus');
+  if(!btn)return;
+  btn.classList.toggle('working',!!isWorking);
+  if(isWorking){
+    btn.classList.remove('needs-update');
+    btn.textContent='⏳ CREATING VOICE…';
+    if(status)status.classList.remove('needs-update');
+  }else{
+    btn.classList.remove('working','needs-update');
+    btn.textContent='🎙️ GENERATE VOICE';
+    if(status)status.classList.remove('needs-update');
+  }
+}
 function voiceLoadProgress(p){
   if(!p)return;
   if(p.status==='progress' && Number.isFinite(p.progress)){
@@ -4339,6 +4380,7 @@ async function generateVoiceLab(){
   if(!text){$('#voiceLabStatus').textContent='Type a script first.';return;}
   const btn=$('#voiceGenerate');
   btn.disabled=true;
+  setVoiceLabWorkingState(true);
   setVoiceLabButtons(false);
   stopVoiceLab();
   try{
@@ -4357,6 +4399,7 @@ async function generateVoiceLab(){
     updateVoiceLayerPanel();
     setVoiceBadge('VOICE LAB: READY',true);
     $('#voiceLabStatus').textContent='Voice created. Play it, download it, or send it into Crazy Mixer.';
+    $('#voiceLabStatus').classList.remove('needs-update');
     voiceLabAudio.addEventListener('ended',()=>{$('#voiceStop').disabled=true;$('#voicePlay').disabled=false});
   }catch(e){
     console.error(e);
@@ -4364,6 +4407,7 @@ async function generateVoiceLab(){
     if(!$('#voiceLabStatus').textContent.includes('could not load'))$('#voiceLabStatus').textContent='Voice generation did not complete. Try again.';
   }finally{
     btn.disabled=false;
+    setVoiceLabWorkingState(false);
   }
 }
 function playVoiceLab(){
@@ -4457,7 +4501,12 @@ async function sendVoiceLabToMixer(){
   }
   $('#status').textContent='Voice Lab recording is in Crazy Mixer. Add a sound to the voice below, or use the mixer controls.';
 }
-$('#voiceSpeed').addEventListener('input',()=>$('#voiceSpeedValue').textContent=(+$('#voiceSpeed').value).toFixed(2)+'×');
+$('#voiceScript').addEventListener('input',()=>markVoiceLabNeedsGenerate());
+$('#voiceChoice').addEventListener('change',()=>markVoiceLabNeedsGenerate('VOICE CHANGED — CLICK GENERATE VOICE AGAIN'));
+$('#voiceSpeed').addEventListener('input',()=>{
+  $('#voiceSpeedValue').textContent=(+$('#voiceSpeed').value).toFixed(2)+'×';
+  markVoiceLabNeedsGenerate('VOICE SPEED CHANGED — CLICK GENERATE VOICE AGAIN');
+});
 $('#voiceGenerate').addEventListener('click',generateVoiceLab);
 $('#voicePlay').addEventListener('click',playVoiceLab);
 $('#voiceStop').addEventListener('click',stopVoiceLab);
