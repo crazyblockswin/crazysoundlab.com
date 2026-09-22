@@ -932,6 +932,69 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "marimba-game-over.mp3",
       "file": "sounds/game/marimba-game-over.mp3"
+    },
+    {
+      "id": "sound-mud9wtv8",
+      "category": "farm",
+      "name": "Cattle Eating Grass",
+      "description": "cattle eating grass",
+      "icon": "🔊",
+      "filename": "cattle-eating-grass1.mp3",
+      "file": "sounds/farm/cattle-eating-grass1.mp3"
+    },
+    {
+      "id": "sound-mud9xtsf",
+      "category": "farm",
+      "name": "Chickens Eating",
+      "description": "chickens eating",
+      "icon": "🔊",
+      "filename": "chicken_eating1.mp3",
+      "file": "sounds/farm/chicken_eating1.mp3"
+    },
+    {
+      "id": "sound-mud9yu4n",
+      "category": "farm",
+      "name": "Chicks",
+      "description": "little baby chicks",
+      "icon": "🔊",
+      "filename": "chicks1.mp3",
+      "file": "sounds/farm/chicks1.mp3"
+    },
+    {
+      "id": "sound-mud9zxnr",
+      "category": "farm",
+      "name": "Children and Animals",
+      "description": "children with animals on farm",
+      "icon": "🔊",
+      "filename": "children-animals1.mp3",
+      "file": "sounds/farm/children-animals1.mp3"
+    },
+    {
+      "id": "sound-muda16wz",
+      "category": "farm",
+      "name": "Ducks",
+      "description": "ducks",
+      "icon": "🔊",
+      "filename": "duck-sound.mp3",
+      "file": "sounds/farm/duck-sound.mp3"
+    },
+    {
+      "id": "sound-muda1q53",
+      "category": "farm",
+      "name": "Geese",
+      "description": "Geese",
+      "icon": "🔊",
+      "filename": "geese1.mp3",
+      "file": "sounds/farm/geese1.mp3"
+    },
+    {
+      "id": "sound-muda2y0j",
+      "category": "farm",
+      "name": "Pig Grunts and Snorts",
+      "description": "pig grunts and snorts",
+      "icon": "🔊",
+      "filename": "pig-grunts-snorts1.mp3",
+      "file": "sounds/farm/pig-grunts-snorts1.mp3"
     }
   ]
 };
