@@ -707,6 +707,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "Tow Yard Complaint.mp3",
       "file": "sounds/comedy/Tow Yard Complaint.mp3"
+    },
+    {
+      "id": "sound-muc6a846",
+      "category": "animals",
+      "name": "Buddy Barking",
+      "description": "my host Buddy Barking",
+      "icon": "🔊",
+      "filename": "dog-talking.mp3",
+      "file": "sounds/animals/dog-talking.mp3"
     }
   ]
 };
