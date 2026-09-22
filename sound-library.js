@@ -995,6 +995,123 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "pig-grunts-snorts1.mp3",
       "file": "sounds/farm/pig-grunts-snorts1.mp3"
+    },
+    {
+      "id": "sound-mudatmc4",
+      "category": "horror",
+      "name": "Dark Horror",
+      "description": "horror sound",
+      "icon": "🔊",
+      "filename": "dark-horror-soundscape1.mp3",
+      "file": "sounds/horror/dark-horror-soundscape1.mp3"
+    },
+    {
+      "id": "sound-mudaup7j",
+      "category": "horror",
+      "name": "Horror Background",
+      "description": "Horror Background",
+      "icon": "🔊",
+      "filename": "horror-background-atmosphere1.mp3",
+      "file": "sounds/horror/horror-background-atmosphere1.mp3"
+    },
+    {
+      "id": "sound-mudavkl2",
+      "category": "horror",
+      "name": "Horror Impact Sound",
+      "description": "horror impact sound",
+      "icon": "🔊",
+      "filename": "horror-impact1.mp3",
+      "file": "sounds/horror/horror-impact1.mp3"
+    },
+    {
+      "id": "sound-mudawf34",
+      "category": "horror",
+      "name": "Horror Metalic Screeches",
+      "description": "horror metalic screeches",
+      "icon": "🔊",
+      "filename": "horror-metallic-screeches1.mp3",
+      "file": "sounds/horror/horror-metallic-screeches1.mp3"
+    },
+    {
+      "id": "sound-mudax6vy",
+      "category": "horror",
+      "name": "Intense Horror",
+      "description": "Intense Horror",
+      "icon": "🔊",
+      "filename": "intense-horror-music1.mp3",
+      "file": "sounds/horror/intense-horror-music1.mp3"
+    },
+    {
+      "id": "sound-mudaxvdy",
+      "category": "horror",
+      "name": "Lurking Monstor",
+      "description": "lurking monstor horror",
+      "icon": "🔊",
+      "filename": "lurking-horror-monster1.mp3",
+      "file": "sounds/horror/lurking-horror-monster1.mp3"
+    },
+    {
+      "id": "sound-mudaz9nw",
+      "category": "horror",
+      "name": "Monstor Horror Orchestra Warning",
+      "description": "monstor orchestra warning",
+      "icon": "🔊",
+      "filename": "monster-horror-orchestra-warning1.mp3",
+      "file": "sounds/horror/monster-horror-orchestra-warning1.mp3"
+    },
+    {
+      "id": "sound-mudb0ch6",
+      "category": "horror",
+      "name": "Paranormal Horror Cinematic",
+      "description": "Paranormal sound",
+      "icon": "🔊",
+      "filename": "paranormal-horror-cinematic1.mp3",
+      "file": "sounds/horror/paranormal-horror-cinematic1.mp3"
+    },
+    {
+      "id": "sound-mudb167m",
+      "category": "horror",
+      "name": "Rising Horror Sound",
+      "description": "rising horror sound",
+      "icon": "🔊",
+      "filename": "rising-horror1.mp3",
+      "file": "sounds/horror/rising-horror1.mp3"
+    },
+    {
+      "id": "sound-mudb1wsi",
+      "category": "horror",
+      "name": "Scary Horror Sound",
+      "description": "scary horror",
+      "icon": "🔊",
+      "filename": "scary-horror1.mp3",
+      "file": "sounds/horror/scary-horror1.mp3"
+    },
+    {
+      "id": "sound-mudb2jzc",
+      "category": "horror",
+      "name": "Scream Horror",
+      "description": "Scream horror",
+      "icon": "🔊",
+      "filename": "scream-horror1.mp3",
+      "file": "sounds/horror/scream-horror1.mp3"
+    },
+    {
+      "id": "sound-mudb3hec",
+      "category": "horror",
+      "name": "Simple Horror",
+      "description": "simple horror sound",
+      "icon": "🔊",
+      "filename": "simple-horror1.mp3",
+      "file": "sounds/horror/simple-horror1.mp3"
+    },
+    {
+      "id": "sound-mudb4pkj",
+      "category": "horror",
+      "name": "Voice Tense Horror Paranormal",
+      "description": "voice tense paranormal",
+      "icon": "🔊",
+      "filename": "voice-tense-paranormal-horror1.mp3",
+      "file": "sounds/horror/voice-tense-paranormal-horror1.mp3"
     }
   ]
 };
