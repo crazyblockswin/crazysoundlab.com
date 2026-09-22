@@ -233,6 +233,56 @@ canvas{width:100%;height:100%;display:block}
 @media(max-width:560px){.library-form{grid-template-columns:1fr}.library-form .full{grid-column:auto}}
 
 .brand-promise{margin:8px 0 10px;text-align:center;color:#dce9f6;font-size:14px;font-weight:700;letter-spacing:.7px;text-shadow:0 0 10px rgba(111,203,255,.16)}
+.support-section{
+  width:60%;
+  max-width:900px;
+  margin:22px auto 10px;
+  padding:17px 18px;
+  text-align:center;
+  border:1px solid rgba(92,255,181,.28);
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(10,24,24,.96),rgba(7,14,19,.96));
+  box-shadow:0 10px 30px rgba(0,0,0,.28),0 0 20px rgba(92,255,181,.06);
+}
+.support-section h3{
+  margin:0 0 5px;
+  font-size:18px;
+  letter-spacing:.04em;
+  color:#effff8;
+}
+.support-section p{
+  margin:0 auto 13px;
+  max-width:690px;
+  color:#a9c6bc;
+  font-size:12px;
+  line-height:1.55;
+}
+.support-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:255px;
+  padding:12px 22px;
+  border:1px solid rgba(92,255,181,.48);
+  border-radius:12px;
+  background:linear-gradient(90deg,rgba(28,185,119,.20),rgba(67,239,255,.12));
+  color:#effff8;
+  text-decoration:none;
+  font-weight:900;
+  letter-spacing:.035em;
+  box-shadow:0 0 16px rgba(92,255,181,.08);
+  transition:filter .15s ease,box-shadow .15s ease,transform .15s ease;
+}
+.support-button:hover{
+  filter:brightness(1.12);
+  box-shadow:0 0 20px rgba(92,255,181,.18);
+  transform:translateY(-1px);
+}
+.support-note{
+  margin-top:9px !important;
+  color:#6f8e85 !important;
+  font-size:10px !important;
+}
 .comment-section{
   width:60%;
   max-width:900px;
@@ -260,6 +310,7 @@ canvas{width:100%;height:100%;display:block}
   color:#eefcff;font-weight:800;cursor:pointer;
 }
 .comment-submit:hover{filter:brightness(1.12);box-shadow:0 0 16px rgba(111,203,255,.12)}
+.comment-submit:disabled{opacity:.55;cursor:wait;filter:none;box-shadow:none}
 .comment-status{min-height:18px;color:#a9bfd5;font-size:12px;text-align:right;flex:1}
 .comment-note{grid-column:1/-1;margin:0;color:#71879d;font-size:10px;text-align:center}
 @media(max-width:980px){.comment-section{width:calc(100% - 28px)}}
@@ -879,7 +930,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
     <div class="voice-lab-grid">
       <div class="voice-script">
         <label for="voiceScript">YOUR SCRIPT</label>
-        <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So be patient and have some fun!</textarea>
+        <textarea id="voiceScript" maxlength="1200" placeholder="Type what you want the voice to say…">Welcome to Crazy Voice and Sound Lab. Type it, create it, then make it crazy. You may have to wait a few seconds for the GENERATE button to take effect. So be patient and have some real fun!</textarea>
       </div>
       <div class="voice-settings">
         <div class="voice-setting"><label for="voiceChoice">BUILT-IN VOICE</label><select id="voiceChoice">
@@ -1042,13 +1093,21 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 
 </main>
 
+<section class="support-section" aria-labelledby="supportTitle">
+  <h3 id="supportTitle">❤️ ENJOYING CRAZY SOUND LAB?</h3>
+  <p>If you would like to help keep the Lab growing with new sounds and features, your support is always appreciated.</p>
+  <a class="support-button" href="https://www.paypal.com/donate/?hosted_button_id=SJB48Y5YLJESA" target="_blank" rel="noopener noreferrer">❤️ SUPPORT CRAZY SOUND LAB</a>
+  <p class="support-note">Support is completely optional. Crazy Sound Lab remains free to use.</p>
+</section>
+
 <section class="comment-section" aria-labelledby="commentTitle">
   <h3 id="commentTitle">💬 LEAVE A COMMENT</h3>
   <p class="comment-intro">Tell us what you think about Crazy Voice and Sound Lab.</p>
-  <form class="comment-form" id="publicCommentForm" action="https://formsubmit.co/wallyjcass@gmail.com" method="POST" target="commentSubmitFrame">
+  <form class="comment-form" id="publicCommentForm" action="https://formsubmit.co/wallyjcass@gmail.com" method="POST">
     <input type="hidden" name="_subject" value="Crazy Voice and Sound Lab — New Comment">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <input type="text" name="name" maxlength="80" placeholder="Your name (optional)" aria-label="Your name">
     <input type="email" name="email" maxlength="140" placeholder="Your email (optional)" aria-label="Your email">
     <textarea class="full" name="comment" maxlength="2000" required placeholder="Write your comment here..." aria-label="Your comment"></textarea>
@@ -1058,7 +1117,6 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
     </div>
     <p class="comment-note">Comments are sent privately to Crazy Voice and Sound Lab.</p>
   </form>
-  <iframe name="commentSubmitFrame" id="commentSubmitFrame" title="Comment submission" style="display:none"></iframe>
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
@@ -1067,20 +1125,49 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 <script src="sound-library.js"></script>
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let commentFrameReady=false;
 const commentForm=document.getElementById('publicCommentForm');
-const commentFrame=document.getElementById('commentSubmitFrame');
 const commentStatus=document.getElementById('commentStatus');
-if(commentFrame){
-  commentFrame.addEventListener('load',()=>{
-    if(!commentFrameReady){commentFrameReady=true;return;}
-    if(commentStatus)commentStatus.textContent='Thanks! Your comment was sent.';
-    if(commentForm)commentForm.reset();
-  });
-}
+const commentSubmitButton=commentForm?.querySelector('.comment-submit');
+
 if(commentForm){
-  commentForm.addEventListener('submit',()=>{
+  commentForm.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+
+    if(commentSubmitButton?.disabled)return;
+
+    const originalText=commentSubmitButton?.textContent||'SEND COMMENT';
     if(commentStatus)commentStatus.textContent='Sending your comment...';
+    if(commentSubmitButton){
+      commentSubmitButton.disabled=true;
+      commentSubmitButton.textContent='SENDING...';
+    }
+
+    try{
+      const formData=new FormData(commentForm);
+      const res=await fetch('https://formsubmit.co/ajax/wallyjcass@gmail.com',{
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:formData
+      });
+
+      let data=null;
+      try{data=await res.json();}catch(_){}
+
+      if(!res.ok || (data && data.success===false)){
+        throw new Error(data?.message||'The comment could not be sent.');
+      }
+
+      if(commentStatus)commentStatus.textContent='Thanks! Your comment was sent.';
+      commentForm.reset();
+    }catch(err){
+      console.error(err);
+      if(commentStatus)commentStatus.textContent='Comment was not sent. Please try again.';
+    }finally{
+      if(commentSubmitButton){
+        commentSubmitButton.disabled=false;
+        commentSubmitButton.textContent=originalText;
+      }
+    }
   });
 }
 
