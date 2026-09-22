@@ -1,82 +1,82 @@
-CRAZY VOICE AND SOUND LAB — HOW IT WORKS
+    CRAZY VOICE AND SOUND LAB — HOW IT WORKS
 
-There are two simple ways to use the studio.
+    There are two simple ways to use the studio.
 
-============================================================
-1) CREATE A VOICE + ADD A SOUND OR MUSIC
-============================================================
+    ============================================================
+    1) CREATE A VOICE + ADD A SOUND OR MUSIC
+    ============================================================
 
-STEP 1 — CREATE YOUR VOICE
-• Type your script in VOICE LAB.
-• Choose the voice and speed you want.
-• Click GENERATE VOICE.
+    STEP 1 — CREATE YOUR VOICE
+    • Type your script in VOICE LAB.
+    • Choose the voice and speed you want.
+    • Click GENERATE VOICE.
 
-STEP 2 — OPEN IT IN CRAZY MIXER
-• Use OPEN TO CRAZY MIXER.
-• Your generated voice becomes the main sound in the mixer.
+    STEP 2 — OPEN IT IN CRAZY MIXER
+    • Use OPEN TO CRAZY MIXER.
+    • Your generated voice becomes the main sound in the mixer.
 
-STEP 3 — UNDERSTAND THE TWO SETS OF CONTROLS
-This is the important part:
+    STEP 3 — UNDERSTAND THE TWO SETS OF CONTROLS
+    This is the important part:
 
-MAIN CRAZY MIXER = changes the VOICE.
-ADD SOUND TO VOICE = changes the ADDED SOUND or MUSIC.
+    MAIN CRAZY MIXER = changes the VOICE.
+    ADD SOUND TO VOICE = changes the ADDED SOUND or MUSIC.
 
-For example:
-• Want the voice slower, deeper, louder, shorter, or with effects?
-  Use the MAIN CRAZY MIXER controls.
+    For example:
+    • Want the voice slower, deeper, louder, shorter, or with effects?
+      Use the MAIN CRAZY MIXER controls.
 
-• Want the dog bark, music, rain, alarm, or other added sound louder, shorter, faded, or starting at a different time?
-  Use the ADD SOUND TO VOICE controls.
+    • Want the dog bark, music, rain, alarm, or other added sound louder, shorter, faded, or starting at a different time?
+      Use the ADD SOUND TO VOICE controls.
 
-STEP 4 — ADD THE SOUND
-• Open ADD SOUND TO VOICE.
-• Pick a category.
-• Pick the sound or music you want.
-• Adjust Added Sound Volume, Length, Fade In, Fade Out, and when it starts.
-• Wait until the selected sound is ready.
-• Click APPLY CRAZY MIX & PLAY.
+    STEP 4 — ADD THE SOUND
+    • Open ADD SOUND TO VOICE.
+    • Pick a category.
+    • Pick the sound or music you want.
+    • Adjust Added Sound Volume, Length, Fade In, Fade Out, and when it starts.
+    • Wait until the selected sound is ready.
+    • Click APPLY CRAZY MIX & PLAY.
 
-IMPORTANT:
-The normal PLAY VOICE button plays the voice by itself.
-APPLY CRAZY MIX & PLAY creates and plays the combined VOICE + SOUND mix.
+    IMPORTANT:
+    The normal PLAY VOICE button plays the voice by itself.
+    APPLY CRAZY MIX & PLAY creates and plays the combined VOICE + SOUND mix.
 
-You do NOT have to play a stand-alone sound first before adding it to a voice.
+    You do NOT have to play a stand-alone sound first before adding it to a voice.
 
-STEP 5 — DOWNLOAD
-• When the mix sounds right, download the finished WAV or MP3.
-• The downloaded mixed file includes BOTH the voice and the added sound.
+    STEP 5 — DOWNLOAD
+    • When the mix sounds right, download the finished WAV or MP3.
+    • The downloaded mixed file includes BOTH the voice and the added sound.
 
-============================================================
-2) USE A SOUND WITHOUT A VOICE
-============================================================
+    ============================================================
+    2) USE A SOUND WITHOUT A VOICE
+    ============================================================
 
-STEP 1 — PICK A CATEGORY
-Choose Animals, Nature, Horror, Music, Vehicles, or any other category.
+    STEP 1 — PICK A CATEGORY
+    Choose Animals, Nature, Horror, Music, Vehicles, or any other category.
 
-STEP 2 — PICK A SOUND
-Click the sound you want.
+    STEP 2 — PICK A SOUND
+    Click the sound you want.
 
-STEP 3 — USE CRAZY MIXER
-When you are working with a stand-alone sound, the MAIN CRAZY MIXER controls change that selected sound.
+    STEP 3 — USE CRAZY MIXER
+    When you are working with a stand-alone sound, the MAIN CRAZY MIXER controls change that selected sound.
 
-Adjust only what you want. The default settings are ready to use.
+    Adjust only what you want. The default settings are ready to use.
 
-STEP 4 — CREATE & PLAY
-Click GENERATE / PLAY to hear your changes.
+    STEP 4 — CREATE & PLAY
+    Click GENERATE / PLAY to hear your changes.
 
-STEP 5 — DOWNLOAD
-Download your finished sound as WAV or MP3 when available.
+    STEP 5 — DOWNLOAD
+    Download your finished sound as WAV or MP3 when available.
 
-============================================================
-THE ONE RULE TO REMEMBER
-============================================================
+    ============================================================
+    THE ONE RULE TO REMEMBER
+    ============================================================
 
-VOICE + SOUND MIX:
-MAIN CRAZY MIXER = VOICE
-ADD SOUND TO VOICE = ADDED SOUND
-APPLY CRAZY MIX & PLAY = COMBINES THEM
+    VOICE + SOUND MIX:
+    MAIN CRAZY MIXER = VOICE
+    ADD SOUND TO VOICE = ADDED SOUND
+    APPLY CRAZY MIX & PLAY = COMBINES THEM
 
-SOUND BY ITSELF:
-MAIN CRAZY MIXER = THE SELECTED SOUND
+    SOUND BY ITSELF:
+    MAIN CRAZY MIXER = THE SELECTED SOUND
 
-Have fun. Make it weird. Make it yours.
+    Have fun. Make it weird. Make it yours.
