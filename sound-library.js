@@ -842,6 +842,96 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "👧",
       "filename": "girl-giggling.mp3",
       "file": "sounds/people/girl-giggling.mp3"
+    },
+    {
+      "id": "sound-mud8zbfu",
+      "category": "game",
+      "name": "Game Bio Gun",
+      "description": "Game gun",
+      "icon": "🔊",
+      "filename": "game-bio-gun.mp3",
+      "file": "sounds/game/game-bio-gun.mp3"
+    },
+    {
+      "id": "sound-mud90dai",
+      "category": "game",
+      "name": "Game Countdown",
+      "description": "game countdown",
+      "icon": "🔊",
+      "filename": "game-countdown.mp3",
+      "file": "sounds/game/game-countdown.mp3"
+    },
+    {
+      "id": "sound-mud914s2",
+      "category": "game",
+      "name": "Game Over Arcade",
+      "description": "game over arcade",
+      "icon": "🔊",
+      "filename": "game-over-arcade.mp3",
+      "file": "sounds/game/game-over-arcade.mp3"
+    },
+    {
+      "id": "sound-mud9229e",
+      "category": "game",
+      "name": "Game Respawn",
+      "description": "game respawn sound",
+      "icon": "🔊",
+      "filename": "game-respawn.mp3",
+      "file": "sounds/game/game-respawn.mp3"
+    },
+    {
+      "id": "sound-mud92rep",
+      "category": "game",
+      "name": "Game Start Sound",
+      "description": "game start",
+      "icon": "🔊",
+      "filename": "game-start.mp3",
+      "file": "sounds/game/game-start.mp3"
+    },
+    {
+      "id": "sound-mud93df5",
+      "category": "game",
+      "name": "Game Upgrade",
+      "description": "Game upgrade",
+      "icon": "🔊",
+      "filename": "game-upgrade.mp3",
+      "file": "sounds/game/game-upgrade.mp3"
+    },
+    {
+      "id": "sound-mud93y5u",
+      "category": "game",
+      "name": "Level Up",
+      "description": "level up",
+      "icon": "🔊",
+      "filename": "level-up.mp3",
+      "file": "sounds/game/level-up.mp3"
+    },
+    {
+      "id": "sound-mud951o9",
+      "category": "game",
+      "name": "Lose Funny Game Sound",
+      "description": "losing game sound funny",
+      "icon": "🔊",
+      "filename": "lose-funny-video-game.mp3",
+      "file": "sounds/game/lose-funny-video-game.mp3"
+    },
+    {
+      "id": "sound-mud968hl",
+      "category": "game",
+      "name": "Winner Game Show",
+      "description": "winner game show",
+      "icon": "🔊",
+      "filename": "winner.mp3",
+      "file": "sounds/game/winner.mp3"
+    },
+    {
+      "id": "sound-mud97q9l",
+      "category": "game",
+      "name": "Marimba Game Over",
+      "description": "game over sound",
+      "icon": "🔊",
+      "filename": "marimba-game-over.mp3",
+      "file": "sounds/game/marimba-game-over.mp3"
     }
   ]
 };
