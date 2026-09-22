@@ -737,7 +737,8 @@ header::after{
 .voice-lab-actions{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;gap:8px;margin-top:12px}.voice-lab-actions button{min-height:44px;padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-weight:950;cursor:pointer}.voice-lab-actions button:disabled{opacity:.38;cursor:not-allowed}.voice-generate{border:0!important;color:#16051b!important;background:linear-gradient(90deg,#ff85d5,#b88cff)!important;box-shadow:0 0 20px rgba(217,140,255,.16)}
 @keyframes voiceGenerateNeedsUpdate{0%,100%{transform:scale(1);box-shadow:0 0 20px rgba(217,140,255,.18)}50%{transform:scale(1.018);box-shadow:0 0 28px rgba(255,133,213,.58),0 0 42px rgba(184,140,255,.28)}}
 .voice-generate.needs-update{animation:voiceGenerateNeedsUpdate 1.35s ease-in-out infinite;color:#19051d!important;filter:brightness(1.12)}
-.voice-generate.working{animation:none!important;filter:brightness(.95);box-shadow:0 0 25px rgba(217,140,255,.35)!important}
+.voice-generate.working{animation:none!important;opacity:1!important;filter:brightness(1.04);box-shadow:0 0 25px rgba(217,140,255,.42),0 0 38px rgba(255,133,213,.20)!important}
+.voice-generate.working:disabled{opacity:1!important;cursor:wait}
 .voice-lab-status.needs-update{color:#ffd5f0;font-weight:850;text-shadow:0 0 10px rgba(255,133,213,.20)}
 .voice-to-mixer{border-color:rgba(67,239,255,.34)!important;color:#dffcff!important;background:rgba(67,239,255,.08)!important}.voice-download{min-height:44px;padding:10px 14px;border-radius:11px;border:1px solid rgba(98,245,155,.30)!important;color:#bdf8d1!important;background:rgba(98,245,155,.07)!important;font-weight:950;cursor:pointer}.voice-download:disabled{opacity:.38;cursor:not-allowed}.voice-lab-bottom{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(290px,.85fr);gap:10px;align-items:center;margin-top:9px}.voice-lab-status{min-height:20px;color:#f3f7fb;font-size:14px;font-weight:600;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.45;letter-spacing:0;text-shadow:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}.voice-lab-note{margin-top:8px;color:#73879d;font-size:10px;line-height:1.4}
 
@@ -4383,6 +4384,9 @@ async function generateVoiceLab(){
   setVoiceLabWorkingState(true);
   setVoiceLabButtons(false);
   stopVoiceLab();
+  // Give the browser two paint frames so the pulsing state visibly stops
+  // and the steady CREATING VOICE state appears before engine loading begins.
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   try{
     const tts=await ensureVoiceEngine();
     setVoiceBadge('VOICE LAB: CREATING…',true);
