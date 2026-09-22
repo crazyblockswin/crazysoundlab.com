@@ -815,6 +815,33 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "stadium-roar.mp3",
       "file": "sounds/people/stadium-roar.mp3"
+    },
+    {
+      "id": "sound-mud7v9t9",
+      "category": "people",
+      "name": "Crowd Shocked Reaction",
+      "description": "crowd shocked reaction",
+      "icon": "🔊",
+      "filename": "crowd-shocked-reaction.mp3",
+      "file": "sounds/people/crowd-shocked-reaction.mp3"
+    },
+    {
+      "id": "sound-mud7vzrx",
+      "category": "people",
+      "name": "Gulp",
+      "description": "gulp sound",
+      "icon": "🔊",
+      "filename": "gulp.mp3",
+      "file": "sounds/people/gulp.mp3"
+    },
+    {
+      "id": "sound-mud7zwbt",
+      "category": "people",
+      "name": "Girl Giggling",
+      "description": "girl giggling",
+      "icon": "👧",
+      "filename": "girl-giggling.mp3",
+      "file": "sounds/people/girl-giggling.mp3"
     }
   ]
 };
