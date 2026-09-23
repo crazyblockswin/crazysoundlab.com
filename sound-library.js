@@ -1202,6 +1202,33 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3",
       "file": "sounds/aircraft/windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3"
+    },
+    {
+      "id": "sound-mudf5by3",
+      "category": "aircraft",
+      "name": "Jet Airplane",
+      "description": "Jet airplane",
+      "icon": "🔊",
+      "filename": "jet airplane.mp3",
+      "file": "sounds/aircraft/jet airplane.mp3"
+    },
+    {
+      "id": "sound-mudf64b4",
+      "category": "aircraft",
+      "name": "Military Jet",
+      "description": "military jet",
+      "icon": "🔊",
+      "filename": "military-jet.mp3",
+      "file": "sounds/aircraft/military-jet.mp3"
+    },
+    {
+      "id": "sound-mudf8tl0",
+      "category": "aircraft",
+      "name": "Commercial Jet Flyover",
+      "description": "Commercial Jet flyover sound",
+      "icon": "🔊",
+      "filename": "commercial-jet-flyover.mp3",
+      "file": "sounds/aircraft/commercial-jet-flyover.mp3"
     }
   ]
 };
