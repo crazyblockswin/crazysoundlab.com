@@ -1115,57 +1115,57 @@ window.CSL_SOUND_LIBRARY = {
     },
     {
       "id": "sound-mudblxnk",
-      "category": "horror",
+      "category": "aircraft",
       "name": "Airplane Takeoff",
       "description": "airplane takeoff",
       "icon": "🔊",
       "filename": "airplane-takeoff1.mp3",
-      "file": "sounds/horror/airplane-takeoff1.mp3"
+      "file": "sounds/aircraft/airplane-takeoff1.mp3"
     },
     {
       "id": "sound-mudbmrfj",
-      "category": "horror",
+      "category": "aircraft",
       "name": "Big Plane Sound Effect",
       "description": "Big plane sound effect",
       "icon": "🔊",
       "filename": "big-plane-sound-effect1.mp3",
-      "file": "sounds/horror/big-plane-sound-effect1.mp3"
+      "file": "sounds/aircraft/big-plane-sound-effect1.mp3"
     },
     {
       "id": "sound-mudbnfqk",
-      "category": "horror",
+      "category": "aircraft",
       "name": "Drone",
       "description": "drone",
       "icon": "🔊",
       "filename": "drone1.mp3",
-      "file": "sounds/horror/drone1.mp3"
+      "file": "sounds/aircraft/drone1.mp3"
     },
     {
       "id": "sound-mudboguc",
-      "category": "horror",
+      "category": "aircraft",
       "name": "Helicopter number two",
       "description": "helicopter 2",
       "icon": "🔊",
       "filename": "helicopter1.mp3",
-      "file": "sounds/horror/helicopter1.mp3"
+      "file": "sounds/aircraft/helicopter1.mp3"
     },
     {
       "id": "sound-mudbpcl0",
-      "category": "horror",
+      "category": "aircraft",
       "name": "Missle Lock Detected",
       "description": "missle lock",
       "icon": "🔊",
       "filename": "missile-lock-detected1.mp3",
-      "file": "sounds/horror/missile-lock-detected1.mp3"
+      "file": "sounds/aircraft/missile-lock-detected1.mp3"
     },
     {
       "id": "sound-mudbqkrg",
-      "category": "horror",
+      "category": "aircraft",
       "name": "Boeing 737 Windshear Alert",
       "description": "Boeing 737 Windshear Alert",
       "icon": "🔊",
       "filename": "windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3",
-      "file": "sounds/horror/windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3"
+      "file": "sounds/aircraft/windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3"
     }
   ]
 };
