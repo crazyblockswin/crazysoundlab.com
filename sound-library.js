@@ -1643,6 +1643,24 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "war-horn-and-drums1.mp3",
       "file": "sounds/horns/war-horn-and-drums1.mp3"
+    },
+    {
+      "id": "sound-mudl18va",
+      "category": "music",
+      "name": "Sport Rock",
+      "description": "sport rock music",
+      "icon": "🔊",
+      "filename": "sport-rock.mp3",
+      "file": "sounds/music/sport-rock.mp3"
+    },
+    {
+      "id": "sound-mudl26qy",
+      "category": "music",
+      "name": "Short Rock Music",
+      "description": "short rock music",
+      "icon": "🔊",
+      "filename": "short-rock1.mp3",
+      "file": "sounds/music/short-rock1.mp3"
     }
   ]
 };
