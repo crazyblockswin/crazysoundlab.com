@@ -102,6 +102,12 @@ window.CSL_SOUND_LIBRARY = {
       "name": "Sports",
       "icon": "🤾‍♂️",
       "builtIn": false
+    },
+    {
+      "id": "sample-of-mixed-voice-and-sounds",
+      "name": "Sample of Mixed Voice and Sounds",
+      "icon": "🎤📢",
+      "builtIn": false
     }
   ],
   "sounds": [
@@ -1625,6 +1631,24 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "short-rock1.mp3",
       "file": "sounds/music/short-rock1.mp3"
+    },
+    {
+      "id": "sound-muegjejw",
+      "category": "sample-of-mixed-voice-and-sounds",
+      "name": "Sample of Mixed Voice and Sound mp3",
+      "description": "Sample of voice and sound mix in mp3 format",
+      "icon": "🔊",
+      "filename": "Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3",
+      "file": "sounds/sample-of-mixed-voice-and-sounds/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
+    },
+    {
+      "id": "sound-muegv2cu",
+      "category": "sample-of-mixed-voice-and-sounds",
+      "name": "Sample of voice and Sound Mix WAV",
+      "description": "sample of voice and sound mix output wav",
+      "icon": "🎤",
+      "filename": "Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav",
+      "file": "sounds/sample-of-mixed-voice-and-sounds/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
     }
   ]
 };
