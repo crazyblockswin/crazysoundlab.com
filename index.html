@@ -437,6 +437,8 @@ canvas{width:100%;height:100%;display:block}
 .side>.secondary{grid-area:random;margin:0;padding:8px}
 .side>.mixer-action-tools{grid-area:random;display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin:0;min-width:0}
 .side>.mixer-action-tools .secondary{margin:0;padding:8px;flex:1 1 210px;min-width:0}
+.side .main-mixer-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin:2px 0 10px;min-width:0}
+.side .main-mixer-actions .secondary{margin:0;padding:8px;flex:1 1 210px;min-width:0}
 .side>.preview-tools{grid-area:ambience;margin:0;padding:7px;grid-template-columns:1fr}
 .side>.tagline{grid-area:tag;margin:0;padding:8px 9px;font-size:10px;text-align:center}
 .side .bottom-download-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}
@@ -1028,6 +1030,11 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       <div class="mixer-controls-stack">
       <div id="dynamicControls" class="controls"></div>
 
+      <div class="mixer-action-tools main-mixer-actions">
+        <button id="randomize" class="secondary">🎲 RANDOMIZE CONTROLS</button>
+        <button id="resetOriginal" class="secondary" style="display:none">↩ RESET MIX TO ORIGINAL</button>
+      </div>
+
       <div class="voice-layer-panel" id="voiceLayerPanel">
         <button class="voice-layer-toggle" id="voiceLayerToggle" type="button" disabled>➕ ADD SOUND TO VOICE — CREATE A VOICE FIRST</button>
         <div class="voice-layer-controls" id="voiceLayerControls" hidden>
@@ -1049,8 +1056,6 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       </div>
 
       <div class="mixer-action-tools">
-        <button id="randomize" class="secondary">🎲 RANDOMIZE CONTROLS</button>
-        <button id="resetOriginal" class="secondary" style="display:none">↩ RESET MIX TO ORIGINAL</button>
         <button id="replaceSound" class="secondary" style="display:none">🔄 REPLACE SOUND</button>
         <button id="restoreBuiltIn" class="secondary" style="display:none">↩ RESTORE BUILT-IN SOUND</button>
         <input id="replaceSoundFile" type="file" accept=".mp3,.wav,.ogg,.m4a,.aac,audio/*" style="display:none">
