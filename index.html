@@ -690,6 +690,7 @@ header::after{
 }
 .category-dashboard .categories{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px;margin:0}
 #categoryBar{scroll-margin-top:120px}
+.layout .main{scroll-margin-top:104px}
 .category-dashboard .cat{
   --c1:#102735;--c2:#061018;--accent:#43efff;--glow:rgba(67,239,255,.34);
   min-width:0;min-height:48px;padding:9px 7px;border-radius:11px;
@@ -829,6 +830,7 @@ html.chrome-dpi-compact .voice-lab-head{align-items:center!important;flex-direct
 .voice-layer-note{margin:12px 0 0;padding:12px 14px;border-left:3px solid rgba(67,239,255,.58);border-radius:8px;background:rgba(67,239,255,.055);color:#aebfd1;font-size:14px;line-height:1.55;text-align:left}.voice-layer-note b{color:#eefcff;font-weight:900}
 @container (max-width:430px){.voice-layer-grid{grid-template-columns:1fr}}
 @media(max-width:660px){.voice-layer-grid{grid-template-columns:1fr}}
+.voice-layer-subhead{margin:12px 0 8px;padding-top:10px;border-top:1px solid rgba(111,203,255,.14);color:#dffcff;font-size:10px;font-weight:950;letter-spacing:.09em}.voice-layer-subhead.first{margin-top:0;padding-top:0;border-top:0}.voice-layer-second-note{color:#8fa5ba;font-weight:750;letter-spacing:0}
 
 
 /* v8.2 — natural mixer flow fix
@@ -1043,7 +1045,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 
     <aside class="panel side" id="workbench">
       <div class="section-title"><h2 id="controlTitle">2. CRAZY MIXER</h2><small>Shape the selected sound</small></div>
-      <div class="mixer-scope-note"><span class="scope-heading">CRAZY MIXER WORKS TWO WAYS:</span><span class="scope-line"><strong>1. Stand-alone sounds:</strong> these controls adjust the selected sound.</span><span class="scope-line"><strong>2. Voice + sound mixes:</strong> these controls adjust the <span class="voice-only">VOICE ONLY</span>. Adjust the added sound separately in the <a href="#voiceLayerPanel" class="add-sound-section-link" id="addSoundSectionLink">ADD SOUND TO VOICE SECTION</a> below.</span></div>
+      <div class="mixer-scope-note"><span class="scope-heading">CRAZY MIXER WORKS TWO WAYS:</span><span class="scope-line"><strong>1. Stand-alone sounds:</strong> these controls adjust the selected sound.</span><span class="scope-line"><strong>2. Voice + sound mixes:</strong> these controls adjust the <span class="voice-only">VOICE ONLY</span>. Adjust the added sounds separately in the <a href="#voiceLayerPanel" class="add-sound-section-link" id="addSoundSectionLink">ADD SOUND TO VOICE SECTION</a> below.</span></div>
       <div class="workbench-start"><b>YOUR SOUND CONTROLS</b> Adjust only what you want. The defaults are ready to use.</div>
 
 
@@ -1060,7 +1062,8 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       <div class="voice-layer-panel" id="voiceLayerPanel">
         <button class="voice-layer-toggle" id="voiceLayerToggle" type="button" disabled>➕ ADD SOUND TO VOICE — CREATE A VOICE FIRST</button>
         <div class="voice-layer-controls" id="voiceLayerControls" hidden>
-          <div class="voice-layer-head"><b>VOICE + SOUND LAYER</b><span>Choose one studio sound to add behind or around the voice.</span></div>
+          <div class="voice-layer-head"><b>VOICE + SOUND LAYERS</b><span>Choose up to two studio sounds to place before, during, or after the voice.</span></div>
+          <div class="voice-layer-subhead first">SOUND 1</div>
           <div class="voice-layer-grid">
             <div class="voice-layer-field"><label for="voiceLayerCategory"><span>Category</span></label><select id="voiceLayerCategory"></select></div>
             <div class="voice-layer-field"><label for="voiceLayerSound"><span>Sound</span></label><select id="voiceLayerSound"><option value="">Choose a sound…</option></select></div>
@@ -1070,9 +1073,21 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
             <div class="voice-layer-field"><label for="voiceLayerFadeOut"><span>Added Sound Fade Out</span><span class="voice-layer-fade-value" id="voiceLayerFadeOutValue">None</span></label><input id="voiceLayerFadeOut" type="range" min="0" max="100" step="1" value="0" disabled></div>
             <div class="voice-layer-field"><label for="voiceLayerStart"><span>Sound Starts</span></label><select id="voiceLayerStart"><option value="before">Before Voice Starts</option><option value="beginning">Beginning</option><option value="middle">Middle</option><option value="end">After Voice Ends</option></select></div>
           </div>
+          <button class="voice-layer-remove" id="voiceLayerRemove" type="button" disabled>✕ REMOVE SOUND 1</button>
+
+          <div class="voice-layer-subhead">SOUND 2 <span class="voice-layer-second-note">— OPTIONAL</span></div>
+          <div class="voice-layer-grid">
+            <div class="voice-layer-field"><label for="voiceLayer2Category"><span>Category</span></label><select id="voiceLayer2Category"></select></div>
+            <div class="voice-layer-field"><label for="voiceLayer2Sound"><span>Sound</span></label><select id="voiceLayer2Sound"><option value="">Choose a sound…</option></select></div>
+            <div class="voice-layer-field"><label for="voiceLayer2Volume"><span>Added Sound Volume</span><span class="voice-layer-volume" id="voiceLayer2VolumeValue">90%</span></label><input id="voiceLayer2Volume" type="range" min="0" max="100" value="90"></div>
+            <div class="voice-layer-field"><label for="voiceLayer2Length"><span>Added Sound Length</span><span class="voice-layer-length-value" id="voiceLayer2LengthValue">Full</span></label><input id="voiceLayer2Length" type="range" min="1" max="100" step="1" value="100" disabled></div>
+            <div class="voice-layer-field"><label for="voiceLayer2FadeIn"><span>Added Sound Fade In</span><span class="voice-layer-fade-value" id="voiceLayer2FadeInValue">None</span></label><input id="voiceLayer2FadeIn" type="range" min="0" max="100" step="1" value="0" disabled></div>
+            <div class="voice-layer-field"><label for="voiceLayer2FadeOut"><span>Added Sound Fade Out</span><span class="voice-layer-fade-value" id="voiceLayer2FadeOutValue">None</span></label><input id="voiceLayer2FadeOut" type="range" min="0" max="100" step="1" value="0" disabled></div>
+            <div class="voice-layer-field"><label for="voiceLayer2Start"><span>Sound Starts</span></label><select id="voiceLayer2Start"><option value="before">Before Voice Starts</option><option value="beginning">Beginning</option><option value="middle">Middle</option><option value="end" selected>After Voice Ends</option></select></div>
+          </div>
+          <button class="voice-layer-remove" id="voiceLayer2Remove" type="button" disabled>✕ REMOVE SOUND 2</button>
           <button class="voice-layer-apply" id="voiceLayerApply" type="button" disabled>🎛️ APPLY CRAZY MIX &amp; PLAY</button>
-          <button class="voice-layer-remove" id="voiceLayerRemove" type="button" disabled>✕ REMOVE ADDED SOUND</button>
-          <p class="voice-layer-note">After choosing a sound, click <b>APPLY CRAZY MIX &amp; PLAY</b>. Your downloaded WAV or MP3 will include both the voice and the added sound.<br>You can also use the <a href="#controlTitle" class="main-mixer-link" id="mainMixerLink">MAIN CRAZY MIXER</a> controls to change the voice effects. These controls affect the voice only — they do not change the added sound.</p>
+          <p class="voice-layer-note">Choose one or two sounds, set where each starts, then click <b>APPLY CRAZY MIX &amp; PLAY</b>. Your downloaded WAV or MP3 will include the voice and both selected sounds.<br>You can also use the <a href="#controlTitle" class="main-mixer-link" id="mainMixerLink">MAIN CRAZY MIXER</a> controls to change the voice effects. These controls affect the voice only — they do not change the added sounds.</p>
         </div>
       </div>
       </div>
@@ -1208,6 +1223,7 @@ if(commentForm){
 
 let currentType='footstep', currentBuffer=null, currentWav=null, liveCtx=null, currentSource=null, previewGain=null, currentSample=null, currentOriginalBlob=null, currentOriginalName='', currentSampleOriginalBuffer=null, currentSampleTargetSeconds=0, currentReplacement=false;
 let voiceLayerRecord=null, voiceLayerBuffer=null, voiceLayerBufferKey='', voiceLayerLoading=null, voiceLayerLoadingKey='';
+let voiceLayer2Record=null, voiceLayer2Buffer=null, voiceLayer2BufferKey='', voiceLayer2Loading=null, voiceLayer2LoadingKey='';
 let loopEnabled=false;
 let currentSelectedSoundButton=null;
 const DEFAULT_CATEGORIES=[
@@ -2285,6 +2301,32 @@ function fillVoiceLayerSounds(){
   if(candidates.some(r=>r.id===chosen))sel.value=chosen;
   else if(voiceLayerRecord && voiceLayerRecord.category!==cat.value){voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey=''}
 }
+function fillVoiceLayer2Categories(){
+  const cat=$('#voiceLayer2Category');if(!cat)return;
+  const candidates=voiceLayerCandidates();
+  const ids=[...new Set(candidates.map(r=>r.category||'other'))];
+  const preferred=(libraryData.categories||[]).map(c=>c.id);
+  ids.sort((a,b)=>{
+    const ai=preferred.indexOf(a),bi=preferred.indexOf(b);
+    if(ai>=0||bi>=0)return (ai<0?999:ai)-(bi<0?999:bi);
+    return categoryLabel(a).localeCompare(categoryLabel(b));
+  });
+  cat.innerHTML='';
+  ids.forEach(id=>{const o=document.createElement('option');o.value=id;o.textContent=categoryLabel(id);cat.appendChild(o)});
+  if(voiceLayer2Record && ids.includes(voiceLayer2Record.category))cat.value=voiceLayer2Record.category;
+  fillVoiceLayer2Sounds();
+}
+function fillVoiceLayer2Sounds(){
+  const cat=$('#voiceLayer2Category'),sel=$('#voiceLayer2Sound');if(!cat||!sel)return;
+  const chosen=voiceLayer2Record?.id||'';
+  const candidates=voiceLayerCandidates().filter(r=>(r.category||'other')===cat.value);
+  sel.innerHTML='<option value="">Choose a sound…</option>';
+  candidates.forEach(r=>{const o=document.createElement('option');o.value=r.id;o.textContent=r.name;sel.appendChild(o)});
+  if(candidates.some(r=>r.id===chosen))sel.value=chosen;
+  else if(voiceLayer2Record && voiceLayer2Record.category!==cat.value){voiceLayer2Record=null;voiceLayer2Buffer=null;voiceLayer2BufferKey=''}
+}
+function hasVoiceLayers(){return !!(voiceLayerRecord||voiceLayer2Record)}
+function voiceLayerNames(){return [voiceLayerRecord?.name,voiceLayer2Record?.name].filter(Boolean).join(' + ')}
 function invalidateVoiceLayerMix(message){
   currentWav=null;
   currentBuffer=currentSampleOriginalBuffer||null;
@@ -2305,8 +2347,9 @@ function updateVoiceLayerPanel(){
     toggle.disabled=true;
     toggle.textContent='➕ ADD SOUND TO VOICE — CREATE A VOICE FIRST';
     voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey='';voiceLayerLoading=null;
-    updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);
-    $('#voiceLayerRemove').disabled=true;$('#voiceLayerApply').disabled=true;
+    voiceLayer2Record=null;voiceLayer2Buffer=null;voiceLayer2BufferKey='';voiceLayer2Loading=null;
+    updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);updateVoiceLayer2LengthUI(null);updateVoiceLayer2FadeUI(null);
+    $('#voiceLayerRemove').disabled=true;$('#voiceLayer2Remove').disabled=true;$('#voiceLayerApply').disabled=true;
     return;
   }
 
@@ -2315,17 +2358,22 @@ function updateVoiceLayerPanel(){
     toggle.disabled=false;
     toggle.textContent='➕ OPEN ADD SOUND TO VOICE';
     voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey='';voiceLayerLoading=null;
-    updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);
-    $('#voiceLayerRemove').disabled=true;$('#voiceLayerApply').disabled=true;
+    voiceLayer2Record=null;voiceLayer2Buffer=null;voiceLayer2BufferKey='';voiceLayer2Loading=null;
+    updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);updateVoiceLayer2LengthUI(null);updateVoiceLayer2FadeUI(null);
+    $('#voiceLayerRemove').disabled=true;$('#voiceLayer2Remove').disabled=true;$('#voiceLayerApply').disabled=true;
     return;
   }
 
   toggle.disabled=false;
   fillVoiceLayerCategories();
+  fillVoiceLayer2Categories();
   const layerIsOpen=!controls.hidden;
-  toggle.textContent=layerIsOpen ? '✓ ADD SOUND TO VOICE — OPEN' : (voiceLayerRecord ? '🎧 CHANGE ADDED SOUND' : '➕ OPEN ADD SOUND TO VOICE');
+  toggle.textContent=layerIsOpen ? '✓ ADD SOUNDS TO VOICE — OPEN' : (hasVoiceLayers() ? '🎧 CHANGE ADDED SOUNDS' : '➕ OPEN ADD SOUND TO VOICE');
   $('#voiceLayerRemove').disabled=!voiceLayerRecord;
+  $('#voiceLayer2Remove').disabled=!voiceLayer2Record;
+  $('#voiceLayerApply').disabled=!hasVoiceLayers();
   updateVoiceLayerLengthUI(voiceLayerBuffer);updateVoiceLayerFadeUI(voiceLayerBuffer);
+  updateVoiceLayer2LengthUI(voiceLayer2Buffer);updateVoiceLayer2FadeUI(voiceLayer2Buffer);
 }
 async function ensureVoiceLayerDecoded(){
   if(!voiceLayerRecord)return null;
@@ -2403,19 +2451,95 @@ function updateVoiceLayerFadeUI(buf){
   inLabel.textContent=layerDur?fmt(voiceLayerFadeSeconds('in',layerDur)):(+fadeIn.value?fadeIn.value+'%':'None');
   outLabel.textContent=layerDur?fmt(voiceLayerFadeSeconds('out',layerDur)):(+fadeOut.value?fadeOut.value+'%':'None');
 }
-function voiceLayerTiming(baseDur,layerDur){
-  const mode=$('#voiceLayerStart')?.value||'beginning';
-  // Beginning: voice and added sound start together.
-  // Middle: added sound starts halfway through the voice.
-  // End: added sound starts after the voice finishes.
-  // Before: play the full selected/trimmed added sound first, then begin the voice.
-  if(mode==='before'){
-    const lead=Math.max(0,layerDur||0);
-    return {voiceStart:lead,layerStart:0};
-  }
-  if(mode==='middle')return {voiceStart:0,layerStart:Math.max(0,baseDur*0.5)};
-  if(mode==='end')return {voiceStart:0,layerStart:Math.max(0,baseDur)};
-  return {voiceStart:0,layerStart:0};
+async function ensureVoiceLayer2Decoded(){
+  if(!voiceLayer2Record)return null;
+  const record=voiceLayer2Record;
+  const key=record.file||record.synthType||record.id;
+  if(voiceLayer2Buffer && voiceLayer2BufferKey===key)return voiceLayer2Buffer;
+  if(voiceLayer2Loading && voiceLayer2LoadingKey===key)return voiceLayer2Loading;
+
+  voiceLayer2LoadingKey=key;
+  const pending=(async()=>{
+    try{
+      let buf=null;
+      if(record.synthType){
+        const dur=2.5,rate=44100,ctx=new OfflineAudioContext(1,Math.ceil(rate*(dur+.25)),rate);
+        synth(ctx,record.synthType,dur);
+        buf=await ctx.startRendering();
+      }else{
+        liveCtx ||= new (window.AudioContext||window.webkitAudioContext)();
+        if(liveCtx.state==='suspended')await liveCtx.resume();
+        const ab=await loadSampleBytes(record.file);
+        buf=await liveCtx.decodeAudioData(ab.slice(0));
+      }
+      if(voiceLayer2Record!==record)return null;
+      voiceLayer2Buffer=buf;voiceLayer2BufferKey=key;
+      updateVoiceLayer2LengthUI(buf);updateVoiceLayer2FadeUI(buf);
+      return buf;
+    }catch(e){
+      console.error(e);
+      if(voiceLayer2Record===record){
+        voiceLayer2Buffer=null;voiceLayer2BufferKey='';
+        $('#status').textContent=`${record.name||'Sound 2'} could not be loaded. Choose it again or try another sound.`;
+      }
+      return null;
+    }finally{
+      if(voiceLayer2Loading===pending){voiceLayer2Loading=null;voiceLayer2LoadingKey='';}
+    }
+  })();
+  voiceLayer2Loading=pending;
+  return pending;
+}
+function voiceLayer2LengthSeconds(buf){
+  if(!buf)return 0;
+  const pct=Math.max(.01,Math.min(1,(+($('#voiceLayer2Length')?.value||100))/100));
+  return Math.max(.03,buf.duration*pct);
+}
+function updateVoiceLayer2LengthUI(buf){
+  const slider=$('#voiceLayer2Length'),label=$('#voiceLayer2LengthValue');
+  if(!slider||!label)return;
+  slider.disabled=!voiceLayer2Record;
+  if(!voiceLayer2Record){slider.value=100;label.textContent='Full';return;}
+  const pct=Math.max(1,Math.min(100,+slider.value||100));
+  if(buf){
+    const secs=Math.max(.03,buf.duration*(pct/100));
+    label.textContent=pct>=100 ? `Full · ${secs.toFixed(secs<10?1:0)} sec` : `${pct}% · ${secs.toFixed(secs<10?1:0)} sec`;
+  }else label.textContent=pct>=100?'Full':pct+'%';
+}
+function voiceLayer2FadeSeconds(kind,layerDur){
+  if(!layerDur)return 0;
+  const id=kind==='in'?'#voiceLayer2FadeIn':'#voiceLayer2FadeOut';
+  const pct=Math.max(0,Math.min(1,(+($(id)?.value||0))/100));
+  return pct*Math.min(4,layerDur*.45);
+}
+function updateVoiceLayer2FadeUI(buf){
+  const fadeIn=$('#voiceLayer2FadeIn'),fadeOut=$('#voiceLayer2FadeOut');
+  const inLabel=$('#voiceLayer2FadeInValue'),outLabel=$('#voiceLayer2FadeOutValue');
+  if(!fadeIn||!fadeOut||!inLabel||!outLabel)return;
+  const enabled=!!voiceLayer2Record;
+  fadeIn.disabled=!enabled;fadeOut.disabled=!enabled;
+  if(!enabled){fadeIn.value=0;fadeOut.value=0;inLabel.textContent='None';outLabel.textContent='None';return;}
+  const layerDur=buf?voiceLayer2LengthSeconds(buf):0;
+  const fmt=(v)=>v>.005?`${v.toFixed(v<1?1:0)} sec`:'None';
+  inLabel.textContent=layerDur?fmt(voiceLayer2FadeSeconds('in',layerDur)):(+fadeIn.value?fadeIn.value+'%':'None');
+  outLabel.textContent=layerDur?fmt(voiceLayer2FadeSeconds('out',layerDur)):(+fadeOut.value?fadeOut.value+'%':'None');
+}
+function voiceLayerRelativeStart(mode,baseDur,layerDur){
+  if(mode==='before')return -Math.max(0,layerDur||0);
+  if(mode==='middle')return Math.max(0,baseDur*0.5);
+  if(mode==='end')return Math.max(0,baseDur);
+  return 0;
+}
+function voiceLayersTiming(baseDur,layer1Dur,layer2Dur){
+  const rel1=voiceLayerRecord ? voiceLayerRelativeStart($('#voiceLayerStart')?.value||'beginning',baseDur,layer1Dur) : null;
+  const rel2=voiceLayer2Record ? voiceLayerRelativeStart($('#voiceLayer2Start')?.value||'end',baseDur,layer2Dur) : null;
+  const earliest=Math.min(0,rel1??0,rel2??0);
+  const voiceStart=-earliest;
+  return {
+    voiceStart,
+    layerStart:rel1===null?0:voiceStart+rel1,
+    layer2Start:rel2===null?0:voiceStart+rel2
+  };
 }
 
 async function renderReplacementMix(){
@@ -2459,20 +2583,29 @@ async function renderReplacementMix(){
   const rate=44100;
   const tail = isCrazy ? Math.min(4, ((+state.crazyMixer.reverb||0)/100)*2.5 + ((+state.crazyMixer.echo||0)/100)*1.2) : .12;
 
-  let layerBuf=null,layerStart=0,voiceStart=0;
-  if(isVoiceLabInMixer() && voiceLayerRecord){
-    layerBuf=await ensureVoiceLayerDecoded();
-    // If the user asked for voice + sound, never silently fall back to voice-only.
-    if(!layerBuf)throw new Error('VOICE_LAYER_LOAD_FAILED');
-    const trimmedLayerDur=voiceLayerLengthSeconds(layerBuf);
-    const timing=voiceLayerTiming(targetDur,trimmedLayerDur);
+  let layerBuf=null,layer2Buf=null,layerStart=0,layer2Start=0,voiceStart=0;
+  if(isVoiceLabInMixer() && hasVoiceLayers()){
+    if(voiceLayerRecord){
+      layerBuf=await ensureVoiceLayerDecoded();
+      if(!layerBuf)throw new Error('VOICE_LAYER_LOAD_FAILED');
+    }
+    if(voiceLayer2Record){
+      layer2Buf=await ensureVoiceLayer2Decoded();
+      if(!layer2Buf)throw new Error('VOICE_LAYER_LOAD_FAILED');
+    }
+    const layer1Dur=layerBuf ? voiceLayerLengthSeconds(layerBuf) : 0;
+    const layer2Dur=layer2Buf ? voiceLayer2LengthSeconds(layer2Buf) : 0;
+    const timing=voiceLayersTiming(targetDur,layer1Dur,layer2Dur);
     voiceStart=timing.voiceStart;
     layerStart=timing.layerStart;
+    layer2Start=timing.layer2Start;
   }
   const layerDuration=layerBuf ? voiceLayerLengthSeconds(layerBuf) : 0;
+  const layer2Duration=layer2Buf ? voiceLayer2LengthSeconds(layer2Buf) : 0;
   const layerEnd=layerBuf ? layerStart+layerDuration : 0;
+  const layer2End=layer2Buf ? layer2Start+layer2Duration : 0;
   const voiceEnd=voiceStart+targetDur;
-  const renderDur=Math.max(voiceEnd+tail+.08,layerEnd+.08);
+  const renderDur=Math.max(voiceEnd+tail+.08,layerEnd+.08,layer2End+.08);
   const ctx=new OfflineAudioContext(1,Math.ceil(rate*renderDur),rate);
 
   const source=ctx.createBufferSource();
@@ -2567,6 +2700,26 @@ async function renderReplacementMix(){
     layerSource.stop(layerStart+layerDuration);
   }
 
+  if(layer2Buf){
+    const layer2Source=ctx.createBufferSource();
+    layer2Source.buffer=layer2Buf;
+    const layer2Gain=ctx.createGain();
+    const layer2Volume=Math.max(0,Math.min(1,(+($('#voiceLayer2Volume')?.value||90))/100));
+    const layer2Peak=Math.pow(layer2Volume,1.25);
+    const layer2FadeIn=voiceLayer2FadeSeconds('in',layer2Duration);
+    const layer2FadeOut=voiceLayer2FadeSeconds('out',layer2Duration);
+    layer2Gain.gain.setValueAtTime(layer2FadeIn>.005?0:layer2Peak,layer2Start);
+    if(layer2FadeIn>.005)layer2Gain.gain.linearRampToValueAtTime(layer2Peak,layer2Start+layer2FadeIn);
+    if(layer2FadeOut>.005){
+      const fadeOutStart=layer2Start+Math.max(layer2FadeIn,layer2Duration-layer2FadeOut);
+      layer2Gain.gain.setValueAtTime(layer2Peak,fadeOutStart);
+      layer2Gain.gain.linearRampToValueAtTime(0,layer2Start+layer2Duration);
+    }
+    layer2Source.connect(layer2Gain);layer2Gain.connect(ctx.destination);
+    layer2Source.start(layer2Start);
+    layer2Source.stop(layer2Start+layer2Duration);
+  }
+
   if(targetDur > srcBuf.duration/playbackRate+.05) source.loop=true;
   source.start(voiceStart);
   source.stop(voiceEnd);
@@ -2647,6 +2800,8 @@ function bindCategoryButton(btn){
       const first=$$('.sound').find(s=>!s.classList.contains('hidden'));
       if(first) first.click();
     }
+    const soundPanel=document.querySelector('.panel.main');
+    if(soundPanel)requestAnimationFrame(()=>soundPanel.scrollIntoView({behavior:'smooth',block:'start'}));
   });
 }
 function buildCategoryBar(){
@@ -3668,7 +3823,7 @@ async function generate(){
       if(!mixed)throw new Error('MIX_NOT_READY');
       $('#play').disabled=false;$('#download').disabled=false;setWorkflow(4,false);
       $('#status').textContent=currentType==='crazyMixer'
-        ? (isVoiceLabInMixer() && voiceLayerRecord ? `Voice + ${voiceLayerRecord.name} mix ready. Download it, or change settings and mix again.` : 'Crazy Mix ready. Download it, or change sliders and mix again.')
+        ? (isVoiceLabInMixer() && hasVoiceLayers() ? `Voice + ${voiceLayerNames()} mix ready. Download it, or change settings and mix again.` : 'Crazy Mix ready. Download it, or change sliders and mix again.')
         : 'Step 4: mixed sound ready. Download it, or change sliders and apply again.';
       await playCurrent();
       return;
@@ -3685,7 +3840,7 @@ async function generate(){
     console.error(e);
     $('#play').disabled=true;$('#download').disabled=true;
     if(e?.message==='VOICE_LAYER_LOAD_FAILED'){
-      const name=voiceLayerRecord?.name||'The added sound';
+      const name=voiceLayerNames()||'The added sound';
       $('#status').textContent=`${name} did not finish loading, so no voice-only mix was created. Choose the sound again and wait for READY.`;
     }else{
       $('#status').textContent='This browser could not generate or mix the sound.';
@@ -4125,7 +4280,7 @@ async function selectLibrarySample(id,btn){
   $('#ambienceRow').classList.add('hidden-tool');
   $('#workflowLabel').textContent='CRAZY MIXER';
   $('#workflowText').textContent=isVoiceLabInMixer()
-    ? 'Adjust the voice, optionally add one studio sound, then apply the mix, preview it, and download the combined WAV or MP3.'
+    ? 'Adjust the voice, optionally add one or two studio sounds, then apply the mix, preview it, and download the combined WAV or MP3.'
     : 'Adjust the sound, apply the mix, preview it, then download WAV or MP3.';
   setWorkflow(2,false);
   $('#status').textContent='Loading sound into Crazy Mixer…';
@@ -4570,20 +4725,22 @@ $('#voiceLayerToggle')?.addEventListener('click',async()=>{
       controls.hidden=false;
       document.getElementById('workbench')?.classList.add('voice-layer-expanded');
       fillVoiceLayerCategories();
+      fillVoiceLayer2Categories();
       updateVoiceLayerPanel();
     }
     return;
   }
   controls.hidden=!controls.hidden;
   document.getElementById('workbench')?.classList.toggle('voice-layer-expanded',!controls.hidden);
-  if(!controls.hidden)fillVoiceLayerCategories();
+  if(!controls.hidden){fillVoiceLayerCategories();fillVoiceLayer2Categories();}
   updateVoiceLayerPanel();
 });
 $('#voiceLayerCategory')?.addEventListener('change',()=>{
   voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey='';fillVoiceLayerSounds();
   $('#voiceLayerLength').value=100;$('#voiceLayerFadeIn').value=0;$('#voiceLayerFadeOut').value=0;updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);
   $('#voiceLayerRemove').disabled=true;
-  $('#voiceLayerApply').disabled=true;
+  $('#voiceLayerApply').disabled=!hasVoiceLayers();
+  invalidateVoiceLayerMix('Sound 1 category changed. Choose a sound, then apply the mix again.');
 });
 $('#voiceLayerSound')?.addEventListener('change',async e=>{
   const rec=voiceLayerCandidates().find(r=>r.id===e.target.value)||null;
@@ -4593,10 +4750,11 @@ $('#voiceLayerSound')?.addEventListener('change',async e=>{
   const apply=$('#voiceLayerApply');
   apply.disabled=true;
   apply.textContent='🎛️ APPLY CRAZY MIX & PLAY';
-  $('#voiceLayerToggle').textContent=rec?'🎧 CHANGE ADDED SOUND':'➕ ADD A SOUND TO VOICE';
+  $('#voiceLayerToggle').textContent=hasVoiceLayers()?'🎧 CHANGE ADDED SOUNDS':'➕ ADD A SOUND TO VOICE';
 
   if(!rec){
-    invalidateVoiceLayerMix('Choose a sound to layer with the voice.');
+    apply.disabled=!hasVoiceLayers();
+    invalidateVoiceLayerMix(hasVoiceLayers()?'Sound 1 cleared. Sound 2 is still selected. Click APPLY CRAZY MIX & PLAY to update the mix.':'Choose a sound to layer with the voice.');
     return;
   }
 
@@ -4635,17 +4793,76 @@ $('#voiceLayerFadeOut')?.addEventListener('input',()=>{
 $('#voiceLayerStart')?.addEventListener('change',()=>{
   if(voiceLayerRecord)invalidateVoiceLayerMix('Added-sound timing changed. Click APPLY CRAZY MIX & PLAY to update the combined mix.');
 });
+$('#voiceLayer2Category')?.addEventListener('change',()=>{
+  voiceLayer2Record=null;voiceLayer2Buffer=null;voiceLayer2BufferKey='';fillVoiceLayer2Sounds();
+  $('#voiceLayer2Length').value=100;$('#voiceLayer2FadeIn').value=0;$('#voiceLayer2FadeOut').value=0;updateVoiceLayer2LengthUI(null);updateVoiceLayer2FadeUI(null);
+  $('#voiceLayer2Remove').disabled=true;
+  $('#voiceLayerApply').disabled=!hasVoiceLayers();
+  invalidateVoiceLayerMix('Sound 2 category changed. Choose a sound, then apply the mix again.');
+});
+$('#voiceLayer2Sound')?.addEventListener('change',async e=>{
+  const rec=voiceLayerCandidates().find(r=>r.id===e.target.value)||null;
+  voiceLayer2Record=rec;voiceLayer2Buffer=null;voiceLayer2BufferKey='';voiceLayer2Loading=null;voiceLayer2LoadingKey='';
+  $('#voiceLayer2Length').value=100;$('#voiceLayer2FadeIn').value=0;$('#voiceLayer2FadeOut').value=0;updateVoiceLayer2LengthUI(null);updateVoiceLayer2FadeUI(null);
+  $('#voiceLayer2Remove').disabled=!rec;
+  const apply=$('#voiceLayerApply');
+  apply.disabled=true;
+  apply.textContent='🎛️ APPLY CRAZY MIX & PLAY';
+  $('#voiceLayerToggle').textContent=hasVoiceLayers()?'🎧 CHANGE ADDED SOUNDS':'➕ ADD A SOUND TO VOICE';
+  if(!rec){
+    apply.disabled=!hasVoiceLayers();
+    invalidateVoiceLayerMix(hasVoiceLayers()?'Sound 2 cleared. Sound 1 is still selected. Click APPLY CRAZY MIX & PLAY to update the mix.':'Choose a sound to layer with the voice.');
+    return;
+  }
+  apply.textContent=`⏳ LOADING ${rec.name.toUpperCase()}…`;
+  invalidateVoiceLayerMix(`Loading ${rec.name} as Sound 2…`);
+  const loaded=await ensureVoiceLayer2Decoded();
+  if(voiceLayer2Record!==rec)return;
+  if(loaded){
+    apply.disabled=false;
+    apply.textContent='🎛️ APPLY CRAZY MIX & PLAY';
+    $('#status').textContent=`${rec.name} READY as Sound 2. Set its timing, then click APPLY CRAZY MIX & PLAY.`;
+  }else{
+    apply.disabled=true;
+    apply.textContent='⚠ COULD NOT LOAD — CHOOSE AGAIN';
+    $('#status').textContent=`${rec.name} could not be loaded. Choose it again or try another sound.`;
+  }
+});
+$('#voiceLayer2Volume')?.addEventListener('input',e=>{
+  $('#voiceLayer2VolumeValue').textContent=e.target.value+'%';
+  if(voiceLayer2Record)invalidateVoiceLayerMix('Sound 2 volume changed. Click APPLY CRAZY MIX & PLAY to update the combined mix.');
+});
+$('#voiceLayer2Length')?.addEventListener('input',()=>{
+  updateVoiceLayer2LengthUI(voiceLayer2Buffer);updateVoiceLayer2FadeUI(voiceLayer2Buffer);
+  if(voiceLayer2Record)invalidateVoiceLayerMix('Sound 2 length changed. The voice stays full length. Click APPLY CRAZY MIX & PLAY to update the combined mix.');
+});
+$('#voiceLayer2FadeIn')?.addEventListener('input',()=>{
+  updateVoiceLayer2FadeUI(voiceLayer2Buffer);
+  if(voiceLayer2Record)invalidateVoiceLayerMix('Sound 2 fade in changed. Click APPLY CRAZY MIX & PLAY to update the combined mix.');
+});
+$('#voiceLayer2FadeOut')?.addEventListener('input',()=>{
+  updateVoiceLayer2FadeUI(voiceLayer2Buffer);
+  if(voiceLayer2Record)invalidateVoiceLayerMix('Sound 2 fade out changed. Click APPLY CRAZY MIX & PLAY to update the combined mix.');
+});
+$('#voiceLayer2Start')?.addEventListener('change',()=>{
+  if(voiceLayer2Record)invalidateVoiceLayerMix('Sound 2 timing changed. Click APPLY CRAZY MIX & PLAY to update the combined mix.');
+});
+$('#voiceLayer2Remove')?.addEventListener('click',()=>{
+  voiceLayer2Record=null;voiceLayer2Buffer=null;voiceLayer2BufferKey='';voiceLayer2Loading=null;voiceLayer2LoadingKey='';
+  $('#voiceLayer2Sound').value='';$('#voiceLayer2Length').value=100;$('#voiceLayer2FadeIn').value=0;$('#voiceLayer2FadeOut').value=0;updateVoiceLayer2LengthUI(null);updateVoiceLayer2FadeUI(null);$('#voiceLayer2Remove').disabled=true;$('#voiceLayerApply').disabled=!hasVoiceLayers();$('#voiceLayerApply').textContent='🎛️ APPLY CRAZY MIX & PLAY';$('#voiceLayerToggle').textContent=hasVoiceLayers()?'🎧 CHANGE ADDED SOUNDS':'➕ ADD A SOUND TO VOICE';
+  invalidateVoiceLayerMix(hasVoiceLayers()?'Sound 2 removed. Sound 1 is still selected. Click APPLY CRAZY MIX & PLAY to update the mix.':'Added sounds removed. The voice is ready to mix by itself.');
+});
 $('#voiceLayerApply')?.addEventListener('click',async()=>{
-  if(!voiceLayerRecord)return;
+  if(!hasVoiceLayers())return;
   const btn=$('#voiceLayerApply');
   btn.disabled=true;
   try{ await generate(); }
-  finally{ btn.disabled=!voiceLayerRecord; }
+  finally{ btn.disabled=!hasVoiceLayers(); }
 });
 $('#voiceLayerRemove')?.addEventListener('click',()=>{
   voiceLayerRecord=null;voiceLayerBuffer=null;voiceLayerBufferKey='';voiceLayerLoading=null;voiceLayerLoadingKey='';
-  $('#voiceLayerSound').value='';$('#voiceLayerLength').value=100;$('#voiceLayerFadeIn').value=0;$('#voiceLayerFadeOut').value=0;updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);$('#voiceLayerRemove').disabled=true;$('#voiceLayerApply').disabled=true;$('#voiceLayerApply').textContent='🎛️ APPLY CRAZY MIX & PLAY';$('#voiceLayerToggle').textContent='➕ ADD A SOUND TO VOICE';
-  invalidateVoiceLayerMix('Added sound removed. The voice is ready to mix by itself.');
+  $('#voiceLayerSound').value='';$('#voiceLayerLength').value=100;$('#voiceLayerFadeIn').value=0;$('#voiceLayerFadeOut').value=0;updateVoiceLayerLengthUI(null);updateVoiceLayerFadeUI(null);$('#voiceLayerRemove').disabled=true;$('#voiceLayerApply').disabled=!hasVoiceLayers();$('#voiceLayerApply').textContent='🎛️ APPLY CRAZY MIX & PLAY';$('#voiceLayerToggle').textContent=hasVoiceLayers()?'🎧 CHANGE ADDED SOUNDS':'➕ ADD A SOUND TO VOICE';
+  invalidateVoiceLayerMix(hasVoiceLayers()?'Sound 1 removed. Sound 2 is still selected. Click APPLY CRAZY MIX & PLAY to update the mix.':'Added sounds removed. The voice is ready to mix by itself.');
 });
 $('#voiceDownload').addEventListener('click',downloadVoiceLab);
 $('#voiceDownloadMp3').addEventListener('click',downloadVoiceLabMp3);
