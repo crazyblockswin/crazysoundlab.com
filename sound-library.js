@@ -2,6 +2,12 @@ window.CSL_SOUND_LIBRARY = {
   "version": 1,
   "categories": [
     {
+      "id": "mixer-samples",
+      "name": "Mixer Samples",
+      "icon": "🔊🎤📢🎵",
+      "builtIn": false
+    },
+    {
       "id": "game",
       "name": "Game",
       "icon": "🎮",
@@ -101,12 +107,6 @@ window.CSL_SOUND_LIBRARY = {
       "id": "sports",
       "name": "Sports",
       "icon": "🤾‍♂️",
-      "builtIn": false
-    },
-    {
-      "id": "sample-of-mixed-voice-and-sounds",
-      "name": "Sample of Mixed Voice and Sounds",
-      "icon": "🎤📢",
       "builtIn": false
     }
   ],
@@ -1633,22 +1633,22 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/music/short-rock1.mp3"
     },
     {
-      "id": "sound-muegjejw",
-      "category": "sample-of-mixed-voice-and-sounds",
-      "name": "Sample of Mixed Voice and Sound mp3",
-      "description": "Sample of voice and sound mix in mp3 format",
-      "icon": "🔊",
+      "id": "sound-muehx08v",
+      "category": "mixer-samples",
+      "name": "Sample Voice and Sound Mix mp3",
+      "description": "Sample Voice and Sound Mix mp3",
+      "icon": "🎤",
       "filename": "Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3",
-      "file": "sounds/sample-of-mixed-voice-and-sounds/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
+      "file": "sounds/mixer-samples/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
     },
     {
-      "id": "sound-muegv2cu",
-      "category": "sample-of-mixed-voice-and-sounds",
-      "name": "Sample of voice and Sound Mix WAV",
-      "description": "sample of voice and sound mix output wav",
-      "icon": "🎤",
+      "id": "sound-muehzjka",
+      "category": "mixer-samples",
+      "name": "Sample Voice and Sound Mix WAV",
+      "description": "Sample Voice and Sound Mix WAV",
+      "icon": "🔊🎤",
       "filename": "Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav",
-      "file": "sounds/sample-of-mixed-voice-and-sounds/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
+      "file": "sounds/mixer-samples/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
     }
   ]
 };
