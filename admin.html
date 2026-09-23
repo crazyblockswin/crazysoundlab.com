@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<script>
+(function(){
+  if(location.protocol==='file:'){
+    location.replace('http://127.0.0.1:8765/admin.html');
+  }
+})();
+</script>
+
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crazy Sound Lab — Admin</title>
+<style>
+:root{--bg:#05070c;--panel:#0c121d;--text:#f5f8ff;--muted:#90a4bc;--cyan:#43efff;--blue:#258dff;--green:#62f59b;--red:#ff6672;--purple:#a566ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,rgba(37,141,255,.15),transparent 35rem),#05070c;color:var(--text);font-family:system-ui,Segoe UI,Arial,sans-serif}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}.top{padding:26px 0 18px;border-bottom:1px solid rgba(67,239,255,.18)}h1{margin:0;font-size:clamp(28px,5vw,48px)}.sub{color:var(--muted);margin-top:7px}.badge{display:inline-block;margin-top:12px;padding:7px 10px;border-radius:999px;border:1px solid rgba(98,245,155,.25);color:var(--green);font-size:12px;font-weight:900}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:22px 0 50px}.panel{background:linear-gradient(180deg,rgba(15,22,36,.97),rgba(8,12,20,.98));border:1px solid rgba(67,239,255,.18);border-radius:18px;padding:18px;box-shadow:0 18px 60px rgba(0,0,0,.28)}.wide{grid-column:1/-1}h2{margin:0 0 14px;font-size:18px}.note{color:#a9bbcf;font-size:13px;line-height:1.5;padding:12px;border-radius:11px;background:rgba(67,239,255,.04);border:1px solid rgba(67,239,255,.12);margin-bottom:14px}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}label{font-size:12px;color:#b8c9dc;font-weight:800}input,select{width:100%;margin-top:6px;padding:10px 11px;border-radius:10px;border:1px solid rgba(255,255,255,.11);background:#070c14;color:#fff;font:inherit}button{border:1px solid rgba(255,255,255,.1);background:#0a111b;color:#fff;border-radius:10px;padding:10px 12px;font-weight:900;cursor:pointer}button.primary{border:0;background:linear-gradient(90deg,var(--cyan),#7aaeff);color:#041018}button.good{border-color:rgba(98,245,155,.25);color:#bdf8d1;background:rgba(98,245,155,.07)}button.danger{border-color:rgba(255,102,114,.25);color:#ff9aa3;background:rgba(255,102,114,.07)}button:disabled{opacity:.4;cursor:not-allowed}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.list{display:grid;gap:9px}.item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:11px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#080d15}.item .ico{font-size:22px}.item b{display:block}.item small{display:block;color:#8195ad;margin-top:2px}.item .acts{display:flex;gap:6px;flex-wrap:wrap}.status{margin-top:12px;min-height:20px;color:#8fb0c8;font-size:13px}.path{font-family:ui-monospace,Consolas,monospace;color:#c8faff}.sound-preview{margin-top:10px;width:100%}.preview-tools{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:end;margin-top:10px}.preview-tools label{min-width:180px}.range-readout{display:inline-block;min-width:42px;text-align:right;color:#d7faff}.connection{padding:12px;border-radius:11px;background:rgba(165,102,255,.05);border:1px solid rgba(165,102,255,.18);margin-bottom:14px}.connection strong{color:#d8c5ff}
+.builtin-status{font-size:11px;font-weight:900;padding:4px 7px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#a9bdd2}
+.builtin-status.custom{color:#bdf8d1;border-color:rgba(98,245,155,.28);background:rgba(98,245,155,.07)}
+.builtin-file{width:220px;max-width:100%;margin:0;padding:7px;font-size:11px}
+.builtin-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+
+@media(max-width:620px){.preview-tools{grid-template-columns:1fr}.preview-tools button{width:100%}}.footer{padding:0 0 38px;text-align:center;color:#6e839d;font-size:12px}@media(max-width:820px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.form{grid-template-columns:1fr}.full{grid-column:auto}.item{grid-template-columns:auto 1fr}.item .acts{grid-column:1/-1}}
+.catalog-save-panel{
+  border-color:rgba(98,245,155,.25);
+  background:linear-gradient(180deg,rgba(12,28,23,.96),rgba(8,17,15,.98));
+}
+.catalog-save-panel .row{justify-content:flex-start}
+.catalog-save-panel #downloadJs{
+  padding:12px 18px;
+  font-size:14px;
+  box-shadow:0 0 16px rgba(98,245,155,.08);
+}
+
+</style>
+</head>
+<body>
+
+<div id="adminOriginBanner" style="margin:8px auto 14px;max-width:1180px;padding:9px 12px;border:1px solid rgba(100,220,255,.2);border-radius:10px;background:rgba(5,15,25,.75);color:#9eb4c8;font:12px system-ui">
+  Admin connection: <b id="adminOriginText"></b>
+</div>
+
+<div class="top"><div class="wrap"><h1>Crazy Sound Lab — Admin</h1><div class="sub">Manage categories, ready-made sounds, and permanent built-in sound replacements. Visitors never see these owner controls.</div><span class="badge">OWNER WORKSHOP</span></div></div>
+<main class="wrap grid">
+<section class="panel">
+<h2>Category Manager</h2>
+<div class="note">Built-in category IDs stay protected because the sound generators use them. You can add as many new categories as you want.</div>
+<div class="form">
+<label>Category Name<input id="catName" maxlength="40" placeholder="Example: Comedy"></label>
+<label>Icon / Emoji<input id="catIcon" maxlength="8" value="🔊"></label>
+<div class="full row"><button class="primary" id="addCategory">ADD CATEGORY</button></div>
+</div>
+<div class="list" id="categoryList" style="margin-top:14px"></div>
+</section>
+<section class="panel">
+<h2>Add / Edit a Sound</h2>
+<div class="connection"><strong>Automatic file copy:</strong> In browsers that support folder access, connect the main Crazy-Sound-Lab folder once. Admin can then copy selected audio into the correct <span class="path">sounds/category/</span> folder automatically.</div>
+<div class="row" style="margin-bottom:14px"><button class="good" id="connectProject">📁 CONNECT PROJECT FOLDER</button><span id="projectStatus" style="color:#8fa7bc;font-size:12px">Not connected — manual copy mode.</span></div>
+<div class="note">Firefox 115 uses manual copy mode. Chrome/Edge on a supported system can use automatic copy mode. The catalog works either way.</div>
+<div class="form">
+<label>Category<select id="soundCategory"></select></label>
+<label>Card Icon<input id="soundIcon" maxlength="8" value="🔊"></label>
+<label class="full">Sound Name<input id="soundName" maxlength="70" placeholder="Example: Dog Bark"></label>
+<label class="full">Short Description<input id="soundDescription" maxlength="130" placeholder="Example: Medium dog barking outdoors"></label>
+<label class="full">Choose Audio File<input id="soundFile" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac"></label>
+<div class="full" id="destination" style="color:#8fa7bc;font-size:12px"></div>
+<audio id="preview" class="sound-preview" preload="metadata" hidden></audio>
+<div class="full preview-tools">
+  <label>Preview Volume <span class="range-readout" id="previewVolumeValue">35%</span><input id="previewVolume" type="range" min="0" max="100" value="35"></label>
+  <button type="button" id="playPreview">▶ PREVIEW</button>
+  <button type="button" id="stopPreview">■ STOP</button>
+</div>
+<div class="full row"><button class="primary" id="saveSound">ADD SOUND</button><button id="cancelEdit" hidden>CANCEL EDIT</button></div>
+</div>
+<div class="status" id="status"></div>
+</section>
+
+
+<section class="panel wide catalog-save-panel">
+<h2>Update Public Sound Catalog</h2>
+<div class="note">After adding, editing, or deleting a sound, click this button to create the updated <b>sound-library.js</b> for your main Crazy Sound Lab folder.</div>
+<div class="row"><button class="good" id="downloadJs">SAVE UPDATED SOUND CATALOG</button></div>
+</section>
+
+
+<section class="panel wide">
+<h2>Ready-Made Sounds</h2>
+<div class="list" id="soundList"></div>
+</section>
+
+
+<section class="panel wide">
+<h2>Backup & Restore</h2>
+<div class="note">Use these occasionally as a safety copy or to undo catalog changes.</div>
+<div class="row"><button id="downloadJson">BACKUP SOUND LIBRARY</button><button id="restoreJson">RESTORE SOUND LIBRARY</button><input id="restoreJsonFile" type="file" accept="application/json,.json" hidden><button id="reloadLibrary">UNDO UNSAVED CHANGES</button></div>
+</section>
+
+
+<section class="panel wide">
+<h2>Built-In Sound Library — Owner Controls</h2>
+<div class="note">
+These are the same built-in sounds visitors see on <b>index.html</b>. Bird Chirp is intentionally removed for this clean replacement test.
+Choose an audio file beside any sound, then click <b>REPLACE</b>. The replacement is stored in your browser and the public page uses it automatically.
+Visitors do not get these controls.
+</div>
+<div class="row" style="margin:12px 0">
+  <label style="min-width:220px">Filter Category
+    <select id="builtinFilter"><option value="all">All Categories</option></select>
+  </label>
+  <span id="builtinReplaceStatus" style="color:#8fa7bc;font-size:12px"></span>
+</div>
+<div class="list" id="builtinSoundList"></div>
+</section>
+
+
+
+</main><div class="footer">Crazy Sound Lab v7.13 — OWNER SOUND LIBRARY</div>
+<script src="sound-library.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const BUILTIN_SOUNDS=[{"type":"impact","cat":"game","icon":"\ud83d\udca5","name":"Impact","desc":"Hits, crashes, punches"},{"type":"explosion","cat":"game","icon":"\ud83d\udd25","name":"Explosion","desc":"Booms with debris"},{"type":"laser","cat":"scifi","icon":"\u26a1","name":"Laser","desc":"Pew to plasma cannon"},{"type":"powerup","cat":"game","icon":"\u2728","name":"Power-Up","desc":"Arcade rewards"},{"type":"gameover","cat":"game","icon":"\u2620\ufe0f","name":"Game Over","desc":"Failure with personality"},{"type":"monster","cat":"horror","icon":"\ud83d\udc79","name":"Monster","desc":"Growls and creature rumble"},{"type":"robot","cat":"scifi","icon":"\ud83e\udd16","name":"Robot","desc":"Servo, chirp, machine"},{"type":"footstep","cat":"game","icon":"\ud83d\udc63","name":"Footsteps","desc":"Speed, weight and surface"},{"type":"whoosh","cat":"game","icon":"\ud83d\udca8","name":"Whoosh","desc":"Transitions and fly-bys"},{"type":"scifiDoor","cat":"scifi","icon":"\ud83d\udeaa","name":"Sci-Fi Door","desc":"Hydraulic future door"},{"type":"swordClash","cat":"game","icon":"\u2694\ufe0f","name":"Sword Clash","desc":"Steel, bronze and fantasy hits"},{"type":"teleport","cat":"scifi","icon":"\ud83c\udf00","name":"Teleport","desc":"Disintegrate and reappear"},{"type":"energyCharge","cat":"scifi","icon":"\ud83d\udd0b","name":"Energy Charge","desc":"Power building toward release"},{"type":"policeSiren","cat":"alarms","icon":"\ud83d\ude93","name":"Police Car","desc":"Continuous wail / yelp emergency siren"},{"type":"ambulanceSiren","cat":"alarms","icon":"\ud83d\ude91","name":"Ambulance","desc":"Wail / hi-lo emergency siren"},{"type":"fireTruckSiren","cat":"alarms","icon":"\ud83d\ude92","name":"Fire Truck","desc":"Mechanical / electronic heavy siren"},{"type":"fireAlarm","cat":"alarms","icon":"\ud83d\udd25","name":"Fire Alarm","desc":"Rising / falling building alarm horn"},{"type":"securityAlarm","cat":"alarms","icon":"\ud83d\udea8","name":"Security Alarm","desc":"Rapid electronic warning"},{"type":"airRaidSiren","cat":"alarms","icon":"\ud83d\udce2","name":"Air-Raid Siren","desc":"Long civil-defense rise and fall"},{"type":"rain","cat":"nature","icon":"\ud83c\udf27\ufe0f","name":"Rain","desc":"Drizzle to pounding downpour"},{"type":"storm","cat":"nature","icon":"\u26c8\ufe0f","name":"Thunderstorm","desc":"Rain, rumble and lightning cracks"},{"type":"wind","cat":"nature","icon":"\ud83c\udf2c\ufe0f","name":"Wind","desc":"Breeze to angry gale"},{"type":"ocean","cat":"nature","icon":"\ud83c\udf0a","name":"Ocean","desc":"Gentle shore to heavy surf"},{"type":"river","cat":"nature","icon":"\ud83c\udfde\ufe0f","name":"River / Creek","desc":"Trickle to rushing water"},{"type":"fire","cat":"nature","icon":"\ud83d\udd25","name":"Fire","desc":"Fireplace to roaring bonfire"},{"type":"cave","cat":"nature","icon":"\ud83e\udea8","name":"Cave","desc":"Drips, echo and underground rumble"},{"type":"snowstorm","cat":"nature","icon":"\u2744\ufe0f","name":"Snowstorm","desc":"Icy wind and muffled gusts"},{"type":"waterfall","cat":"nature","icon":"\ud83d\udca6","name":"Waterfall","desc":"Low roar, spray and splashes"},{"type":"leaves","cat":"nature","icon":"\ud83c\udf42","name":"Leaves / Rustle","desc":"Breeze through dry or wet leaves"},{"type":"knock","cat":"foley","icon":"\u270a","name":"Knock","desc":"Door and wall knocks"},{"type":"doorSlam","cat":"foley","icon":"\ud83d\udeaa","name":"Door Slam","desc":"Light close to angry slam"},{"type":"glassBreak","cat":"foley","icon":"\ud83e\udd5b","name":"Glass Break","desc":"Crack, shards and scatter"},{"type":"coinDrop","cat":"foley","icon":"\ud83e\ude99","name":"Coin Drop","desc":"Ping, bounce and settle"},{"type":"switchClick","cat":"foley","icon":"\ud83c\udf9a\ufe0f","name":"Switch Click","desc":"Buttons, toggles and relays"},{"type":"typing","cat":"foley","icon":"\u2328\ufe0f","name":"Typing","desc":"Keyboard and typewriter rhythm"},{"type":"paperTear","cat":"foley","icon":"\ud83d\udcc4","name":"Paper Tear","desc":"Fibers rip and snap"},{"type":"cameraShutter","cat":"foley","icon":"\ud83d\udcf7","name":"Camera Shutter","desc":"Mechanical snap and mirror slap"},{"type":"heartbeat","cat":"horror","icon":"\ud83e\udec0","name":"Heartbeat","desc":"Calm pulse to panic"},{"type":"creakingDoor","cat":"horror","icon":"\ud83d\udd6f\ufe0f","name":"Creaking Door","desc":"Old hinge and wooden groan"}];
+
+const REPLACEMENT_DB='CrazySoundLabAudioDB';
+const REPLACEMENT_STORE='builtinReplacements';
+
+function openReplacementDB(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open(REPLACEMENT_DB,1);
+    req.onupgradeneeded=()=>{
+      const db=req.result;
+      if(!db.objectStoreNames.contains(REPLACEMENT_STORE)) db.createObjectStore(REPLACEMENT_STORE,{keyPath:'type'});
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error||new Error('Could not open replacement audio database.'));
+  });
+}
+async function putStoredReplacement(type,file,name){
+  const db=await openReplacementDB();
+  const bytes=await file.arrayBuffer();
+  const record={
+    type,
+    name,
+    filename:file.name,
+    mime:file.type||'application/octet-stream',
+    bytes,
+    updatedAt:Date.now()
+  };
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction(REPLACEMENT_STORE,'readwrite');
+    tx.objectStore(REPLACEMENT_STORE).put(record);
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+  });
+  return record;
+}
+async function deleteStoredReplacement(type){
+  const db=await openReplacementDB();
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction(REPLACEMENT_STORE,'readwrite');
+    tx.objectStore(REPLACEMENT_STORE).delete(type);
+    tx.oncomplete=()=>resolve();
+    tx.onerror=()=>reject(tx.error);
+  });
+}
+
+const REPLACE_MAP_KEY='crazySoundLabReplacementsV1';
+
+function getSavedReplacementMap(){
+  try{return JSON.parse(localStorage.getItem(REPLACE_MAP_KEY)||'{}')||{};}catch(e){return {};}
+}
+function saveReplacementMap(map){
+  localStorage.setItem(REPLACE_MAP_KEY,JSON.stringify(map||{}));
+}
+function bytesToBase64(bytes){
+  let out='',step=0x8000;
+  for(let i=0;i<bytes.length;i+=step){
+    const chunk=bytes.subarray(i,Math.min(i+step,bytes.length));
+    out+=String.fromCharCode.apply(null,chunk);
+  }
+  return btoa(out);
+}
+async function saveBuiltinReplacement(type,file,name){
+  const ext=(file.name.split('.').pop()||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+  const allowed=['mp3','wav','ogg','m4a','aac'];
+  if(!allowed.includes(ext))throw new Error('Use MP3, WAV, OGG, M4A or AAC.');
+  if(!file.size)throw new Error('That audio file is empty.');
+  await putStoredReplacement(type,file,name);
+  return true;
+}
+function categoryName(id){
+  const found=(window.CSL_SOUND_LIBRARY?.categories||[]).find(c=>c.id===id);
+  return found?.name || ({game:'Game',scifi:'Sci-Fi',horror:'Horror',nature:'Nature',foley:'Foley',alarms:'Alarms',people:'People',animals:'Animals'}[id]||id);
+}
+function renderBuiltinSoundList(){
+  const list=$('#builtinSoundList');
+  if(!list)return;
+  const filter=$('#builtinFilter')?.value||'all';
+  const map=getSavedReplacementMap();
+  list.innerHTML='';
+
+  BUILTIN_SOUNDS.filter(s=>filter==='all'||s.cat===filter).forEach(s=>{
+    const row=document.createElement('div');
+    row.className='item';
+    const custom=!!map[s.type];
+
+    const ico=document.createElement('div');
+    ico.className='ico';
+    ico.textContent=s.icon;
+
+    const info=document.createElement('div');
+    const name=document.createElement('b');
+    name.textContent=s.name;
+    const small=document.createElement('small');
+    small.textContent=categoryName(s.cat)+' • '+s.desc;
+    const badge=document.createElement('span');
+    badge.className='builtin-status'+(custom?' custom':'');
+    badge.textContent=custom?'CUSTOM REPLACEMENT':'BUILT-IN';
+    info.append(name,small,badge);
+
+    const acts=document.createElement('div');
+    acts.className='builtin-actions';
+
+    const file=document.createElement('input');
+    file.type='file';
+    file.accept='.mp3,.wav,.ogg,.m4a,.aac,audio/*';
+    file.className='builtin-file';
+    file.title='Choose replacement audio for '+s.name;
+
+    const replace=document.createElement('button');
+    replace.className='good';
+    replace.textContent='🔄 REPLACE';
+    replace.disabled=true;
+
+    file.addEventListener('change',()=>{
+      replace.disabled=!(file.files&&file.files[0]);
+      if(file.files&&file.files[0]){
+        $('#builtinReplaceStatus').textContent=s.name+': file selected — click REPLACE.';
+      }
+    });
+
+    replace.addEventListener('click',async()=>{
+      const chosen=file.files&&file.files[0];
+      if(!chosen){
+        $('#builtinReplaceStatus').textContent='Choose an audio file for '+s.name+' first.';
+        return;
+      }
+      replace.disabled=true;
+      $('#builtinReplaceStatus').textContent='Saving replacement for '+s.name+'…';
+      try{
+        await saveBuiltinReplacement(s.type,chosen,s.name);
+        const newMap=getSavedReplacementMap();
+        newMap[s.type]={filename:chosen.name,name:s.name,replaceType:s.type,custom:true,storage:'indexeddb',updatedAt:Date.now()};
+        saveReplacementMap(newMap);
+        $('#builtinReplaceStatus').textContent=s.name+' replaced successfully — stored locally and ready for public playback.';
+        renderBuiltinSoundList();
+      }catch(err){
+        console.error(err);
+        replace.disabled=false;
+        $('#builtinReplaceStatus').textContent=err.message||'Could not replace sound.';
+      }
+    });
+
+    const restore=document.createElement('button');
+    restore.textContent='↩ RESTORE';
+    restore.disabled=!custom;
+    restore.addEventListener('click',async()=>{
+      try{await deleteStoredReplacement(s.type);}catch(e){console.error(e);}
+      const newMap=getSavedReplacementMap();
+      delete newMap[s.type];
+      saveReplacementMap(newMap);
+      $('#builtinReplaceStatus').textContent=s.name+' restored to the packaged built-in sound.';
+      renderBuiltinSoundList();
+    });
+
+    acts.append(file,replace,restore);
+    row.append(ico,info,acts);
+    list.appendChild(row);
+  });
+}
+function initBuiltinAdmin(){
+  const filter=$('#builtinFilter');
+  if(!filter)return;
+  const cats=[...new Set(BUILTIN_SOUNDS.map(s=>s.cat))];
+  cats.forEach(id=>{
+    const o=document.createElement('option');o.value=id;o.textContent=categoryName(id);filter.appendChild(o);
+  });
+  filter.addEventListener('change',renderBuiltinSoundList);
+  renderBuiltinSoundList();
+}
+
+const clone=o=>JSON.parse(JSON.stringify(o));
+const defaults={version:1,categories:[{id:'game',name:'Game',icon:'🎮',builtIn:true},{id:'scifi',name:'Sci-Fi',icon:'🚀',builtIn:true},{id:'horror',name:'Horror',icon:'👻',builtIn:true},{id:'nature',name:'Nature',icon:'🌿',builtIn:true},{id:'foley',name:'Foley',icon:'🎬',builtIn:true},{id:'alarms',name:'Alarms',icon:'🚨',builtIn:true},{id:'people',name:'People',icon:'👥',builtIn:true},{id:'animals',name:'Animals',icon:'🐾',builtIn:true}],sounds:[]};
+let data=clone(window.CSL_SOUND_LIBRARY||defaults),editingId=null,previewUrl=null,projectDirHandle=null;
+function slug(v){return String(v||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,36)||'category'}
+function escapeText(s){return String(s??'')}
+function categoryById(id){return data.categories.find(c=>c.id===id)}
+function setStatus(t){$('#status').textContent=t}
+function setProjectStatus(t,ok=false){const el=$('#projectStatus');el.textContent=t;el.style.color=ok?'#9df4bd':'#8fa7bc'}
+async function connectProjectFolder(){
+  if(!('showDirectoryPicker' in window)){setProjectStatus('This browser does not support direct folder access — manual copy mode.');alert('Direct folder access is not supported in this browser. You can keep using manual copy mode, or use a current Chrome/Edge browser for automatic copying.');return}
+  try{
+    const handle=await window.showDirectoryPicker({mode:'readwrite'});
+    await handle.getDirectoryHandle('sounds',{create:true});
+    projectDirHandle=handle;
+    setProjectStatus(`Connected: ${handle.name} — automatic copy mode.`,true);
+    setStatus('Project folder connected. New audio can now be copied into the correct sounds folder automatically.');
+  }catch(e){if(e&&e.name!=='AbortError'){setProjectStatus('Could not connect folder — manual copy mode.');setStatus('Folder connection failed: '+(e.message||e))}}
+}
+async function getCategoryDirectory(catId){
+  if(!projectDirHandle)throw new Error('Project folder is not connected.');
+  const sounds=await projectDirHandle.getDirectoryHandle('sounds',{create:true});
+  return sounds.getDirectoryHandle(catId,{create:true});
+}
+async function copyAudioIntoProject(file,catId){
+  const dir=await getCategoryDirectory(catId);
+  const fh=await dir.getFileHandle(file.name,{create:true});
+  const w=await fh.createWritable();
+  await w.write(file);await w.close();
+  return `sounds/${catId}/${file.name}`;
+}
+async function writeCatalogIntoProject(){
+  if(!projectDirHandle)return false;
+  const text='window.CSL_SOUND_LIBRARY = '+JSON.stringify(data,null,2)+';\n';
+  const fh=await projectDirHandle.getFileHandle('sound-library.js',{create:true});
+  const w=await fh.createWritable();await w.write(text);await w.close();return true;
+}
+function refreshCategorySelect(){const sel=$('#soundCategory'),old=sel.value;sel.innerHTML='';data.categories.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=(c.icon?c.icon+' ':'')+c.name;sel.appendChild(o)});if(data.categories.some(c=>c.id===old))sel.value=old;updateDestination()}
+function renderCategories(){const root=$('#categoryList');root.innerHTML='';data.categories.forEach((c,i)=>{const div=document.createElement('div');div.className='item';div.innerHTML=`<div class="ico">${escapeText(c.icon||'🔊')}</div><div><b>${escapeText(c.name)}</b><small>Folder: sounds/${escapeText(c.id)}/ ${c.builtIn?'• built-in ID':''}</small></div>`;const acts=document.createElement('div');acts.className='acts';const up=document.createElement('button');up.textContent='↑';up.disabled=i===0;up.onclick=()=>{[data.categories[i-1],data.categories[i]]=[data.categories[i],data.categories[i-1]];renderAll()};const dn=document.createElement('button');dn.textContent='↓';dn.disabled=i===data.categories.length-1;dn.onclick=()=>{[data.categories[i+1],data.categories[i]]=[data.categories[i],data.categories[i+1]];renderAll()};const ren=document.createElement('button');ren.textContent='RENAME';ren.onclick=()=>{const n=prompt('Category name:',c.name);if(n&&n.trim()){c.name=n.trim();const ic=prompt('Icon / emoji:',c.icon||'🔊');if(ic!==null)c.icon=ic.trim()||'🔊';renderAll()}};acts.append(up,dn,ren);if(!c.builtIn){const del=document.createElement('button');del.className='danger';del.textContent='DELETE';del.onclick=()=>{if(data.sounds.some(s=>s.category===c.id)){alert('Delete or move the sounds in this category first.');return}if(confirm(`Delete category “${c.name}”?`)){data.categories=data.categories.filter(x=>x.id!==c.id);renderAll()}};acts.appendChild(del)}div.appendChild(acts);root.appendChild(div)})}
+function renderSounds(){const root=$('#soundList');root.innerHTML='';if(!data.sounds.length){root.innerHTML='<div class="note">No ready-made sounds in the folder catalog yet. Add your first one above.</div>';return}data.sounds.forEach(rec=>{const c=categoryById(rec.category);const div=document.createElement('div');div.className='item';div.innerHTML=`<div class="ico">${escapeText(rec.icon||'🔊')}</div><div><b>${escapeText(rec.name)}</b><small>${escapeText(c?c.name:rec.category)} • ${escapeText(rec.file)}<br>${escapeText(rec.description||'')}</small></div>`;const acts=document.createElement('div');acts.className='acts';const edit=document.createElement('button');edit.textContent='EDIT';edit.onclick=()=>beginEdit(rec.id);const del=document.createElement('button');del.className='danger';del.textContent='DELETE';del.onclick=()=>{if(confirm(`Remove “${rec.name}” from the public catalog?\n\nThis does NOT delete the audio file from the sounds folder.`)){data.sounds=data.sounds.filter(x=>x.id!==rec.id);if(editingId===rec.id)cancelEdit();renderAll()}};acts.append(edit,del);div.appendChild(acts);root.appendChild(div)})}
+function renderAll(){renderCategories();refreshCategorySelect();renderSounds()}
+function addCategory(){const name=$('#catName').value.trim();if(!name)return alert('Give the category a name.');let id=slug(name),base=id,n=2;while(data.categories.some(c=>c.id===id))id=base+'-'+n++;data.categories.push({id,name,icon:$('#catIcon').value.trim()||'🔊',builtIn:false});$('#catName').value='';$('#catIcon').value='🔊';renderAll();setStatus(`Category added. Create a folder named sounds/${id}/ when you start adding files to it.`)}
+function updateDestination(){const c=categoryById($('#soundCategory').value),f=$('#soundFile').files[0];const name=f?f.name:'your-audio-file.wav';$('#destination').innerHTML=`File destination: <span class="path">sounds/${c?c.id:'category'}/${escapeText(name)}</span>`}
+function beginEdit(id){const r=data.sounds.find(x=>x.id===id);if(!r)return;editingId=id;$('#soundCategory').value=r.category;$('#soundIcon').value=r.icon||'🔊';$('#soundName').value=r.name;$('#soundDescription').value=r.description||'';$('#soundFile').value='';$('#saveSound').textContent='SAVE CHANGES';$('#cancelEdit').hidden=false;$('#destination').innerHTML=`Current file: <span class="path">${escapeText(r.file)}</span> — leave file chooser empty to keep it.`;scrollTo({top:0,behavior:'smooth'})}
+function cancelEdit(){editingId=null;$('#soundIcon').value='🔊';$('#soundName').value='';$('#soundDescription').value='';$('#soundFile').value='';$('#saveSound').textContent='ADD SOUND';$('#cancelEdit').hidden=true;updateDestination();if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null}$('#preview').hidden=true}
+async function saveSound(){
+  const cat=$('#soundCategory').value,name=$('#soundName').value.trim(),desc=$('#soundDescription').value.trim(),icon=$('#soundIcon').value.trim()||'🔊',file=$('#soundFile').files[0];
+  if(!name)return alert('Give the sound a name.');
+  if(!editingId&&!file)return alert('Choose the audio file you are adding.');
+  const oldRec=editingId?data.sounds.find(x=>x.id===editingId):null;
+  if(editingId&&!oldRec)return;
+  const oldCat=oldRec?oldRec.category:null;
+  let targetFile=oldRec?oldRec.file:null;
+  let autoCopied=false;
+  try{
+    if(file){
+      targetFile=`sounds/${cat}/${file.name}`;
+      if(projectDirHandle){targetFile=await copyAudioIntoProject(file,cat);autoCopied=true}
+    }else if(oldRec&&oldCat!==cat){
+      const fn=oldRec.filename||oldRec.file.split('/').pop();
+      targetFile=`sounds/${cat}/${fn}`;
+      // Moving an existing physical file without reselecting it is intentionally manual.
+    }
+    if(editingId){
+      oldRec.category=cat;oldRec.name=name;oldRec.description=desc;oldRec.icon=icon;oldRec.file=targetFile;
+      if(file)oldRec.filename=file.name;
+    }else{
+      data.sounds.push({id:'sound-'+Date.now().toString(36),category:cat,name,description:desc,icon,filename:file.name,file:targetFile});
+    }
+    if(projectDirHandle)await writeCatalogIntoProject();
+    const dest=targetFile;
+    cancelEdit();renderAll();
+    if(autoCopied){setStatus(`Added and copied automatically to ${dest}. The project sound-library.js was updated too.`)}
+    else if(projectDirHandle&&oldRec&&oldCat!==cat&&!file){setStatus(`Catalog updated to ${dest}. Because no replacement file was selected, move the existing audio file to that folder manually.`)}
+    else setStatus(`Catalog updated. Make sure the audio file exists at ${dest}. Then click SAVE UPDATED SOUND CATALOG when you are ready to publish.`);
+  }catch(e){setStatus('Could not save automatically: '+(e.message||e));alert('The catalog was not changed. '+(e.message||e))}
+}
+function downloadText(text,name,type='text/plain'){const b=new Blob([text],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+async function downloadJs(){downloadText('window.CSL_SOUND_LIBRARY = '+JSON.stringify(data,null,2)+';\n','sound-library.js','text/javascript');if(projectDirHandle){try{await writeCatalogIntoProject();setStatus('Updated sound catalog saved and also written into the connected project folder.')}catch(e){setStatus('Updated sound catalog downloaded, but could not write it into the connected folder.')}}else setStatus('Updated sound catalog downloaded. Save/replace it as sound-library.js beside index.html.')}
+function downloadJson(){downloadText(JSON.stringify(data,null,2)+'\n','sound-library.json','application/json');setStatus('Sound library backup downloaded. Keep it somewhere safe.')}
+async function restoreJson(file){
+  try{
+    const text=await file.text();
+    const incoming=JSON.parse(text);
+    if(!incoming||!Array.isArray(incoming.categories)||!Array.isArray(incoming.sounds))throw new Error('This is not a Crazy Sound Lab library backup.');
+    if(!confirm('Restore this sound library backup?\n\nYour current unsaved catalog changes will be replaced.'))return;
+    data=clone(incoming);editingId=null;cancelEdit();renderAll();
+    if(projectDirHandle){try{await writeCatalogIntoProject();setStatus('Sound library restored and the connected project catalog was updated.')}catch(e){setStatus('Sound library restored in Admin. Save the updated sound catalog when ready.')}}
+    else setStatus('Sound library restored in Admin. Click SAVE UPDATED SOUND CATALOG when ready.');
+  }catch(e){console.error(e);alert('Could not restore that backup. '+(e.message||e));}
+}
+$('#addCategory').onclick=addCategory;$('#saveSound').onclick=saveSound;$('#cancelEdit').onclick=cancelEdit;$('#connectProject').onclick=connectProjectFolder;$('#soundCategory').onchange=updateDestination;
+$('#soundFile').onchange=()=>{updateDestination();const f=$('#soundFile').files[0];if(previewUrl)URL.revokeObjectURL(previewUrl);if(f){previewUrl=URL.createObjectURL(f);$('#preview').src=previewUrl;$('#preview').volume=Number($('#previewVolume').value)/100;$('#preview').hidden=false}else{$('#preview').pause();$('#preview').hidden=true}};
+$('#previewVolume').oninput=()=>{const v=Number($('#previewVolume').value);$('#previewVolumeValue').textContent=v+'%';$('#preview').volume=v/100};
+$('#playPreview').onclick=()=>{const a=$('#preview');if(!a.src)return alert('Choose an audio file first.');a.volume=Number($('#previewVolume').value)/100;a.currentTime=0;a.play().catch(()=>{})};
+$('#stopPreview').onclick=()=>{const a=$('#preview');a.pause();a.currentTime=0};
+$('#downloadJs').onclick=downloadJs;$('#downloadJson').onclick=downloadJson;$('#restoreJson').onclick=()=>$('#restoreJsonFile').click();$('#restoreJsonFile').onchange=()=>{const f=$('#restoreJsonFile').files[0];if(f)restoreJson(f);$('#restoreJsonFile').value=''};$('#reloadLibrary').onclick=()=>{if(confirm('Discard unsaved Admin changes and reload the current saved sound catalog?'))location.reload()};renderAll();
+
+initBuiltinAdmin();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const el=document.getElementById('adminOriginText');
+  if(el){
+    el.textContent=location.origin;
+    if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
+      el.style.color='#8ff0b1';
+    }else{
+      el.style.color='#ffb36b';
+    }
+  }
+});
+</script>
+
+</body></html>
