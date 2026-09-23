@@ -33,6 +33,16 @@
   box-shadow:0 0 16px rgba(98,245,155,.08);
 }
 .catalog-save-row{margin-top:14px}
+.manager-mid-save{
+  grid-column:1/-1;
+  display:flex;
+  justify-content:center;
+  padding:18px 0 10px;
+  margin:4px 0 8px;
+  border-top:1px solid rgba(98,245,155,.14);
+  border-bottom:1px solid rgba(98,245,155,.14);
+}
+.manager-mid-save .catalog-save-btn{min-width:300px}
 
 .catalog-health-panel{
   border-color:rgba(67,239,255,.28);
@@ -151,13 +161,6 @@ button.warn{border-color:rgba(255,211,106,.3);color:#ffe49b;background:rgba(255,
   <button class="good catalog-save-btn" id="downloadJsTop">SAVE UPDATED SOUND CATALOG</button>
 </div>
 </section>
-
-<section class="panel wide catalog-save-panel">
-<h2>Update Public Sound Catalog</h2>
-<div class="note">After adding, editing, or deleting a sound, click this button to create the updated <b>sound-library.js</b> for your main Crazy Sound Lab folder.</div>
-<div class="row"><button class="good catalog-save-btn" id="downloadJs">SAVE UPDATED SOUND CATALOG</button></div>
-</section>
-
 
 <section class="panel wide">
 <h2>Category &amp; Sound Manager</h2>
@@ -584,6 +587,19 @@ function renderSounds(){
     };
     acts.append(play,edit,del);
     div.append(ico,info,acts);root.appendChild(div);
+
+    const visibleIndex=filtered.indexOf(rec);
+    const middleAfter=Math.ceil(filtered.length/2);
+    if(filtered.length>6 && visibleIndex+1===middleAfter){
+      const mid=document.createElement('div');
+      mid.className='manager-mid-save';
+      const save=document.createElement('button');
+      save.className='good catalog-save-btn';
+      save.textContent=catalogDirty?'SAVE UPDATED SOUND CATALOG • CHANGES':'SAVE UPDATED SOUND CATALOG';
+      save.onclick=downloadJs;
+      mid.appendChild(save);
+      root.appendChild(mid);
+    }
   });
 }
 function refreshDuplicateHighlights(showMessage=true){
