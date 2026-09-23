@@ -61,6 +61,29 @@
 button.warn{border-color:rgba(255,211,106,.3);color:#ffe49b;background:rgba(255,211,106,.07)}
 .catalog-dirty{color:#ffe49b!important}
 .catalog-clean{color:#9df4bd!important}
+/* Compact Category & Sound Manager cards: 3 columns on wide screens, 2 on medium, 1 on small. */
+#soundList{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:start;
+}
+#soundList .item{
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:start;
+  min-width:0;
+}
+#soundList .item .acts{
+  grid-column:1/-1;
+  justify-content:flex-start;
+}
+#soundList .item small{
+  overflow-wrap:anywhere;
+}
+@media(max-width:1050px){
+  #soundList{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  #soundList{grid-template-columns:1fr}
+}
 @media(max-width:760px){.health-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 </style>
