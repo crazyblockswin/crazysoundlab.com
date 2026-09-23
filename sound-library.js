@@ -1238,6 +1238,204 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "football-match-stadium-crowd-cheering.mp3",
       "file": "sounds/sports/football-match-stadium-crowd-cheering.mp3"
+    },
+    {
+      "id": "sound-mudh8pl1",
+      "category": "sports",
+      "name": "Arrows",
+      "description": "arrow sounds",
+      "icon": "🔊",
+      "filename": "arrow1.mp3",
+      "file": "sounds/sports/arrow1.mp3"
+    },
+    {
+      "id": "sound-mudh9ce5",
+      "category": "sports",
+      "name": "Badmitton",
+      "description": "badmitton",
+      "icon": "🔊",
+      "filename": "badminton1.mp3",
+      "file": "sounds/sports/badminton1.mp3"
+    },
+    {
+      "id": "sound-mudh9wrl",
+      "category": "sports",
+      "name": "Basket Ball",
+      "description": "basketball",
+      "icon": "🔊",
+      "filename": "basketball1.mp3",
+      "file": "sounds/sports/basketball1.mp3"
+    },
+    {
+      "id": "sound-mudhaqf3",
+      "category": "sports",
+      "name": "Billiards",
+      "description": "Billiards pool game",
+      "icon": "🔊",
+      "filename": "billiard-sound1.mp3",
+      "file": "sounds/sports/billiard-sound1.mp3"
+    },
+    {
+      "id": "sound-mudhbfmf",
+      "category": "sports",
+      "name": "Bouncing Ball",
+      "description": "bouncing ball",
+      "icon": "🔊",
+      "filename": "bouncing-ball1.mp3",
+      "file": "sounds/sports/bouncing-ball1.mp3"
+    },
+    {
+      "id": "sound-mudhbz3c",
+      "category": "sports",
+      "name": "Bowing Strike",
+      "description": "bowling strike",
+      "icon": "🔊",
+      "filename": "bowling-strike1mp3.mp3",
+      "file": "sounds/sports/bowling-strike1mp3.mp3"
+    },
+    {
+      "id": "sound-mudhck0y",
+      "category": "sports",
+      "name": "Boxing",
+      "description": "Boxing",
+      "icon": "🔊",
+      "filename": "boxing-bell1.mp3",
+      "file": "sounds/sports/boxing-bell1.mp3"
+    },
+    {
+      "id": "sound-mudhd74b",
+      "category": "sports",
+      "name": "Crowd Cheering",
+      "description": "crowd cheering",
+      "icon": "🔊",
+      "filename": "crowd-cheering.mp3",
+      "file": "sounds/sports/crowd-cheering.mp3"
+    },
+    {
+      "id": "sound-mudhe178",
+      "category": "sports",
+      "name": "Fans Celebrating",
+      "description": "fans celebrating",
+      "icon": "🔊",
+      "filename": "fans_celebrating1.mp3",
+      "file": "sounds/sports/fans_celebrating1.mp3"
+    },
+    {
+      "id": "sound-mudhfxu7",
+      "category": "sports",
+      "name": "Football stadium crowd cheering",
+      "description": "football stadium crowd cheering",
+      "icon": "🔊",
+      "filename": "football-match-stadium-crowd-cheering.mp3",
+      "file": "sounds/sports/football-match-stadium-crowd-cheering.mp3"
+    },
+    {
+      "id": "sound-mudhgm5z",
+      "category": "sports",
+      "name": "Gym Sounds",
+      "description": "gym sounds",
+      "icon": "🔊",
+      "filename": "gym1.mp3",
+      "file": "sounds/sports/gym1.mp3"
+    },
+    {
+      "id": "sound-mudhhjcs",
+      "category": "sports",
+      "name": "Man Runs on Gravel",
+      "description": "man runs on gravel",
+      "icon": "🔊",
+      "filename": "man-runs-on-a-gravel-road1.mp3",
+      "file": "sounds/sports/man-runs-on-a-gravel-road1.mp3"
+    },
+    {
+      "id": "sound-mudhi7w2",
+      "category": "sports",
+      "name": "Metal Whistle",
+      "description": "metal whistle",
+      "icon": "🔊",
+      "filename": "metal-whistle1.mp3",
+      "file": "sounds/sports/metal-whistle1.mp3"
+    },
+    {
+      "id": "sound-mudhivqm",
+      "category": "sports",
+      "name": "Playing Tennis",
+      "description": "playing tennis",
+      "icon": "🔊",
+      "filename": "playing-tennis1.mp3",
+      "file": "sounds/sports/playing-tennis1.mp3"
+    },
+    {
+      "id": "sound-mudhjnn8",
+      "category": "sports",
+      "name": "Race Car Sound",
+      "description": "race car",
+      "icon": "🔊",
+      "filename": "race-care2.mp3",
+      "file": "sounds/sports/race-care2.mp3"
+    },
+    {
+      "id": "sound-mudhk84n",
+      "category": "sports",
+      "name": "Running",
+      "description": "running",
+      "icon": "🔊",
+      "filename": "running1.mp3",
+      "file": "sounds/sports/running1.mp3"
+    },
+    {
+      "id": "sound-mudhlhli",
+      "category": "sports",
+      "name": "Splashing in Swimming Pool",
+      "description": "splashing in swimming pool",
+      "icon": "🔊",
+      "filename": "splashing-in-swimming-pool1.mp3",
+      "file": "sounds/sports/splashing-in-swimming-pool1.mp3"
+    },
+    {
+      "id": "sound-mudhn7qe",
+      "category": "music",
+      "name": "Breaking News Theme",
+      "description": "breaking news theme",
+      "icon": "🔊",
+      "filename": "breaking-news-theme1.mp3",
+      "file": "sounds/music/breaking-news-theme1.mp3"
+    },
+    {
+      "id": "sound-mudho33r",
+      "category": "music",
+      "name": "Drums and Percussions",
+      "description": "drums and percussions",
+      "icon": "🔊",
+      "filename": "drums-and-percussion1.mp3",
+      "file": "sounds/music/drums-and-percussion1.mp3"
+    },
+    {
+      "id": "sound-mudhos3w",
+      "category": "music",
+      "name": "Energetic Beat",
+      "description": "energetic beat",
+      "icon": "🔊",
+      "filename": "energetic-bigbeat-drum1.mp3",
+      "file": "sounds/music/energetic-bigbeat-drum1.mp3"
+    },
+    {
+      "id": "sound-mudhpjj9",
+      "category": "music",
+      "name": "Energy Rock",
+      "description": "energy rock music",
+      "icon": "🔊",
+      "filename": "energy-rock1.mp3",
+      "file": "sounds/music/energy-rock1.mp3"
+    },
+    {
+      "id": "sound-mudhrvff",
+      "category": "vehicles",
+      "name": "F1 Race Car",
+      "description": "F1 Race car",
+      "icon": "🔊",
+      "filename": "F1-race-car1.mp3",
+      "file": "sounds/vehicles/F1-race-car1.mp3"
     }
   ]
 };
