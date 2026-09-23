@@ -26,11 +26,13 @@
   background:linear-gradient(180deg,rgba(12,28,23,.96),rgba(8,17,15,.98));
 }
 .catalog-save-panel .row{justify-content:flex-start}
-.catalog-save-panel #downloadJs{
+.catalog-save-panel .catalog-save-btn,
+.catalog-save-btn{
   padding:12px 18px;
   font-size:14px;
   box-shadow:0 0 16px rgba(98,245,155,.08);
 }
+.catalog-save-row{margin-top:14px}
 
 .catalog-health-panel{
   border-color:rgba(67,239,255,.28);
@@ -145,12 +147,15 @@ button.warn{border-color:rgba(255,211,106,.3);color:#ffe49b;background:rgba(255,
   <button id="clearManagerChecks">CLEAR HIGHLIGHTS</button>
   <span class="manager-status" id="managerCheckStatus">Catalog loaded. Duplicate count is checked automatically.</span>
 </div>
+<div class="row catalog-save-row">
+  <button class="good catalog-save-btn" id="downloadJsTop">SAVE UPDATED SOUND CATALOG</button>
+</div>
 </section>
 
 <section class="panel wide catalog-save-panel">
 <h2>Update Public Sound Catalog</h2>
 <div class="note">After adding, editing, or deleting a sound, click this button to create the updated <b>sound-library.js</b> for your main Crazy Sound Lab folder.</div>
-<div class="row"><button class="good" id="downloadJs">SAVE UPDATED SOUND CATALOG</button></div>
+<div class="row"><button class="good catalog-save-btn" id="downloadJs">SAVE UPDATED SOUND CATALOG</button></div>
 </section>
 
 
@@ -163,6 +168,9 @@ button.warn{border-color:rgba(255,211,106,.3);color:#ffe49b;background:rgba(255,
   <button id="stopManagerAudio">■ STOP AUDIO</button>
 </div>
 <div class="list" id="soundList"></div>
+<div class="row catalog-save-row">
+  <button class="good catalog-save-btn" id="downloadJsBottom">SAVE UPDATED SOUND CATALOG</button>
+</div>
 </section>
 
 
@@ -436,12 +444,11 @@ function updateCatalogHealth(){
   if(hs)hs.textContent=data.sounds.length;
   if(hd)hd.textContent=duplicateExtraCount();
   if(hm)hm.textContent=managerFilesChecked?managerMissingIds.size:'—';
-  const save=$('#downloadJs');
-  if(save){
+  $$('.catalog-save-btn').forEach(save=>{
     save.classList.toggle('catalog-dirty',catalogDirty);
     save.classList.toggle('catalog-clean',!catalogDirty);
     save.textContent=catalogDirty?'SAVE UPDATED SOUND CATALOG • CHANGES':'SAVE UPDATED SOUND CATALOG';
-  }
+  });
 }
 function renderCategoryFilters(){
   const root=$('#soundCategoryFilters');
@@ -496,7 +503,7 @@ function renderCategories(){
         c.name=n.trim();
         const ic=prompt('Icon / emoji:',c.icon||'🔊');
         if(ic!==null)c.icon=ic.trim()||'🔊';
-        markCatalogDirty();renderAll();
+        markCatalogDirty();refreshDuplicateHighlights(false);renderAll();
       }
     };
     acts.append(view,up,dn,ren);
@@ -708,7 +715,7 @@ $('#soundFile').onchange=()=>{updateDestination();const f=$('#soundFile').files[
 $('#previewVolume').oninput=()=>{const v=Number($('#previewVolume').value);$('#previewVolumeValue').textContent=v+'%';$('#preview').volume=v/100};
 $('#playPreview').onclick=()=>{const a=$('#preview');if(!a.src)return alert('Choose an audio file first.');a.volume=Number($('#previewVolume').value)/100;a.currentTime=0;a.play().catch(()=>{})};
 $('#stopPreview').onclick=()=>{const a=$('#preview');a.pause();a.currentTime=0};
-$('#downloadJs').onclick=downloadJs;
+$$('.catalog-save-btn').forEach(btn=>btn.onclick=downloadJs);
 $('#downloadJson').onclick=downloadJson;
 $('#restoreJson').onclick=()=>$('#restoreJsonFile').click();
 $('#restoreJsonFile').onchange=()=>{const f=$('#restoreJsonFile').files[0];if(f)restoreJson(f);$('#restoreJsonFile').value=''};
