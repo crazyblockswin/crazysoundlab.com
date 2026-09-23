@@ -1159,15 +1159,6 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/aircraft/missile-lock-detected1.mp3"
     },
     {
-      "id": "sound-mudetov7",
-      "category": "aircraft",
-      "name": "Cockpit Sound of landing Gear",
-      "description": "cockpit sound of landing gear deployment",
-      "icon": "🔊",
-      "filename": "cockpit-sound-of-landing-gear-deployment1.mp3",
-      "file": "sounds/aircraft/cockpit-sound-of-landing-gear-deployment1.mp3"
-    },
-    {
       "id": "sound-mudeuujd",
       "category": "aircraft",
       "name": "Plane Falling",
@@ -1213,15 +1204,6 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/aircraft/military-jet.mp3"
     },
     {
-      "id": "sound-mudf8tl0",
-      "category": "aircraft",
-      "name": "Commercial Jet Flyover",
-      "description": "Commercial Jet flyover sound",
-      "icon": "🔊",
-      "filename": "commercial-jet-flyover.mp3",
-      "file": "sounds/aircraft/commercial-jet-flyover.mp3"
-    },
-    {
       "id": "sound-mudfctmn",
       "category": "aircraft",
       "name": "Landing Gear Deployment Sound",
@@ -1229,15 +1211,6 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "cockpit-sound-of-landing-gear-deployment1.mp3",
       "file": "sounds/aircraft/cockpit-sound-of-landing-gear-deployment1.mp3"
-    },
-    {
-      "id": "sound-mudftz52",
-      "category": "sports",
-      "name": "Football Stadium Crowd",
-      "description": "football match stadium crownd",
-      "icon": "🔊",
-      "filename": "football-match-stadium-crowd-cheering.mp3",
-      "file": "sounds/sports/football-match-stadium-crowd-cheering.mp3"
     },
     {
       "id": "sound-mudh8pl1",
@@ -1301,15 +1274,6 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "boxing-bell1.mp3",
       "file": "sounds/sports/boxing-bell1.mp3"
-    },
-    {
-      "id": "sound-mudhd74b",
-      "category": "sports",
-      "name": "Crowd Cheering",
-      "description": "crowd cheering",
-      "icon": "🔊",
-      "filename": "crowd-cheering.mp3",
-      "file": "sounds/sports/crowd-cheering.mp3"
     },
     {
       "id": "sound-mudhe178",
