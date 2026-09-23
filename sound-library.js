@@ -1535,6 +1535,114 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "whale-song1.mp3",
       "file": "sounds/animals/whale-song1.mp3"
+    },
+    {
+      "id": "sound-mudjdhde",
+      "category": "horns",
+      "name": "Cargo Ship Horn",
+      "description": "cargo ship horn",
+      "icon": "🔊",
+      "filename": "cargo-ship-horn1.mp3",
+      "file": "sounds/horns/cargo-ship-horn1.mp3"
+    },
+    {
+      "id": "sound-mudje5tc",
+      "category": "horns",
+      "name": "Creepy Horn",
+      "description": "creepy horn",
+      "icon": "🔊",
+      "filename": "creepy-horn1.mp3",
+      "file": "sounds/horns/creepy-horn1.mp3"
+    },
+    {
+      "id": "sound-mudjf8nh",
+      "category": "horns",
+      "name": "Double Car Honk",
+      "description": "Double Car Honk",
+      "icon": "🔊",
+      "filename": "double-car-honk.mp3",
+      "file": "sounds/horns/double-car-honk.mp3"
+    },
+    {
+      "id": "sound-mudjfsfj",
+      "category": "horns",
+      "name": "Dramatic Horn",
+      "description": "dramatic horn",
+      "icon": "🔊",
+      "filename": "dramatic-horn1.mp3",
+      "file": "sounds/horns/dramatic-horn1.mp3"
+    },
+    {
+      "id": "sound-mudjg8v3",
+      "category": "horns",
+      "name": "Fog Horn",
+      "description": "fog horn",
+      "icon": "🔊",
+      "filename": "fog-horn-sound1.mp3",
+      "file": "sounds/horns/fog-horn-sound1.mp3"
+    },
+    {
+      "id": "sound-mudjh7bn",
+      "category": "horns",
+      "name": "Inception Style Movie Horn",
+      "description": "movie horn sound",
+      "icon": "🔊",
+      "filename": "inception-style-movie-horn1.mp3",
+      "file": "sounds/horns/inception-style-movie-horn1.mp3"
+    },
+    {
+      "id": "sound-mudjhyic",
+      "category": "horns",
+      "name": "Losing Horn",
+      "description": "losing horn",
+      "icon": "🔊",
+      "filename": "losing-horn1.mp3",
+      "file": "sounds/horns/losing-horn1.mp3"
+    },
+    {
+      "id": "sound-mudjijxz",
+      "category": "horns",
+      "name": "Loud Train Horn",
+      "description": "loud train horn",
+      "icon": "🔊",
+      "filename": "loud-train-horn1.mp3",
+      "file": "sounds/horns/loud-train-horn1.mp3"
+    },
+    {
+      "id": "sound-mudjjbnp",
+      "category": "horns",
+      "name": "Ocean Cruise Ship Horn",
+      "description": "Ocean crusise ship horn",
+      "icon": "🔊",
+      "filename": "ocean-cruise-liner-ship1.mp3",
+      "file": "sounds/horns/ocean-cruise-liner-ship1.mp3"
+    },
+    {
+      "id": "sound-mudjjzow",
+      "category": "horns",
+      "name": "Thriller Horn",
+      "description": "thriller horn sound",
+      "icon": "🔊",
+      "filename": "thriller1.mp3",
+      "file": "sounds/horns/thriller1.mp3"
+    },
+    {
+      "id": "sound-mudjkq71",
+      "category": "horns",
+      "name": "Vintage Car Horn",
+      "description": "vintage car horn",
+      "icon": "🔊",
+      "filename": "vintage-car-horn1.mp3",
+      "file": "sounds/horns/vintage-car-horn1.mp3"
+    },
+    {
+      "id": "sound-mudjlnts",
+      "category": "horns",
+      "name": "War Horn and Drums",
+      "description": "war horn and drums",
+      "icon": "🔊",
+      "filename": "war-horn-and-drums1.mp3",
+      "file": "sounds/horns/war-horn-and-drums1.mp3"
     }
   ]
 };
