@@ -1159,15 +1159,6 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/aircraft/missile-lock-detected1.mp3"
     },
     {
-      "id": "sound-mudbqkrg",
-      "category": "aircraft",
-      "name": "Boeing 737 Windshear Alert",
-      "description": "Boeing 737 Windshear Alert",
-      "icon": "🔊",
-      "filename": "windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3",
-      "file": "sounds/aircraft/windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3"
-    },
-    {
       "id": "sound-mudetov7",
       "category": "aircraft",
       "name": "Cockpit Sound of landing Gear",
