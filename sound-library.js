@@ -1229,6 +1229,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "commercial-jet-flyover.mp3",
       "file": "sounds/aircraft/commercial-jet-flyover.mp3"
+    },
+    {
+      "id": "sound-mudfctmn",
+      "category": "aircraft",
+      "name": "Landing Gear Deployment Sound",
+      "description": "landing gear deployment",
+      "icon": "🔊",
+      "filename": "cockpit-sound-of-landing-gear-deployment1.mp3",
+      "file": "sounds/aircraft/cockpit-sound-of-landing-gear-deployment1.mp3"
     }
   ]
 };
