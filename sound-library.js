@@ -1229,6 +1229,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "cockpit-sound-of-landing-gear-deployment1.mp3",
       "file": "sounds/aircraft/cockpit-sound-of-landing-gear-deployment1.mp3"
+    },
+    {
+      "id": "sound-mudftz52",
+      "category": "sports",
+      "name": "Football Stadium Crowd",
+      "description": "football match stadium crownd",
+      "icon": "🔊",
+      "filename": "football-match-stadium-crowd-cheering.mp3",
+      "file": "sounds/sports/football-match-stadium-crowd-cheering.mp3"
     }
   ]
 };
