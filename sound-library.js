@@ -44,6 +44,12 @@ window.CSL_SOUND_LIBRARY = {
       "builtIn": false
     },
     {
+      "id": "animals",
+      "name": "Animals",
+      "icon": "🐾",
+      "builtIn": true
+    },
+    {
       "id": "alarms",
       "name": "Alarms",
       "icon": "🚨",
@@ -54,6 +60,12 @@ window.CSL_SOUND_LIBRARY = {
       "name": "People",
       "icon": "👥",
       "builtIn": true
+    },
+    {
+      "id": "comedy",
+      "name": "Comedy",
+      "icon": "🔊",
+      "builtIn": false
     },
     {
       "id": "horns",
@@ -72,18 +84,6 @@ window.CSL_SOUND_LIBRARY = {
       "name": "Sci-Fi",
       "icon": "🚀",
       "builtIn": true
-    },
-    {
-      "id": "animals",
-      "name": "Animals",
-      "icon": "🐾",
-      "builtIn": true
-    },
-    {
-      "id": "comedy",
-      "name": "Comedy",
-      "icon": "🔊",
-      "builtIn": false
     },
     {
       "id": "music",
@@ -1168,31 +1168,40 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/aircraft/windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3"
     },
     {
-      "id": "sound-mude2yy5",
+      "id": "sound-mudetov7",
       "category": "aircraft",
-      "name": "Aircraft Pre Flight",
-      "description": "aircraft pre flight",
+      "name": "Cockpit Sound of landing Gear",
+      "description": "cockpit sound of landing gear deployment",
       "icon": "🔊",
-      "filename": "aircraft-pre-flight.mp3",
-      "file": "sounds/aircraft/aircraft-pre-flight.mp3"
+      "filename": "cockpit-sound-of-landing-gear-deployment1.mp3",
+      "file": "sounds/aircraft/cockpit-sound-of-landing-gear-deployment1.mp3"
     },
     {
-      "id": "sound-mude3n1p",
+      "id": "sound-mudeuujd",
       "category": "aircraft",
-      "name": "Airplane Fly By",
-      "description": "airplane fly by",
+      "name": "Plane Falling",
+      "description": "plane falling",
       "icon": "🔊",
-      "filename": "airplane-fly-by.mp3",
-      "file": "sounds/aircraft/airplane-fly-by.mp3"
+      "filename": "plane-falling.mp3",
+      "file": "sounds/aircraft/plane-falling.mp3"
     },
     {
-      "id": "sound-mude49jd",
+      "id": "sound-mudevjg9",
       "category": "aircraft",
-      "name": "Airplane Landing",
-      "description": "airplane landing",
+      "name": "Prop Plane",
+      "description": "prop plane",
       "icon": "🔊",
-      "filename": "airplane-landing.mp3",
-      "file": "sounds/aircraft/airplane-landing.mp3"
+      "filename": "prop-plane.mp3",
+      "file": "sounds/aircraft/prop-plane.mp3"
+    },
+    {
+      "id": "sound-mudf0sgs",
+      "category": "aircraft",
+      "name": "Boeing 737 wind shear alert",
+      "description": "wind shear alert boeing 737 alert",
+      "icon": "🔊",
+      "filename": "windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3",
+      "file": "sounds/aircraft/windshear-alert-before-landing-boeing-737-max-cockpit-warning1.mp3"
     }
   ]
 };
