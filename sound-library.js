@@ -1436,6 +1436,105 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "F1-race-car1.mp3",
       "file": "sounds/vehicles/F1-race-car1.mp3"
+    },
+    {
+      "id": "sound-mudin8tb",
+      "category": "animals",
+      "name": "Bear",
+      "description": "Bear",
+      "icon": "🔊",
+      "filename": "bear-sound1mp3.mp3",
+      "file": "sounds/animals/bear-sound1mp3.mp3"
+    },
+    {
+      "id": "sound-mudio019",
+      "category": "animals",
+      "name": "Buffalo",
+      "description": "Buffalo",
+      "icon": "🔊",
+      "filename": "buffalo1.mp3",
+      "file": "sounds/animals/buffalo1.mp3"
+    },
+    {
+      "id": "sound-mudioldm",
+      "category": "animals",
+      "name": "Parrot Jungle",
+      "description": "parrot jungle",
+      "icon": "🔊",
+      "filename": "jungle-parrot1.mp3",
+      "file": "sounds/animals/jungle-parrot1.mp3"
+    },
+    {
+      "id": "sound-mudip839",
+      "category": "animals",
+      "name": "Monkey Jungle",
+      "description": "monkey jungle",
+      "icon": "🔊",
+      "filename": "monkey-jungle1.mp3",
+      "file": "sounds/animals/monkey-jungle1.mp3"
+    },
+    {
+      "id": "sound-mudiq0vj",
+      "category": "animals",
+      "name": "Monkey Laughing",
+      "description": "monkey laughing",
+      "icon": "🔊",
+      "filename": "monkey-laugh1.mp3",
+      "file": "sounds/animals/monkey-laugh1.mp3"
+    },
+    {
+      "id": "sound-mudiqq6d",
+      "category": "animals",
+      "name": "Monkey Screaming",
+      "description": "monkey screaming",
+      "icon": "🔊",
+      "filename": "monkey-scream1.mp3",
+      "file": "sounds/animals/monkey-scream1.mp3"
+    },
+    {
+      "id": "sound-mudir6zj",
+      "category": "animals",
+      "name": "Penguin",
+      "description": "penguin",
+      "icon": "🔊",
+      "filename": "penguin1.mp3",
+      "file": "sounds/animals/penguin1.mp3"
+    },
+    {
+      "id": "sound-mudirr33",
+      "category": "animals",
+      "name": "Lion",
+      "description": "lion",
+      "icon": "🔊",
+      "filename": "powerful-lion-roar1.mp3",
+      "file": "sounds/animals/powerful-lion-roar1.mp3"
+    },
+    {
+      "id": "sound-mudis975",
+      "category": "animals",
+      "name": "Seal",
+      "description": "seal",
+      "icon": "🔊",
+      "filename": "seal1.mp3",
+      "file": "sounds/animals/seal1.mp3"
+    },
+    {
+      "id": "sound-mudiszlg",
+      "category": "animals",
+      "name": "Silver Back Gorilla",
+      "description": "silver back gorilla",
+      "icon": "🔊",
+      "filename": "silverback-gorilla-roar1.mp3",
+      "file": "sounds/animals/silverback-gorilla-roar1.mp3"
+    },
+    {
+      "id": "sound-muditsfy",
+      "category": "animals",
+      "name": "Whale Song",
+      "description": "Whale Song",
+      "icon": "🔊",
+      "filename": "whale-song1.mp3",
+      "file": "sounds/animals/whale-song1.mp3"
     }
   ]
 };
