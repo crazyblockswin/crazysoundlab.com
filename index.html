@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crazy Voice and Sound Lab V8.5</title>
+<title>Crazy Voice and Sound Lab V8.6</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
 <link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
@@ -488,25 +488,26 @@ canvas{width:100%;height:100%;display:block}
 .scene-auto-join:hover{filter:brightness(1.15);border-color:rgba(67,239,255,.42)}
 .scene-timeline-note{margin-top:4px;color:#c9a9dc!important;font-size:9px!important}
 
-/* v8.5 — draggable per-scene timeline. */
+/* v8.6 — compact draggable per-scene timeline. */
+.scene-row{gap:6px;padding:6px 8px}
+.scene-mix-controls{gap:5px}
+.scene-mix-field{gap:3px;padding:4px 6px}
+.scene-mix-field input{padding:7px 7px}
 .scene-drag-timeline{
-  grid-column:1/-1;display:grid;gap:5px;margin-top:2px;padding:7px 8px 8px;
-  border-radius:9px;border:1px solid rgba(217,140,255,.16);
-  background:linear-gradient(180deg,rgba(217,140,255,.045),rgba(67,239,255,.025));
+  grid-column:1/-1;margin-top:0;padding:2px 3px;
+  border-radius:7px;border:1px solid rgba(217,140,255,.14);
+  background:linear-gradient(180deg,rgba(217,140,255,.035),rgba(67,239,255,.018));
 }
-.scene-drag-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:8px;font-weight:950;letter-spacing:.045em;color:#c9b1d8}
-.scene-drag-head span:last-child{color:#8298ad;font-weight:850;letter-spacing:0}
-.scene-drag-track{position:relative;height:42px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#050911}
-.scene-drag-grid{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 10%)}
-.scene-drag-clip{position:absolute;top:8px;height:24px;min-width:18px;border-radius:7px;border:1px solid rgba(255,133,213,.58);background:linear-gradient(90deg,rgba(255,133,213,.82),rgba(184,140,255,.82));box-shadow:0 0 14px rgba(217,140,255,.19);color:#16051b;font-size:8px;font-weight:950;display:flex;align-items:center;justify-content:center;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
-.scene-drag-range{position:absolute;inset:0;width:100%;height:42px;margin:0;cursor:ew-resize;background:transparent;-webkit-appearance:none;appearance:none}
-.scene-drag-range::-webkit-slider-runnable-track{height:42px;background:transparent}
-.scene-drag-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:38px;margin-top:2px;border-radius:7px;border:1px solid rgba(67,239,255,.72);background:rgba(67,239,255,.13);box-shadow:0 0 13px rgba(67,239,255,.22);cursor:ew-resize}
-.scene-drag-range::-moz-range-track{height:42px;background:transparent;border:0}
-.scene-drag-range::-moz-range-thumb{width:16px;height:36px;border-radius:7px;border:1px solid rgba(67,239,255,.72);background:rgba(67,239,255,.13);box-shadow:0 0 13px rgba(67,239,255,.22);cursor:ew-resize}
-.scene-drag-scale{display:flex;justify-content:space-between;color:#60778e;font-size:8px;font-weight:850}
-.scene-drag-timeline.dragging{border-color:rgba(67,239,255,.42);box-shadow:0 0 16px rgba(67,239,255,.08)}
-@media(max-width:760px){.scene-drag-head{align-items:flex-start;flex-direction:column;gap:2px}.scene-drag-track{height:46px}.scene-drag-range{height:46px}}
+.scene-drag-head,.scene-drag-scale{display:none}
+.scene-drag-track{position:relative;height:26px;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:#050911}
+.scene-drag-grid{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 10%)}
+.scene-drag-clip{position:absolute;top:4px;height:16px;min-width:16px;border-radius:5px;border:1px solid rgba(255,133,213,.58);background:linear-gradient(90deg,rgba(255,133,213,.82),rgba(184,140,255,.82));box-shadow:0 0 10px rgba(217,140,255,.16);color:#16051b;font-size:7px;font-weight:950;display:flex;align-items:center;justify-content:center;padding:0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.scene-drag-range{position:absolute;inset:0;width:100%;height:26px;margin:0;cursor:ew-resize;background:transparent;-webkit-appearance:none;appearance:none}
+.scene-drag-range::-webkit-slider-runnable-track{height:26px;background:transparent}
+.scene-drag-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:22px;margin-top:2px;border-radius:6px;border:1px solid rgba(67,239,255,.72);background:rgba(67,239,255,.13);box-shadow:0 0 10px rgba(67,239,255,.20);cursor:ew-resize}
+.scene-drag-range::-moz-range-track{height:26px;background:transparent;border:0}
+.scene-drag-range::-moz-range-thumb{width:14px;height:20px;border-radius:6px;border:1px solid rgba(67,239,255,.72);background:rgba(67,239,255,.13);box-shadow:0 0 10px rgba(67,239,255,.20);cursor:ew-resize}
+.scene-drag-timeline.dragging{border-color:rgba(67,239,255,.42);box-shadow:0 0 12px rgba(67,239,255,.07)}
 .scene-row-actions{align-content:center;align-items:stretch}
 @media(max-width:1050px){.scene-row{grid-template-columns:38px minmax(140px,.75fr) minmax(0,1.6fr)}.scene-row-actions{grid-column:2/-1;min-width:0;grid-template-columns:repeat(4,minmax(105px,1fr))}.scene-mix-controls{grid-template-columns:repeat(4,minmax(80px,1fr)) auto}}
 @media(max-width:760px){.scene-row{grid-template-columns:36px 1fr}.scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}.scene-auto-join{grid-column:1/-1}.scene-row-actions{grid-column:1/-1;min-width:0;grid-template-columns:1fr 1fr}}
@@ -1328,7 +1329,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
-<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.5 • Voice Lab + Draggable Scene Timeline</div>
+<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.6 • Voice Lab + Compact Draggable Scene Timeline</div>
 
 <script src="sound-library.js?v=20260923-sound-order-fix"></script>
 <script>
@@ -5115,35 +5116,25 @@ function sceneTimelineShort(seconds){
 }
 function sceneCreateDragTimeline(clip,index,timelineMax,timingNode){
   const wrap=document.createElement('div');wrap.className='scene-drag-timeline';
-  const head=document.createElement('div');head.className='scene-drag-head';
-  const title=document.createElement('span');title.textContent='↔ DRAG SCENE TO SET START TIME';
-  const readout=document.createElement('span');
-  head.append(title,readout);
+  wrap.title='Drag left or right to move this scene quickly';
 
   const track=document.createElement('div');track.className='scene-drag-track';
   const grid=document.createElement('div');grid.className='scene-drag-grid';
-  const block=document.createElement('div');block.className='scene-drag-clip';block.textContent=`SCENE ${index+1}`;
+  const block=document.createElement('div');block.className='scene-drag-clip';block.textContent=`${index+1}`;
   const range=document.createElement('input');range.className='scene-drag-range';range.type='range';range.min='0';range.max=String(timelineMax);range.step='0.1';range.value=String(sceneClamp(clip.startAt,0,timelineMax));
   range.setAttribute('aria-label',`Drag Scene ${index+1} start time`);
   range.title='Drag left or right to move this scene quickly';
   track.append(grid,block,range);
-
-  const scale=document.createElement('div');scale.className='scene-drag-scale';
-  const zero=document.createElement('span');zero.textContent='0s';
-  const middle=document.createElement('span');middle.textContent=sceneTimelineShort(timelineMax/2);
-  const end=document.createElement('span');end.textContent=sceneTimelineShort(timelineMax);
-  scale.append(zero,middle,end);
 
   const paint=()=>{
     const start=sceneClamp(range.value,0,timelineMax);
     const duration=Math.max(.01,clip.buffer?.duration||0);
     const left=(start/timelineMax)*100;
     const rawWidth=(duration/timelineMax)*100;
-    const width=Math.max(2,Math.min(100-left,rawWidth));
+    const width=Math.max(1.6,Math.min(100-left,rawWidth));
     block.style.left=`${left}%`;
     block.style.width=`${width}%`;
-    readout.textContent=`START ${start.toFixed(1)}s • END ${(start+duration).toFixed(1)}s • WINDOW ${sceneTimelineShort(timelineMax)}`;
-    if(timingNode)timingNode.textContent=`Starts ${start.toFixed(2)}s • Ends ${(start+duration).toFixed(2)}s`;
+    if(timingNode)timingNode.textContent=`Starts ${start.toFixed(2)}s • Ends ${(start+duration).toFixed(2)}s • Drag strip below to move`;
   };
   paint();
 
@@ -5161,8 +5152,9 @@ function sceneCreateDragTimeline(clip,index,timelineMax,timingNode){
     sceneRenderList();
   });
 
-  wrap.append(head,track,scale);return wrap;
+  wrap.append(track);return wrap;
 }
+
 function sceneRenderList(){
   const list=$('#sceneList');if(!list)return;
   list.innerHTML='';
