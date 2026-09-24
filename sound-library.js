@@ -1651,15 +1651,6 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/mixer-samples/crazy-lab-story.mp3"
     },
     {
-      "id": "sound-mug3h7hv",
-      "category": "mixer-samples",
-      "name": "Breaking News",
-      "description": "Chump breaking news",
-      "icon": "🔊",
-      "filename": "crazy-lab-story-news-chump.mp3",
-      "file": "sounds/mixer-samples/crazy-lab-story-news-chump.mp3"
-    },
-    {
       "id": "sound-muesqog1",
       "category": "mixer-samples",
       "name": "Sample Voice Witch Police",
@@ -1669,6 +1660,33 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/mixer-samples/sample-voice-witch-police.mp3"
     },
     {
+      "id": "sound-mues4udh",
+      "category": "mixer-samples",
+      "name": "Scene Builder Sample Voice Airplane Zoo",
+      "description": "scene builder voice and sound combinations",
+      "icon": "🔊",
+      "filename": "sample-voice-airplane-bear.mp3",
+      "file": "sounds/mixer-samples/sample-voice-airplane-bear.mp3"
+    },
+    {
+      "id": "sound-mug3h7hv",
+      "category": "mixer-samples",
+      "name": "Breaking News",
+      "description": "Chump breaking news",
+      "icon": "🔊",
+      "filename": "crazy-lab-story-news-chump.mp3",
+      "file": "sounds/mixer-samples/crazy-lab-story-news-chump.mp3"
+    },
+    {
+      "id": "sound-muesdf6o",
+      "category": "mixer-samples",
+      "name": "Sample Voice Giggle Nicole Witch",
+      "description": "Sample voice with girl giggling, Nicole hosting and witch laughing",
+      "icon": "🔊",
+      "filename": "sample-voice-giggle-nicole-witch.mp3",
+      "file": "sounds/mixer-samples/sample-voice-giggle-nicole-witch.mp3"
+    },
+    {
       "id": "sound-mues6rd7",
       "category": "mixer-samples",
       "name": "Sample Voice News Motorcycle",
@@ -1676,15 +1694,6 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "sample-voice-breaking-news-motorcycle.mp3",
       "file": "sounds/mixer-samples/sample-voice-breaking-news-motorcycle.mp3"
-    },
-    {
-      "id": "sound-mues4udh",
-      "category": "mixer-samples",
-      "name": "Sample Voicee Airplane Bear",
-      "description": "voice and sound combinations",
-      "icon": "🔊",
-      "filename": "sample-voice-airplane-bear.mp3",
-      "file": "sounds/mixer-samples/sample-voice-airplane-bear.mp3"
     },
     {
       "id": "sound-mues7xf1",
@@ -1712,15 +1721,6 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "sample-voice-drums-bella-news.mp3",
       "file": "sounds/mixer-samples/sample-voice-drums-bella-news.mp3"
-    },
-    {
-      "id": "sound-muesdf6o",
-      "category": "mixer-samples",
-      "name": "Sample Voice Giggle Nicole Witch",
-      "description": "Sample voice with girl giggling, Nicole hosting and witch laughing",
-      "icon": "🔊",
-      "filename": "sample-voice-giggle-nicole-witch.mp3",
-      "file": "sounds/mixer-samples/sample-voice-giggle-nicole-witch.mp3"
     },
     {
       "id": "sound-muesfgcz",
