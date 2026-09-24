@@ -1766,6 +1766,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "sample-voice-witch-police.mp3",
       "file": "sounds/mixer-samples/sample-voice-witch-police.mp3"
+    },
+    {
+      "id": "sound-muf00bey",
+      "category": "mixer-samples",
+      "name": "Sample of Crazy Lab Story with Voice",
+      "description": "crazy lab story with voice and sounds",
+      "icon": "🔊",
+      "filename": "crazy-lab-story.mp3",
+      "file": "sounds/mixer-samples/crazy-lab-story.mp3"
     }
   ]
 };
