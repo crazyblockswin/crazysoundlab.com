@@ -463,7 +463,7 @@ canvas{width:100%;height:100%;display:block}
 .scene-row{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:9px;align-items:center;padding:9px 10px;border-radius:11px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0c1320,#080d15)}
 .scene-num{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#16051b;background:linear-gradient(135deg,#ff85d5,#b88cff);font-size:12px;font-weight:950;box-shadow:0 0 12px rgba(217,140,255,.12)}
 .scene-meta{min-width:0}.scene-meta b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}.scene-meta small{display:block;margin-top:3px;color:#8095ac;font-size:9px}
-.scene-row-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.scene-row-actions button{min-width:32px;padding:7px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.09);background:#0a101a;color:#dbe9f7;font-weight:900;cursor:pointer}.scene-row-actions button:hover:not(:disabled){border-color:rgba(67,239,255,.35);color:#fff}.scene-row-actions button:disabled{opacity:.3;cursor:not-allowed}.scene-row-actions .remove{border-color:rgba(255,93,105,.22);color:#ffadb4}
+.scene-row-actions{display:grid;grid-template-columns:repeat(2,minmax(86px,1fr));gap:7px;min-width:190px;align-content:center;align-items:stretch}.scene-row-actions button{min-width:0;min-height:40px;padding:9px 10px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:#0a101a;color:#dbe9f7;font-size:10px;font-weight:950;letter-spacing:.025em;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.24)}.scene-row-actions button:hover:not(:disabled){border-color:rgba(67,239,255,.50);color:#fff;background:#0d1723;box-shadow:0 0 14px rgba(67,239,255,.10)}.scene-row-actions button:disabled{opacity:.3;cursor:not-allowed}.scene-row-actions .remove{border-color:rgba(255,93,105,.30);color:#ffadb4;background:rgba(255,93,105,.055)}
 .scene-builder-actions{display:grid;grid-template-columns:1.2fr .8fr 1fr 1fr .8fr;gap:8px}
 .scene-builder-actions button{min-height:44px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-size:10px;font-weight:950;cursor:pointer}.scene-builder-actions button:disabled{opacity:.38;cursor:not-allowed}.scene-builder-actions .play{border:0;color:#16051b;background:linear-gradient(90deg,#ff85d5,#b88cff);box-shadow:0 0 18px rgba(217,140,255,.13)}.scene-builder-actions .download{border-color:rgba(98,245,155,.30);color:#bdf8d1;background:rgba(98,245,155,.07)}.scene-builder-actions .mp3{border-color:rgba(67,239,255,.30);color:#dffcff;background:rgba(67,239,255,.07)}.scene-builder-actions .clear{border-color:rgba(255,93,105,.22);color:#ffadb4;background:rgba(255,93,105,.05)}
 .scene-status{min-height:19px;margin-top:9px;color:#a9bdd1;font-size:10px;text-align:center}
@@ -481,9 +481,9 @@ canvas{width:100%;height:100%;display:block}
 .scene-auto-join{min-height:43px;padding:7px 9px;border-radius:8px;border:1px solid rgba(67,239,255,.22);background:rgba(67,239,255,.055);color:#bff9ff;font-size:9px;font-weight:950;cursor:pointer;white-space:nowrap}
 .scene-auto-join:hover{filter:brightness(1.15);border-color:rgba(67,239,255,.42)}
 .scene-timeline-note{margin-top:4px;color:#c9a9dc!important;font-size:9px!important}
-.scene-row-actions{align-content:center;align-items:center}
-@media(max-width:1050px){.scene-row{grid-template-columns:38px minmax(140px,.75fr) minmax(0,1.6fr)}.scene-row-actions{grid-column:2/-1}.scene-mix-controls{grid-template-columns:repeat(4,minmax(80px,1fr)) auto}}
-@media(max-width:760px){.scene-row{grid-template-columns:36px 1fr}.scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}.scene-auto-join{grid-column:1/-1}.scene-row-actions{grid-column:1/-1;justify-content:flex-start}}
+.scene-row-actions{align-content:center;align-items:stretch}
+@media(max-width:1050px){.scene-row{grid-template-columns:38px minmax(140px,.75fr) minmax(0,1.6fr)}.scene-row-actions{grid-column:2/-1;min-width:0;grid-template-columns:repeat(4,minmax(105px,1fr))}.scene-mix-controls{grid-template-columns:repeat(4,minmax(80px,1fr)) auto}}
+@media(max-width:760px){.scene-row{grid-template-columns:36px 1fr}.scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}.scene-auto-join{grid-column:1/-1}.scene-row-actions{grid-column:1/-1;min-width:0;grid-template-columns:1fr 1fr}}
 @media(max-width:430px){.scene-mix-controls{grid-template-columns:1fr}}
 .main .sound{min-height:78px;padding:10px 10px;border-radius:11px}
 .main .sound .icon{font-size:19px}
@@ -5108,10 +5108,10 @@ function sceneRenderList(){
     auto.addEventListener('click',()=>sceneAutoJoin(index));mix.append(auto);
 
     const actions=document.createElement('div');actions.className='scene-row-actions';
-    const preview=document.createElement('button');preview.type='button';preview.textContent='▶';preview.title='Play this scene with its volume and fades';
-    const up=document.createElement('button');up.type='button';up.textContent='↑';up.title='Move earlier';up.disabled=index===0;
-    const down=document.createElement('button');down.type='button';down.textContent='↓';down.title='Move later';down.disabled=index===sceneClips.length-1;
-    const remove=document.createElement('button');remove.type='button';remove.textContent='✕';remove.title='Remove clip';remove.className='remove';
+    const preview=document.createElement('button');preview.type='button';preview.textContent='▶ PREVIEW';preview.title='Play this scene with its volume and fades';
+    const up=document.createElement('button');up.type='button';up.textContent='↑ EARLIER';up.title='Move this scene earlier';up.disabled=index===0;
+    const down=document.createElement('button');down.type='button';down.textContent='↓ LATER';down.title='Move this scene later';down.disabled=index===sceneClips.length-1;
+    const remove=document.createElement('button');remove.type='button';remove.textContent='✕ REMOVE';remove.title='Remove this scene';remove.className='remove';
     preview.addEventListener('click',()=>scenePreviewClip(index));
     up.addEventListener('click',()=>sceneMoveClip(index,-1));
     down.addEventListener('click',()=>sceneMoveClip(index,1));

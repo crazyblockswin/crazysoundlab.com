@@ -98,6 +98,33 @@ button.warn{border-color:rgba(255,211,106,.3);color:#ffe49b;background:rgba(255,
 }
 @media(max-width:760px){.health-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+/* Larger sound ordering buttons — easier to see and click. */
+#soundList .item .acts .sound-order-btn{
+  min-height:42px;
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.025em;
+  border-color:rgba(67,239,255,.38);
+  color:#d9fbff;
+  background:linear-gradient(180deg,rgba(18,42,58,.96),rgba(7,18,29,.98));
+  box-shadow:0 3px 8px rgba(0,0,0,.28),0 0 10px rgba(67,239,255,.08);
+}
+#soundList .item .acts .sound-order-btn:hover:not(:disabled){
+  border-color:rgba(67,239,255,.72);
+  background:linear-gradient(180deg,rgba(24,57,76,.98),rgba(9,25,39,.99));
+  box-shadow:0 4px 10px rgba(0,0,0,.32),0 0 15px rgba(67,239,255,.16);
+}
+#soundList .item .acts .sound-order-btn.sound-top-btn{
+  border-color:rgba(98,245,155,.34);
+  color:#c9fbd9;
+  background:linear-gradient(180deg,rgba(19,54,38,.96),rgba(7,24,17,.98));
+}
+#soundList .item .acts .sound-order-btn:disabled{opacity:.32}
+@media(max-width:700px){
+  #soundList .item .acts .sound-order-btn{flex:1 1 120px;min-height:46px;font-size:13px}
+}
+
 </style>
 </head>
 <body>
@@ -605,9 +632,9 @@ function renderSounds(){
     const acts=document.createElement('div');acts.className='acts';
     const categoryPeers=data.sounds.filter(s=>s.category===rec.category);
     const categoryPos=categoryPeers.findIndex(s=>s.id===rec.id);
-    const top=document.createElement('button');top.textContent='⇧ TOP';top.title='Move this sound to the top of its category';top.disabled=categoryPos<=0;top.onclick=()=>reorderSoundWithinCategory(rec.id,'top');
-    const up=document.createElement('button');up.textContent='↑';up.title='Move this sound up one position';up.disabled=categoryPos<=0;up.onclick=()=>reorderSoundWithinCategory(rec.id,'up');
-    const dn=document.createElement('button');dn.textContent='↓';dn.title='Move this sound down one position';dn.disabled=categoryPos<0||categoryPos>=categoryPeers.length-1;dn.onclick=()=>reorderSoundWithinCategory(rec.id,'down');
+    const top=document.createElement('button');top.className='sound-order-btn sound-top-btn';top.textContent='⇧ TOP';top.title='Move this sound to the top of its category';top.disabled=categoryPos<=0;top.onclick=()=>reorderSoundWithinCategory(rec.id,'top');
+    const up=document.createElement('button');up.className='sound-order-btn';up.textContent='↑ MOVE UP';up.title='Move this sound up one position';up.disabled=categoryPos<=0;up.onclick=()=>reorderSoundWithinCategory(rec.id,'up');
+    const dn=document.createElement('button');dn.className='sound-order-btn';dn.textContent='↓ MOVE DOWN';dn.title='Move this sound down one position';dn.disabled=categoryPos<0||categoryPos>=categoryPeers.length-1;dn.onclick=()=>reorderSoundWithinCategory(rec.id,'down');
     const play=document.createElement('button');play.textContent='▶ PLAY';play.onclick=()=>playCatalogSound(rec);
     const edit=document.createElement('button');edit.textContent='EDIT';edit.onclick=()=>beginEdit(rec.id);
     const del=document.createElement('button');del.className='danger';del.textContent='DELETE';
