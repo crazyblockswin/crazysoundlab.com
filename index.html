@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crazy Voice and Sound Lab V8.6</title>
+<title>Crazy Voice and Sound Lab V8.7</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
 <link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
@@ -512,6 +512,29 @@ canvas{width:100%;height:100%;display:block}
 @media(max-width:1050px){.scene-row{grid-template-columns:38px minmax(140px,.75fr) minmax(0,1.6fr)}.scene-row-actions{grid-column:2/-1;min-width:0;grid-template-columns:repeat(4,minmax(105px,1fr))}.scene-mix-controls{grid-template-columns:repeat(4,minmax(80px,1fr)) auto}}
 @media(max-width:760px){.scene-row{grid-template-columns:36px 1fr}.scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}.scene-auto-join{grid-column:1/-1}.scene-row-actions{grid-column:1/-1;min-width:0;grid-template-columns:1fr 1fr}}
 @media(max-width:430px){.scene-mix-controls{grid-template-columns:1fr}}
+
+/* v8.7 — compact scene action toolbar: Preview / Earlier / Later / Remove live with the scene name. */
+.scene-row{grid-template-columns:38px minmax(150px,.72fr) minmax(0,1.9fr);align-items:stretch}
+.scene-meta{align-self:center}
+.scene-row-actions{
+  display:flex;grid-template-columns:none;gap:4px;min-width:0;margin-top:5px;
+  align-items:center;justify-content:flex-start
+}
+.scene-row-actions button{
+  min-width:28px;min-height:27px;padding:4px 7px;border-radius:7px;
+  font-size:9px;line-height:1;font-weight:950;letter-spacing:0
+}
+.scene-row-actions .preview-mini{min-width:66px}
+@media(max-width:1050px){
+  .scene-row{grid-template-columns:36px minmax(130px,.65fr) minmax(0,1.75fr)}
+  .scene-row-actions{grid-column:auto;min-width:0;grid-template-columns:none}
+  .scene-mix-controls{grid-template-columns:repeat(4,minmax(72px,1fr)) auto}
+}
+@media(max-width:760px){
+  .scene-row{grid-template-columns:34px 1fr}
+  .scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}
+  .scene-row-actions{grid-column:auto}
+}
 .main .sound{min-height:78px;padding:10px 10px;border-radius:11px}
 .main .sound .icon{font-size:19px}
 .main .sound b{margin-top:4px;font-size:12px}
@@ -1329,7 +1352,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
-<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.6 • Voice Lab + Compact Draggable Scene Timeline</div>
+<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.7 • Voice Lab + Compact Draggable Scene Timeline</div>
 
 <script src="sound-library.js?v=20260923-sound-order-fix"></script>
 <script>
@@ -5207,15 +5230,15 @@ function sceneRenderList(){
     mix.append(sceneCreateDragTimeline(clip,index,timelineMax,timing));
 
     const actions=document.createElement('div');actions.className='scene-row-actions';
-    const preview=document.createElement('button');preview.type='button';preview.textContent='▶ PREVIEW';preview.title='Play this scene with its volume and fades';
-    const up=document.createElement('button');up.type='button';up.textContent='↑ EARLIER';up.title='Move this scene earlier';up.disabled=index===0;
-    const down=document.createElement('button');down.type='button';down.textContent='↓ LATER';down.title='Move this scene later';down.disabled=index===sceneClips.length-1;
-    const remove=document.createElement('button');remove.type='button';remove.textContent='✕ REMOVE';remove.title='Remove this scene';remove.className='remove';
+    const preview=document.createElement('button');preview.type='button';preview.textContent='▶ PREVIEW';preview.title='Play this scene with its volume and fades';preview.className='preview-mini';
+    const up=document.createElement('button');up.type='button';up.textContent='↑';up.title='Move this scene earlier';up.setAttribute('aria-label','Move scene earlier');up.disabled=index===0;
+    const down=document.createElement('button');down.type='button';down.textContent='↓';down.title='Move this scene later';down.setAttribute('aria-label','Move scene later');down.disabled=index===sceneClips.length-1;
+    const remove=document.createElement('button');remove.type='button';remove.textContent='✕';remove.title='Remove this scene';remove.setAttribute('aria-label','Remove scene');remove.className='remove';
     preview.addEventListener('click',()=>scenePreviewClip(index));
     up.addEventListener('click',()=>sceneMoveClip(index,-1));
     down.addEventListener('click',()=>sceneMoveClip(index,1));
     remove.addEventListener('click',()=>sceneRemoveClip(index));
-    actions.append(preview,up,down,remove);row.append(num,meta,mix,actions);list.appendChild(row);
+    actions.append(preview,up,down,remove);meta.append(actions);row.append(num,meta,mix);list.appendChild(row);
   });
   sceneSyncButtons();
 }
