@@ -164,7 +164,7 @@ button.warn{border-color:rgba(255,211,106,.3);color:#ffe49b;background:rgba(255,
 
 <section class="panel wide">
 <h2>Category &amp; Sound Manager</h2>
-<div class="note">Click a category to see only its sounds. Each sound can be played, edited, moved to another category, or removed from the public catalog.</div>
+<div class="note">Click a category to see only its sounds. Each sound can be played, reordered with <b>TOP / ↑ / ↓</b>, edited, moved to another category, or removed from the public catalog. Reordering changes the order visitors see after you save the updated sound catalog.</div>
 <div class="category-filter-bar" id="soundCategoryFilters"></div>
 <div class="manager-heading">
   <div><strong id="managerTitle">All Ready-Made Sounds</strong> <span id="managerCount"></span></div>
@@ -537,6 +537,36 @@ function playCatalogSound(rec){
     $('#managerCheckStatus').textContent=`Could not play “${rec.name}”. Try CHECK SOUND FILES to verify its file path.`;
   });
 }
+function reorderSoundWithinCategory(id,mode){
+  const rec=data.sounds.find(x=>x.id===id);
+  if(!rec)return;
+
+  const indices=[];
+  const peers=[];
+  data.sounds.forEach((sound,index)=>{
+    if(sound.category===rec.category){indices.push(index);peers.push(sound)}
+  });
+
+  const from=peers.findIndex(sound=>sound.id===id);
+  if(from<0)return;
+
+  let to=from;
+  if(mode==='top')to=0;
+  else if(mode==='up')to=Math.max(0,from-1);
+  else if(mode==='down')to=Math.min(peers.length-1,from+1);
+  if(to===from)return;
+
+  const [moved]=peers.splice(from,1);
+  peers.splice(to,0,moved);
+  indices.forEach((dataIndex,i)=>{data.sounds[dataIndex]=peers[i]});
+
+  markCatalogDirty();
+  renderAll();
+  const cat=categoryById(rec.category);
+  const where=mode==='top'?'the top':mode==='up'?'up one position':'down one position';
+  setStatus(`Moved “${rec.name}” ${where} in ${cat?cat.name:'its category'}. Click SAVE UPDATED SOUND CATALOG when ready.`);
+}
+
 function renderSounds(){
   const root=$('#soundList');
   root.innerHTML='';
@@ -573,6 +603,11 @@ function renderSounds(){
     }
 
     const acts=document.createElement('div');acts.className='acts';
+    const categoryPeers=data.sounds.filter(s=>s.category===rec.category);
+    const categoryPos=categoryPeers.findIndex(s=>s.id===rec.id);
+    const top=document.createElement('button');top.textContent='⇧ TOP';top.title='Move this sound to the top of its category';top.disabled=categoryPos<=0;top.onclick=()=>reorderSoundWithinCategory(rec.id,'top');
+    const up=document.createElement('button');up.textContent='↑';up.title='Move this sound up one position';up.disabled=categoryPos<=0;up.onclick=()=>reorderSoundWithinCategory(rec.id,'up');
+    const dn=document.createElement('button');dn.textContent='↓';dn.title='Move this sound down one position';dn.disabled=categoryPos<0||categoryPos>=categoryPeers.length-1;dn.onclick=()=>reorderSoundWithinCategory(rec.id,'down');
     const play=document.createElement('button');play.textContent='▶ PLAY';play.onclick=()=>playCatalogSound(rec);
     const edit=document.createElement('button');edit.textContent='EDIT';edit.onclick=()=>beginEdit(rec.id);
     const del=document.createElement('button');del.className='danger';del.textContent='DELETE';
@@ -585,7 +620,7 @@ function renderSounds(){
         markCatalogDirty();renderAll();
       }
     };
-    acts.append(play,edit,del);
+    acts.append(top,up,dn,play,edit,del);
     div.append(ico,info,acts);root.appendChild(div);
 
     const visibleIndex=filtered.indexOf(rec);
