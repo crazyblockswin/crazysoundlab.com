@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crazy Voice and Sound Lab V8.3</title>
+<title>Crazy Voice and Sound Lab V8.4</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
 <link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
@@ -417,7 +417,7 @@ canvas{width:100%;height:100%;display:block}
 .main .sound-quick-play:active:not(:disabled){transform:translateY(1px)}
 .main .sound-quick-play:disabled{opacity:.42;cursor:not-allowed;filter:none;transform:none}
 
-/* v8.3 — Mixer Samples teaching card + simple Scene Builder. */
+/* v8.4 — Mixer Samples teaching card + overlapping Scene Mixer. */
 .mixer-samples-promo{
   flex:0 0 auto;margin:0 0 9px;padding:10px 11px;border-radius:11px;
   border:1px solid rgba(255,207,84,.34);
@@ -470,6 +470,21 @@ canvas{width:100%;height:100%;display:block}
 .scene-limit-note{margin-top:5px;color:#667b91;font-size:9px;text-align:center}
 @media(max-width:820px){.scene-builder-toolbar{grid-template-columns:1fr 1fr}.scene-gap-field{grid-column:1/-1}.scene-builder-actions{grid-template-columns:1fr 1fr 1fr}.scene-builder-actions .clear{grid-column:1/-1}}
 @media(max-width:560px){.scene-builder-shell{width:calc(100% - 28px);margin-top:0}.scene-builder>summary{align-items:flex-start;flex-direction:column}.scene-builder>summary small{text-align:left}.scene-builder-toolbar,.scene-builder-actions{grid-template-columns:1fr}.scene-gap-field,.scene-builder-actions .clear{grid-column:auto}.scene-row{grid-template-columns:36px 1fr}.scene-row-actions{grid-column:1/-1;justify-content:flex-start}}
+
+/* v8.4 — per-scene mini mixer. */
+.scene-row{grid-template-columns:42px minmax(160px,.9fr) minmax(0,1.8fr) auto;align-items:stretch}
+.scene-meta{align-self:center}
+.scene-mix-controls{display:grid;grid-template-columns:repeat(4,minmax(92px,1fr)) auto;gap:6px;align-items:end}
+.scene-mix-field{display:grid;gap:4px;padding:6px 7px;border-radius:8px;border:1px solid rgba(255,255,255,.07);background:#070c14}
+.scene-mix-field label{font-size:8px;color:#8fa4ba;font-weight:950;letter-spacing:.045em;white-space:nowrap}
+.scene-mix-field input{width:100%;min-width:0;padding:6px 7px;border-radius:7px;border:1px solid rgba(255,255,255,.10);background:#050910;color:#fff;font:800 10px/1.1 system-ui}
+.scene-auto-join{min-height:43px;padding:7px 9px;border-radius:8px;border:1px solid rgba(67,239,255,.22);background:rgba(67,239,255,.055);color:#bff9ff;font-size:9px;font-weight:950;cursor:pointer;white-space:nowrap}
+.scene-auto-join:hover{filter:brightness(1.15);border-color:rgba(67,239,255,.42)}
+.scene-timeline-note{margin-top:4px;color:#c9a9dc!important;font-size:9px!important}
+.scene-row-actions{align-content:center;align-items:center}
+@media(max-width:1050px){.scene-row{grid-template-columns:38px minmax(140px,.75fr) minmax(0,1.6fr)}.scene-row-actions{grid-column:2/-1}.scene-mix-controls{grid-template-columns:repeat(4,minmax(80px,1fr)) auto}}
+@media(max-width:760px){.scene-row{grid-template-columns:36px 1fr}.scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}.scene-auto-join{grid-column:1/-1}.scene-row-actions{grid-column:1/-1;justify-content:flex-start}}
+@media(max-width:430px){.scene-mix-controls{grid-template-columns:1fr}}
 .main .sound{min-height:78px;padding:10px 10px;border-radius:11px}
 .main .sound .icon{font-size:19px}
 .main .sound b{margin-top:4px;font-size:12px}
@@ -1234,12 +1249,12 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
   <details class="scene-builder" id="sceneBuilder">
     <summary><span>🎬 SCENE BUILDER — BUILD A FULL STORY</span><small>ADD CLIPS → ARRANGE THEM → PLAY → DOWNLOAD</small></summary>
     <div class="scene-builder-body">
-      <div class="scene-builder-intro"><strong>Build with blocks, not a complicated timeline.</strong> Add story clips, sounds, music, or finished Crazy Lab productions. Move them into the order you want, then play and download the complete production as one file.</div>
+      <div class="scene-builder-intro"><strong>Build with blocks — now with real overlap mixing.</strong> Add story clips, sounds, music, or finished Crazy Lab productions. Every scene can start while another scene is still playing, with its own volume, fade in, and fade out.</div>
       <div class="scene-builder-toolbar">
         <button id="sceneAddCurrent" type="button" disabled>➕ ADD CURRENT MIX</button>
         <label class="scene-file-label" for="sceneFileInput">📁 ADD A CLIP FROM YOUR COMPUTER</label>
         <input id="sceneFileInput" type="file" accept=".mp3,.wav,.ogg,.m4a,.aac,audio/*" multiple hidden>
-        <div class="scene-gap-field"><label for="sceneGap">PAUSE BETWEEN CLIPS</label><select id="sceneGap"><option value="0">No pause</option><option value="0.25" selected>0.25 sec</option><option value="0.5">0.5 sec</option><option value="1">1 sec</option><option value="2">2 sec</option></select></div>
+        <div class="scene-gap-field"><label for="sceneOverlap">DEFAULT OVERLAP FOR NEW CLIPS</label><select id="sceneOverlap"><option value="0">Join exactly at end</option><option value="0.25">Overlap 0.25 sec</option><option value="0.5" selected>Overlap 0.5 sec</option><option value="1">Overlap 1 sec</option><option value="2">Overlap 2 sec</option><option value="3">Overlap 3 sec</option></select></div>
       </div>
       <div class="scene-list" id="sceneList"><div class="scene-empty">Your story is empty. Pick a sound or Mixer Sample above and click <b>ADD SELECTED TO STORY</b>, or add one of your own clips.</div></div>
       <div class="scene-builder-actions">
@@ -1250,7 +1265,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <button class="clear" id="sceneClear" type="button" disabled>✕ CLEAR STORY</button>
       </div>
       <div class="scene-status" id="sceneStatus">Add two or more clips to turn separate moments into one finished story.</div>
-      <div class="scene-limit-note">Scene Builder supports up to 20 clips and keeps the controls intentionally simple.</div>
+      <div class="scene-limit-note">Scene Builder supports up to 20 clips. Use START / JOIN AT to overlap any clip anywhere on the story timeline.</div>
     </div>
   </details>
 </section>
@@ -1282,7 +1297,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
-<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.3 • Voice Lab + Scene Builder</div>
+<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.4 • Voice Lab + Scene Builder</div>
 
 <script src="sound-library.js"></script>
 <script>
@@ -4994,7 +5009,7 @@ checkVoiceEngine();
 updateVoiceLayerPanel();
 
 
-// ===== V8.3 SIMPLE SCENE BUILDER =====
+// ===== V8.4 SCENE MIXER / OVERLAPPING STORY BUILDER =====
 let sceneClips=[];
 let sceneRenderedBuffer=null;
 let sceneDirty=true;
@@ -5009,14 +5024,20 @@ function sceneFormatDuration(seconds){
   const m=Math.floor(seconds/60),ss=Math.round(seconds%60);
   return `${m}:${String(ss).padStart(2,'0')}`;
 }
+function sceneClamp(n,min,max){n=Number(n);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):min;}
+function sceneClipEnd(clip){return Math.max(0,+clip.startAt||0)+(clip.buffer?.duration||0);}
 function sceneMarkDirty(message=''){
   sceneDirty=true;sceneRenderedBuffer=null;
   if(message)$('#sceneStatus').textContent=message;
   sceneSyncButtons();
 }
 function sceneTotalSeconds(){
-  const gap=+($('#sceneGap')?.value||0);
-  return sceneClips.reduce((n,c)=>n+(c.buffer?.duration||0),0)+Math.max(0,sceneClips.length-1)*gap;
+  return sceneClips.reduce((max,c)=>Math.max(max,sceneClipEnd(c)),0);
+}
+function sceneDefaultOverlap(){return Math.max(0,+($('#sceneOverlap')?.value||0));}
+function sceneSuggestedStart(){
+  if(!sceneClips.length)return 0;
+  return Math.max(0,sceneTotalSeconds()-sceneDefaultOverlap());
 }
 function sceneSyncButtons(){
   const has=sceneClips.length>0;
@@ -5027,6 +5048,23 @@ function sceneSyncButtons(){
   if(!sceneSource)$('#sceneStop').disabled=true;
   const currentReady=!$('#download')?.disabled;
   if($('#sceneAddCurrent'))$('#sceneAddCurrent').disabled=!currentReady||sceneRenderBusy;
+}
+function sceneUpdateClip(index,key,value){
+  const clip=sceneClips[index];if(!clip)return;
+  if(key==='startAt')clip.startAt=sceneClamp(value,0,SCENE_MAX_SECONDS);
+  if(key==='volume')clip.volume=sceneClamp(value,0,100);
+  if(key==='fadeIn')clip.fadeIn=sceneClamp(value,0,clip.buffer?.duration||0);
+  if(key==='fadeOut')clip.fadeOut=sceneClamp(value,0,clip.buffer?.duration||0);
+  sceneMarkDirty(`${clip.name||'Scene'} mixer setting changed.`);
+}
+function sceneAutoJoin(index){
+  const clip=sceneClips[index];if(!clip)return;
+  if(index===0){clip.startAt=0;}
+  else{
+    const prev=sceneClips[index-1];
+    clip.startAt=Math.max(0,sceneClipEnd(prev)-sceneDefaultOverlap());
+  }
+  sceneMarkDirty(`${clip.name||'Scene'} joined to the previous scene.`);sceneRenderList();
 }
 function sceneRenderList(){
   const list=$('#sceneList');if(!list)return;
@@ -5041,9 +5079,29 @@ function sceneRenderList(){
     const meta=document.createElement('div');meta.className='scene-meta';
     const b=document.createElement('b');b.textContent=clip.name||`Clip ${index+1}`;
     const small=document.createElement('small');small.textContent=`${sceneFormatDuration(clip.buffer.duration)} • Scene ${index+1}`;
-    meta.append(b,small);
+    const timing=document.createElement('small');timing.className='scene-timeline-note';timing.textContent=`Starts ${(+clip.startAt||0).toFixed(2)}s • Ends ${sceneClipEnd(clip).toFixed(2)}s`;
+    meta.append(b,small,timing);
+
+    const mix=document.createElement('div');mix.className='scene-mix-controls';
+    const field=(label,key,value,min,max,step,suffix='')=>{
+      const box=document.createElement('div');box.className='scene-mix-field';
+      const lab=document.createElement('label');lab.textContent=label;
+      const inp=document.createElement('input');inp.type='number';inp.min=String(min);inp.max=String(max);inp.step=String(step);inp.value=String(value);
+      inp.title=suffix?`${label} (${suffix})`:label;
+      inp.addEventListener('change',()=>{sceneUpdateClip(index,key,inp.value);sceneRenderList();});
+      box.append(lab,inp);return box;
+    };
+    mix.append(
+      field('START / JOIN AT','startAt',(+clip.startAt||0).toFixed(2),0,SCENE_MAX_SECONDS,.1,'seconds'),
+      field('VOLUME %','volume',Math.round(clip.volume??100),0,100,1,'%'),
+      field('FADE IN','fadeIn',(+clip.fadeIn||0).toFixed(2),0,Math.max(.1,clip.buffer.duration),.1,'seconds'),
+      field('FADE OUT','fadeOut',(+clip.fadeOut||0).toFixed(2),0,Math.max(.1,clip.buffer.duration),.1,'seconds')
+    );
+    const auto=document.createElement('button');auto.type='button';auto.className='scene-auto-join';auto.textContent=index===0?'START AT 0':'AUTO JOIN';auto.title=index===0?'Start this clip at the beginning':'Place this clip near the end of the previous clip using the Default Overlap setting';
+    auto.addEventListener('click',()=>sceneAutoJoin(index));mix.append(auto);
+
     const actions=document.createElement('div');actions.className='scene-row-actions';
-    const preview=document.createElement('button');preview.type='button';preview.textContent='▶';preview.title='Play this clip';
+    const preview=document.createElement('button');preview.type='button';preview.textContent='▶';preview.title='Play this scene with its volume and fades';
     const up=document.createElement('button');up.type='button';up.textContent='↑';up.title='Move earlier';up.disabled=index===0;
     const down=document.createElement('button');down.type='button';down.textContent='↓';down.title='Move later';down.disabled=index===sceneClips.length-1;
     const remove=document.createElement('button');remove.type='button';remove.textContent='✕';remove.title='Remove clip';remove.className='remove';
@@ -5051,7 +5109,7 @@ function sceneRenderList(){
     up.addEventListener('click',()=>sceneMoveClip(index,-1));
     down.addEventListener('click',()=>sceneMoveClip(index,1));
     remove.addEventListener('click',()=>sceneRemoveClip(index));
-    actions.append(preview,up,down,remove);row.append(num,meta,actions);list.appendChild(row);
+    actions.append(preview,up,down,remove);row.append(num,meta,mix,actions);list.appendChild(row);
   });
   sceneSyncButtons();
 }
@@ -5061,10 +5119,11 @@ function sceneOpenAndShow(){
 function sceneAddBuffer(buffer,name){
   if(!buffer)throw new Error('No audio clip is ready to add.');
   if(sceneClips.length>=SCENE_MAX_CLIPS)throw new Error(`Scene Builder holds up to ${SCENE_MAX_CLIPS} clips.`);
-  const projected=sceneTotalSeconds()+buffer.duration+(sceneClips.length?+($('#sceneGap')?.value||0):0);
+  const startAt=sceneSuggestedStart();
+  const projected=startAt+buffer.duration;
   if(projected>SCENE_MAX_SECONDS)throw new Error('That would make the story longer than 15 minutes.');
-  sceneClips.push({id:`scene-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,name:name||'Story Clip',buffer});
-  sceneMarkDirty(`${name||'Clip'} added as Scene ${sceneClips.length}.`);sceneRenderList();sceneOpenAndShow();
+  sceneClips.push({id:`scene-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,name:name||'Story Clip',buffer,startAt,volume:100,fadeIn:0,fadeOut:0});
+  sceneMarkDirty(`${name||'Clip'} added as Scene ${sceneClips.length}. Adjust START / JOIN AT to overlap it exactly where you want.`);sceneRenderList();sceneOpenAndShow();
 }
 async function sceneDecodeBytes(bytes){
   liveCtx ||= new (window.AudioContext||window.webkitAudioContext)();
@@ -5077,7 +5136,7 @@ async function sceneBufferForSelected(){
   if(btn.dataset.sampleId){
     const rec=libraryRecords.find(r=>String(r.id)===String(btn.dataset.sampleId));
     if(!rec)throw new Error('Could not find that library clip.');
-    if(currentSample && String(currentSample.id)===String(rec.id) && currentBuffer)return {buffer:currentBuffer,name:rec.name};
+    if(currentSample && String(currentSample.id)===String(rec.id) && currentBuffer)return {buffer:currentBuffer,name:`${rec.name} Mix`};
     if(!rec.file)throw new Error('That clip has no audio file.');
     return {buffer:await sceneDecodeBytes(await loadSampleBytes(rec.file)),name:rec.name};
   }
@@ -5085,11 +5144,8 @@ async function sceneBufferForSelected(){
   const displayName=btn.querySelector('b')?.textContent?.trim()||type||'Sound';
   const saved=getSavedReplacement(type);
   const replacement=saved||BUILTIN_REPLACEMENTS.find(r=>r.replaceType===type);
-  if(replacement?.file){
-    if(currentType===type && currentBuffer)return {buffer:currentBuffer,name:displayName};
-    return {buffer:await sceneDecodeBytes(await loadSampleBytes(replacementUrl(replacement))),name:displayName};
-  }
-  if(currentType===type && currentBuffer)return {buffer:currentBuffer,name:displayName};
+  if(currentType===type && currentBuffer)return {buffer:currentBuffer,name:`${displayName} Mix`};
+  if(replacement?.file)return {buffer:await sceneDecodeBytes(await loadSampleBytes(replacementUrl(replacement))),name:displayName};
   throw new Error(`Generate ${displayName} first, then add it to the story.`);
 }
 async function sceneAddSelectedClip(){
@@ -5121,8 +5177,11 @@ async function sceneAddFiles(files){
 }
 function sceneMoveClip(index,delta){
   const next=index+delta;if(next<0||next>=sceneClips.length)return;
-  [sceneClips[index],sceneClips[next]]=[sceneClips[next],sceneClips[index]];
-  sceneMarkDirty('Story order changed.');sceneRenderList();
+  const a=sceneClips[index],b=sceneClips[next];
+  const aStart=a.startAt,bStart=b.startAt;
+  [sceneClips[index],sceneClips[next]]=[b,a];
+  sceneClips[index].startAt=aStart;sceneClips[next].startAt=bStart;
+  sceneMarkDirty('Story order changed. The clips traded timeline positions.');sceneRenderList();
 }
 function sceneRemoveClip(index){
   const removed=sceneClips.splice(index,1)[0];sceneMarkDirty(`${removed?.name||'Clip'} removed.`);sceneRenderList();
@@ -5137,14 +5196,41 @@ async function scenePreviewBuffer(buffer,label='Clip'){
   const src=liveCtx.createBufferSource(),gain=liveCtx.createGain();src.buffer=buffer;gain.gain.value=(+($('#previewVolume')?.value||80))/100;src.connect(gain);gain.connect(liveCtx.destination);src.start();sceneSource=src;$('#sceneStop').disabled=false;$('#sceneStatus').textContent=`Playing ${label}…`;
   src.onended=()=>{if(sceneSource===src){sceneSource=null;$('#sceneStop').disabled=true;sceneSyncButtons();}};
 }
-function scenePreviewClip(index){const clip=sceneClips[index];if(clip)scenePreviewBuffer(clip.buffer,clip.name);}
+function sceneScheduleClip(ctx,clip,destination,startOverride=null){
+  const start=startOverride===null?Math.max(0,+clip.startAt||0):Math.max(0,+startOverride||0);
+  const dur=Math.max(.001,clip.buffer.duration);
+  const peak=sceneClamp((clip.volume??100)/100,0,1);
+  const fadeIn=Math.min(dur,Math.max(0,+clip.fadeIn||0));
+  const fadeOut=Math.min(dur,Math.max(0,+clip.fadeOut||0));
+  const src=ctx.createBufferSource();src.buffer=clip.buffer;
+  const gain=ctx.createGain();
+  gain.gain.setValueAtTime(fadeIn>.005?0:peak,start);
+  if(fadeIn>.005)gain.gain.linearRampToValueAtTime(peak,start+fadeIn);
+  if(fadeOut>.005){
+    const fadeStart=start+Math.max(fadeIn,dur-fadeOut);
+    gain.gain.setValueAtTime(peak,fadeStart);
+    gain.gain.linearRampToValueAtTime(0,start+dur);
+  }
+  src.connect(gain);gain.connect(destination);src.start(start);src.stop(start+dur);
+}
+async function sceneRenderClipPreview(clip){
+  const rate=44100,dur=Math.max(.02,clip.buffer.duration),ctx=new OfflineAudioContext(1,Math.max(1,Math.ceil(dur*rate)),rate);
+  sceneScheduleClip(ctx,clip,ctx.destination,0);
+  return await ctx.startRendering();
+}
+async function scenePreviewClip(index){
+  const clip=sceneClips[index];if(!clip)return;
+  try{const adjusted=await sceneRenderClipPreview(clip);await scenePreviewBuffer(adjusted,clip.name);}
+  catch(err){console.error(err);$('#sceneStatus').textContent='Could not preview that scene.';}
+}
 async function sceneRenderStory(){
   if(!sceneClips.length)throw new Error('Add at least one clip first.');
   if(!sceneDirty&&sceneRenderedBuffer)return sceneRenderedBuffer;
   const total=sceneTotalSeconds();if(total>SCENE_MAX_SECONDS)throw new Error('Story is longer than 15 minutes.');
-  const rate=44100,ctx=new OfflineAudioContext(1,Math.max(1,Math.ceil(total*rate)),rate),gap=+($('#sceneGap')?.value||0);
-  let at=0;
-  for(const clip of sceneClips){const src=ctx.createBufferSource();src.buffer=clip.buffer;src.connect(ctx.destination);src.start(at);at+=clip.buffer.duration+gap;}
+  const rate=44100,ctx=new OfflineAudioContext(1,Math.max(1,Math.ceil(Math.max(.05,total)*rate)),rate);
+  const master=ctx.createDynamicsCompressor();
+  master.threshold.value=-7;master.knee.value=12;master.ratio.value=4;master.attack.value=.003;master.release.value=.25;master.connect(ctx.destination);
+  for(const clip of sceneClips)sceneScheduleClip(ctx,clip,master);
   sceneRenderedBuffer=await ctx.startRendering();sceneDirty=false;return sceneRenderedBuffer;
 }
 async function sceneWithBusy(action,label){
@@ -5154,11 +5240,11 @@ async function sceneWithBusy(action,label){
   finally{sceneRenderBusy=false;sceneSyncButtons();}
 }
 async function scenePlayStory(){
-  try{const buffer=await sceneWithBusy(sceneRenderStory,'Building your full story…');await scenePreviewBuffer(buffer,`full story — ${sceneClips.length} scenes`);$('#sceneStatus').textContent=`Playing full story: ${sceneClips.length} scenes • ${sceneFormatDuration(buffer.duration)}.`;}
+  try{const buffer=await sceneWithBusy(sceneRenderStory,'Mixing your full story timeline…');await scenePreviewBuffer(buffer,`full story — ${sceneClips.length} scenes`);$('#sceneStatus').textContent=`Playing full story: ${sceneClips.length} scenes • ${sceneFormatDuration(buffer.duration)}.`;}
   catch(err){console.error(err);$('#sceneStatus').textContent=err.message||'Could not build the story.';}
 }
 async function sceneDownloadStoryWav(){
-  try{const buffer=await sceneWithBusy(sceneRenderStory,'Building story WAV…');downloadBlob(audioBufferToWav(buffer),`crazy-lab-story-${Date.now()}.wav`);$('#sceneStatus').textContent='Full story WAV ready — download started.';}
+  try{const buffer=await sceneWithBusy(sceneRenderStory,'Mixing story WAV…');downloadBlob(audioBufferToWav(buffer),`crazy-lab-story-${Date.now()}.wav`);$('#sceneStatus').textContent='Full story WAV ready — download started.';}
   catch(err){console.error(err);$('#sceneStatus').textContent=err.message||'Could not create the story WAV.';}
 }
 async function sceneDownloadStoryMp3(){
@@ -5172,7 +5258,7 @@ function sceneClearStory(){
 $('#sceneAddSelected')?.addEventListener('click',sceneAddSelectedClip);
 $('#sceneAddCurrent')?.addEventListener('click',sceneAddCurrentMix);
 $('#sceneFileInput')?.addEventListener('change',async e=>{const files=e.target.files;if(files?.length)await sceneAddFiles(files);e.target.value='';});
-$('#sceneGap')?.addEventListener('change',()=>sceneMarkDirty('Pause between clips changed.'));
+$('#sceneOverlap')?.addEventListener('change',()=>{$('#sceneStatus').textContent='Default overlap changed. New clips and AUTO JOIN will use this amount.';});
 $('#scenePlay')?.addEventListener('click',scenePlayStory);
 $('#sceneStop')?.addEventListener('click',sceneStopPlayback);
 $('#sceneDownloadWav')?.addEventListener('click',sceneDownloadStoryWav);
