@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crazy Voice and Sound Lab V8.7</title>
+<title>Crazy Voice and Sound Lab V8.8</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
 <link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
@@ -879,6 +879,20 @@ header::after{
 .voice-lab-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);gap:12px}.voice-script{display:grid;gap:7px}.voice-script label,.voice-setting label{font-size:11px;font-weight:900;color:#dce9f7}.voice-script textarea{width:100%;min-height:122px;resize:vertical;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.11);background:#070c14;color:#fff;font:inherit;line-height:1.45}.voice-script textarea:focus{outline:none;border-color:rgba(217,140,255,.65);box-shadow:0 0 16px rgba(217,140,255,.12)}
 .voice-pause-help{margin-top:1px;padding:8px 10px;border-radius:9px;border:1px solid rgba(217,140,255,.17);background:rgba(217,140,255,.045);color:#9fb1c5;font-size:10px;line-height:1.45}.voice-pause-help b{color:#f0d9ff;letter-spacing:.04em}.voice-pause-help code{display:inline-block;min-width:24px;padding:1px 5px;border-radius:5px;background:#0a0f18;border:1px solid rgba(255,255,255,.10);color:#ffb8e7;font-family:Consolas,monospace;font-weight:900;text-align:center}.voice-pause-help span{display:block;margin-top:3px;color:#71869c}
 .voice-settings{display:grid;grid-template-columns:1fr;gap:9px}.voice-setting{padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.07);background:rgba(4,8,14,.55)}.voice-setting select{width:100%;margin-top:7px;padding:10px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:#080d15;color:#fff;font-weight:800}.voice-setting input[type=range]{margin-top:8px}.voice-setting-line{display:flex;justify-content:space-between;gap:10px}.voice-setting-line span:last-child{color:#f0a8ff;font-weight:950}
+
+.voice-agent-intro{
+  width:100%;margin-top:9px;min-height:38px;padding:8px 10px;border-radius:9px;
+  border:1px solid rgba(255,155,74,.38);cursor:pointer;
+  background:linear-gradient(180deg,rgba(55,31,12,.95),rgba(22,12,6,.98));
+  color:#ffd8b0;font-size:10px;font-weight:950;letter-spacing:.025em;
+  text-shadow:0 0 9px rgba(255,155,74,.25);
+  box-shadow:0 4px 10px rgba(0,0,0,.28),0 0 15px rgba(255,155,74,.08),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:filter .14s ease,transform .14s ease,box-shadow .14s ease
+}
+.voice-agent-intro:hover:not(:disabled){filter:brightness(1.14);transform:translateY(-1px);box-shadow:0 5px 12px rgba(0,0,0,.32),0 0 20px rgba(255,155,74,.15),inset 0 1px 0 rgba(255,255,255,.09)}
+.voice-agent-intro.playing{border-color:rgba(98,245,155,.46);color:#c9fbd9;background:linear-gradient(180deg,rgba(18,42,31,.96),rgba(6,18,13,.98));box-shadow:0 0 18px rgba(98,245,155,.13)}
+.voice-agent-intro:disabled{opacity:.46;cursor:not-allowed;transform:none;filter:none}
+.voice-agent-intro-note{display:block;margin-top:5px;color:#7f93aa;font-size:8px;line-height:1.35;text-align:center}
 .voice-lab-actions{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;gap:8px;margin-top:12px}.voice-lab-actions button{min-height:44px;padding:10px;border-radius:11px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-weight:950;cursor:pointer}.voice-lab-actions button:disabled{opacity:.38;cursor:not-allowed}.voice-generate{border:0!important;color:#16051b!important;background:linear-gradient(90deg,#ff85d5,#b88cff)!important;box-shadow:0 0 20px rgba(217,140,255,.16)}
 @keyframes voiceGenerateNeedsUpdate{0%,100%{transform:scale(1);box-shadow:0 0 20px rgba(217,140,255,.18)}50%{transform:scale(1.018);box-shadow:0 0 28px rgba(255,133,213,.58),0 0 42px rgba(184,140,255,.28)}}
 .voice-generate.needs-update{animation:voiceGenerateNeedsUpdate 1.35s ease-in-out infinite;color:#19051d!important;filter:brightness(1.12)}
@@ -1117,7 +1131,11 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
           <option value="af_heart">Heart — US Female</option><option value="af_bella">Bella — US Female</option><option value="af_nicole">Nicole — US Female</option><option value="af_sky">Sky — US Female</option>
           <option value="am_michael">Michael — US Male</option><option value="am_fenrir">Fenrir — US Male</option><option value="am_onyx">Onyx — US Male</option><option value="am_puck">Puck — US Male</option>
           <option value="bf_emma">Emma — British Female</option><option value="bf_isabella">Isabella — British Female</option><option value="bm_fable">Fable — British Male</option><option value="bm_george">George — British Male</option>
-        </select></div>
+        </select>
+        <button class="voice-agent-intro" id="voiceAgentIntroBtn" type="button" disabled>🐷 HEAR PORK CHOP INTRODUCE THE VOICES</button>
+        <small class="voice-agent-intro-note" id="voiceAgentIntroNote">Voice introduction loads when available.</small>
+        <audio id="voiceAgentIntroAudio" preload="metadata" src="voice-agents-intro.mp3"></audio>
+        </div>
         <div class="voice-setting"><div class="voice-setting-line"><label for="voiceSpeed">VOICE SPEED</label><span id="voiceSpeedValue">1.00×</span></div><input id="voiceSpeed" type="range" min="0.70" max="1.35" step="0.05" value="1.00"></div>
       </div>
     </div>
@@ -1352,7 +1370,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
-<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.7 • Voice Lab + Compact Draggable Scene Timeline</div>
+<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.8 • Voice Lab + Voice Agent Introduction + Compact Scene Timeline</div>
 
 <script src="sound-library.js?v=20260923-sound-order-fix"></script>
 <script>
@@ -1360,6 +1378,56 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const commentForm=document.getElementById('publicCommentForm');
 const commentStatus=document.getElementById('commentStatus');
 const commentSubmitButton=commentForm?.querySelector('.comment-submit');
+
+const voiceAgentIntroBtn=document.getElementById('voiceAgentIntroBtn');
+const voiceAgentIntroAudio=document.getElementById('voiceAgentIntroAudio');
+const voiceAgentIntroNote=document.getElementById('voiceAgentIntroNote');
+const VOICE_AGENT_INTRO_LABEL='🐷 HEAR PORK CHOP INTRODUCE THE VOICES';
+
+if(voiceAgentIntroBtn && voiceAgentIntroAudio){
+  const voiceIntroReady=()=>{
+    voiceAgentIntroBtn.disabled=false;
+    voiceAgentIntroBtn.textContent=VOICE_AGENT_INTRO_LABEL;
+    if(voiceAgentIntroNote)voiceAgentIntroNote.textContent='Meet all 12 built-in voice agents.';
+  };
+  voiceAgentIntroAudio.addEventListener('loadedmetadata',voiceIntroReady);
+  voiceAgentIntroAudio.addEventListener('canplay',voiceIntroReady,{once:true});
+  voiceAgentIntroAudio.addEventListener('error',()=>{
+    voiceAgentIntroBtn.disabled=true;
+    voiceAgentIntroBtn.classList.remove('playing');
+    voiceAgentIntroBtn.textContent='🐷 VOICE INTRO CLIP NOT ADDED YET';
+    if(voiceAgentIntroNote)voiceAgentIntroNote.textContent='Add voice-agents-intro.mp3 to the main Crazy Sound Lab folder.';
+  });
+  voiceAgentIntroAudio.addEventListener('ended',()=>{
+    voiceAgentIntroBtn.classList.remove('playing');
+    voiceAgentIntroBtn.textContent=VOICE_AGENT_INTRO_LABEL;
+  });
+  voiceAgentIntroBtn.addEventListener('click',async()=>{
+    if(voiceAgentIntroAudio.paused){
+      document.querySelectorAll('audio').forEach(a=>{
+        if(a!==voiceAgentIntroAudio && !a.paused){
+          try{a.pause();a.currentTime=0;}catch(_){}
+        }
+      });
+      try{
+        voiceAgentIntroAudio.currentTime=0;
+        await voiceAgentIntroAudio.play();
+        voiceAgentIntroBtn.classList.add('playing');
+        voiceAgentIntroBtn.textContent='■ STOP PORK CHOP INTRO';
+      }catch(err){
+        console.error(err);
+        voiceAgentIntroBtn.classList.remove('playing');
+        voiceAgentIntroBtn.textContent=VOICE_AGENT_INTRO_LABEL;
+        if(voiceAgentIntroNote)voiceAgentIntroNote.textContent='Could not play the voice introduction.';
+      }
+    }else{
+      voiceAgentIntroAudio.pause();
+      voiceAgentIntroAudio.currentTime=0;
+      voiceAgentIntroBtn.classList.remove('playing');
+      voiceAgentIntroBtn.textContent=VOICE_AGENT_INTRO_LABEL;
+    }
+  });
+}
 
 if(commentForm){
   commentForm.addEventListener('submit',async(e)=>{
