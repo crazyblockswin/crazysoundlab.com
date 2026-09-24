@@ -1,6 +1,8 @@
     CRAZY VOICE AND SOUND LAB — HOW IT WORKS
 
-    There are three simple ways to use the studio.
+    There are three simple ways to create in the studio.
+    And if you would rather have us make the production for you,
+    there is a Custom Productions option too.
 
     ============================================================
     1) CREATE A VOICE + ADD ONE OR TWO SOUNDS OR MUSIC
@@ -52,8 +54,13 @@
     Choose Animals, Nature, Horror, Music, Vehicles, Mixer Samples,
     or any other category.
 
+    When you click a category, the page moves you down to the sound panel.
+
     STEP 2 — PICK A SOUND
     Click the sound you want.
+
+    Use PLAY SELECTED SOUND at the bottom of the sound panel whenever you
+    want to preview the selected sound without scrolling back to the top.
 
     STEP 3 — USE CRAZY MIXER
     When you are working with a stand-alone sound, the MAIN CRAZY MIXER
@@ -71,12 +78,13 @@
     3) BUILD A FULL STORY WITH SCENE MIXER
     ============================================================
 
-    This is where your finished sounds, voices, story clips, music,
+    This is where finished sounds, voices, story clips, music,
     and previous Crazy Lab mixes can become parts of a bigger production.
 
     STEP 1 — ADD YOUR CLIPS
     • Select a sound or Mixer Sample and click ADD SELECTED TO STORY.
-    • You can also add one of your own finished audio clips.
+    • Add the current Crazy Mix after you have adjusted it.
+    • You can also add one of your own finished audio clips from your computer.
     • Add up to 20 clips to one story.
 
     STEP 2 — PLACE EACH CLIP ON THE STORY TIMELINE
@@ -87,6 +95,7 @@
     • FADE IN = smoothly bring the clip in.
     • FADE OUT = smoothly let the clip end.
     • AUTO JOIN = place the clip near the end of the previous scene.
+    • MOVE UP / MOVE DOWN = move a scene earlier or later in your story.
 
     Clips do NOT have to wait for the previous clip to finish.
     They can overlap each other.
@@ -123,6 +132,26 @@
     and the master of your own production.
 
     LOOK OUT, HOLLYWOOD!
+
+    ============================================================
+    WANT US TO MAKE IT FOR YOU?
+    ============================================================
+
+    If you have an idea but would rather have Crazy Voice and Sound Lab
+    create the finished production for you, use the CUSTOM PRODUCTIONS page.
+
+    • Tell us what kind of scene or story you want.
+    • Give us your script — or ask us to help create it.
+    • Tell us the mood, sounds, music, or effects you have in mind.
+    • Choose the approximate length and audio format.
+    • Send the request first — no payment is taken with the request form.
+    • We review the idea and confirm the price before work begins.
+
+    See the CUSTOM PRODUCTIONS page for current starting prices and details.
+
+    LOVE IT OR YOUR MONEY BACK.
+    If you don't like what we created, let us know and we'll refund your payment.
+    No hard feelings. We had fun making it anyway.
 
     ============================================================
     THE ONE RULE TO REMEMBER
