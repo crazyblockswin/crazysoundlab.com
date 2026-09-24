@@ -1304,7 +1304,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
 <div class="footer">Crazy Voice and Sound Lab • Studio Build v8.4 • Voice Lab + Scene Builder</div>
 
-<script src="sound-library.js"></script>
+<script src="sound-library.js?v=20260923-sound-order-fix"></script>
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const commentForm=document.getElementById('publicCommentForm');
@@ -2407,7 +2407,8 @@ function voiceLayerCandidates(){
     const name=btn.querySelector('b')?.textContent?.trim() || type;
     add({id:'builtin-synth-'+type,name,category:btn.dataset.cat||'game',synthType:type,description:'Original built-in sound'});
   });
-  return out.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+  // Preserve the catalog order set in Admin instead of alphabetizing sounds.
+  return out;
 }
 function fillVoiceLayerCategories(){
   const cat=$('#voiceLayerCategory');if(!cat)return;
@@ -4275,12 +4276,13 @@ async function downloadMp3(){
 
 
 // ---- Ready-made sound library (folder based) ----
+// V8.4 order fix: public sound cards now respect the exact order saved by Admin.
 function safeFileName(v){return (v||'sound').replace(/[^a-z0-9._-]+/gi,'-').replace(/^-+|-+$/g,'')||'sound'}
 function categoryLabel(id){const c=(libraryData.categories||[]).find(x=>x.id===id);return c?c.name:String(id||'').toUpperCase()}
 function renderLibraryCards(){
   $$('.sample-card').forEach(el=>el.remove());
   const grid=$('#soundGrid');
-  libraryRecords.slice().sort((a,b)=>(a.category+a.name).localeCompare(b.category+b.name)).forEach(rec=>{
+  libraryRecords.forEach(rec=>{
     const card=document.createElement('button');card.className='sound sample-card';card.type='button';
     card.dataset.sampleId=rec.id;card.dataset.cat=rec.category;card.dataset.type='sample';
     const icon=document.createElement('span');icon.className='icon';icon.textContent=rec.icon||'🔊';
