@@ -1,9 +1,9 @@
     CRAZY VOICE AND SOUND LAB — HOW IT WORKS
 
-    There are two simple ways to use the studio.
+    There are three simple ways to use the studio.
 
     ============================================================
-    1) CREATE A VOICE + ADD A SOUND OR MUSIC
+    1) CREATE A VOICE + ADD ONE OR TWO SOUNDS OR MUSIC
     ============================================================
 
     STEP 1 — CREATE YOUR VOICE
@@ -19,53 +19,110 @@
     This is the important part:
 
     MAIN CRAZY MIXER = changes the VOICE.
-    ADD SOUND TO VOICE = changes the ADDED SOUND or MUSIC.
+    ADD SOUND TO VOICE = changes the ADDED SOUNDS or MUSIC.
 
     For example:
     • Want the voice slower, deeper, louder, shorter, or with effects?
       Use the MAIN CRAZY MIXER controls.
 
-    • Want the dog bark, music, rain, alarm, or other added sound louder, shorter, faded, or starting at a different time?
+    • Want a dog bark, music, rain, alarm, or another sound louder,
+      shorter, faded, or starting at a different time?
       Use the ADD SOUND TO VOICE controls.
 
-    STEP 4 — ADD THE SOUND
+    STEP 4 — ADD THE SOUNDS
     • Open ADD SOUND TO VOICE.
-    • Pick a category.
-    • Pick the sound or music you want.
-    • Adjust Added Sound Volume, Length, Fade In, Fade Out, and when it starts.
-    • Wait until the selected sound is ready.
+    • Choose Sound 1 and, if you want, Sound 2.
+    • Pick the category and sound or music you want.
+    • Adjust Volume, Length, Fade In, Fade Out, and where each sound starts.
     • Click APPLY CRAZY MIX & PLAY.
 
     IMPORTANT:
     The normal PLAY VOICE button plays the voice by itself.
-    APPLY CRAZY MIX & PLAY creates and plays the combined VOICE + SOUND mix.
-
-    You do NOT have to play a stand-alone sound first before adding it to a voice.
+    APPLY CRAZY MIX & PLAY creates and plays the combined VOICE + SOUNDS mix.
 
     STEP 5 — DOWNLOAD
     • When the mix sounds right, download the finished WAV or MP3.
-    • The downloaded mixed file includes BOTH the voice and the added sound.
+    • The downloaded file includes the voice and the added sounds.
 
     ============================================================
     2) USE A SOUND WITHOUT A VOICE
     ============================================================
 
     STEP 1 — PICK A CATEGORY
-    Choose Animals, Nature, Horror, Music, Vehicles, or any other category.
+    Choose Animals, Nature, Horror, Music, Vehicles, Mixer Samples,
+    or any other category.
 
     STEP 2 — PICK A SOUND
     Click the sound you want.
 
     STEP 3 — USE CRAZY MIXER
-    When you are working with a stand-alone sound, the MAIN CRAZY MIXER controls change that selected sound.
+    When you are working with a stand-alone sound, the MAIN CRAZY MIXER
+    controls change that selected sound.
 
     Adjust only what you want. The default settings are ready to use.
 
     STEP 4 — CREATE & PLAY
-    Click GENERATE / PLAY to hear your changes.
+    Click GENERATE / PLAY or APPLY CRAZY MIX & PLAY to hear your changes.
 
     STEP 5 — DOWNLOAD
     Download your finished sound as WAV or MP3 when available.
+
+    ============================================================
+    3) BUILD A FULL STORY WITH SCENE MIXER
+    ============================================================
+
+    This is where your finished sounds, voices, story clips, music,
+    and previous Crazy Lab mixes can become parts of a bigger production.
+
+    STEP 1 — ADD YOUR CLIPS
+    • Select a sound or Mixer Sample and click ADD SELECTED TO STORY.
+    • You can also add one of your own finished audio clips.
+    • Add up to 20 clips to one story.
+
+    STEP 2 — PLACE EACH CLIP ON THE STORY TIMELINE
+    Every scene has its own controls:
+
+    • START / JOIN AT = choose exactly when that clip begins.
+    • VOLUME = make that clip louder or softer.
+    • FADE IN = smoothly bring the clip in.
+    • FADE OUT = smoothly let the clip end.
+    • AUTO JOIN = place the clip near the end of the previous scene.
+
+    Clips do NOT have to wait for the previous clip to finish.
+    They can overlap each other.
+
+    For example:
+    • Music can begin first and keep playing under a voice.
+    • An airplane can enter while the voice is still talking.
+    • Zoo animals can begin before the airplane has completely faded out.
+    • Ending music can fade in while the final scene is still playing.
+
+    STEP 3 — SET THE OVERLAP
+    Use DEFAULT OVERLAP to choose how closely AUTO JOIN places new clips.
+    You can still change START / JOIN AT for any individual scene afterward.
+
+    STEP 4 — PLAY THE WHOLE PRODUCTION
+    Click PLAY FULL STORY to hear all scenes mixed together on one timeline.
+
+    STEP 5 — DOWNLOAD THE FINISHED STORY
+    When everything sounds right, download the complete production as
+    STORY WAV or STORY MP3.
+
+    ============================================================
+    BUILD ON YOUR CREATIONS
+    ============================================================
+
+    Finished mixes can be used again!
+
+    Combine story clips with other story clips, then add more sounds,
+    music, effects, or another voice to keep building a longer production.
+
+    Create a clip. Mix it. Build on it. Then turn it into something even bigger.
+
+    You're not just making sounds — you're the storyteller, the producer,
+    and the master of your own production.
+
+    LOOK OUT, HOLLYWOOD!
 
     ============================================================
     THE ONE RULE TO REMEMBER
@@ -73,10 +130,16 @@
 
     VOICE + SOUND MIX:
     MAIN CRAZY MIXER = VOICE
-    ADD SOUND TO VOICE = ADDED SOUND
+    ADD SOUND TO VOICE = ADDED SOUNDS
     APPLY CRAZY MIX & PLAY = COMBINES THEM
 
     SOUND BY ITSELF:
     MAIN CRAZY MIXER = THE SELECTED SOUND
+
+    FULL STORY:
+    SCENE MIXER = PUTS MULTIPLE CLIPS ON ONE SHARED TIMELINE
+    START / JOIN AT = CONTROLS WHEN EACH CLIP BEGINS
+    FADE IN / FADE OUT / VOLUME = CONTROLS HOW EACH CLIP BLENDS
+    PLAY FULL STORY = HEAR THE COMPLETE PRODUCTION
 
     Have fun. Make it weird. Make it yours.
