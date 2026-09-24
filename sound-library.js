@@ -1649,6 +1649,123 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊🎤",
       "filename": "Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav",
       "file": "sounds/mixer-samples/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
+    },
+    {
+      "id": "sound-mues4udh",
+      "category": "mixer-samples",
+      "name": "Sample Voicee Airplane Bear",
+      "description": "voice and sound combinations",
+      "icon": "🔊",
+      "filename": "sample-voice-airplane-bear.mp3",
+      "file": "sounds/mixer-samples/sample-voice-airplane-bear.mp3"
+    },
+    {
+      "id": "sound-mues6rd7",
+      "category": "mixer-samples",
+      "name": "Sample Voice News Motorcycle",
+      "description": "sample voice and sounds combinations news into and motorcycle",
+      "icon": "🔊",
+      "filename": "sample-voice-breaking-news-motorcycle.mp3",
+      "file": "sounds/mixer-samples/sample-voice-breaking-news-motorcycle.mp3"
+    },
+    {
+      "id": "sound-mues7xf1",
+      "category": "mixer-samples",
+      "name": "Sample Voice Concert Footsteps",
+      "description": "Sample of voice sound combinations",
+      "icon": "🔊",
+      "filename": "sample-voice-concert-footsteps.mp3",
+      "file": "sounds/mixer-samples/sample-voice-concert-footsteps.mp3"
+    },
+    {
+      "id": "sound-mues97a3",
+      "category": "mixer-samples",
+      "name": "Sample Voice Creaky Door and Applause",
+      "description": "Sample Voice Creaky Door and Applause",
+      "icon": "🔊",
+      "filename": "sample-voice-creakydoor-applause.mp3",
+      "file": "sounds/mixer-samples/sample-voice-creakydoor-applause.mp3"
+    },
+    {
+      "id": "sound-muesbnk4",
+      "category": "mixer-samples",
+      "name": "Sample Voice Drums Bella News",
+      "description": "sample of voice with sounds added",
+      "icon": "🔊",
+      "filename": "sample-voice-drums-bella-news.mp3",
+      "file": "sounds/mixer-samples/sample-voice-drums-bella-news.mp3"
+    },
+    {
+      "id": "sound-muesdf6o",
+      "category": "mixer-samples",
+      "name": "Sample Voice Giggle Nicole Witch",
+      "description": "Sample voice with girl giggling, Nicole hosting and witch laughing",
+      "icon": "🔊",
+      "filename": "sample-voice-giggle-nicole-witch.mp3",
+      "file": "sounds/mixer-samples/sample-voice-giggle-nicole-witch.mp3"
+    },
+    {
+      "id": "sound-muesfgcz",
+      "category": "mixer-samples",
+      "name": "Sample Voice Music Isabella Power Up",
+      "description": "sample voice with sounds added. Isabella with music intro and power up generator at the end.",
+      "icon": "🔊",
+      "filename": "sample-voice-music-isabella-power-up.wav",
+      "file": "sounds/mixer-samples/sample-voice-music-isabella-power-up.wav"
+    },
+    {
+      "id": "sound-muesh41f",
+      "category": "mixer-samples",
+      "name": "Sample Voice Music Missle",
+      "description": "sample voice with sound effects added. Music and Missle Lock.",
+      "icon": "🔊",
+      "filename": "sample-voice-music-missle-lock.mp3",
+      "file": "sounds/mixer-samples/sample-voice-music-missle-lock.mp3"
+    },
+    {
+      "id": "sound-muesiqrz",
+      "category": "mixer-samples",
+      "name": "Sample Voice with Animal Sounds",
+      "description": "sample of voice with animal sounds added at the beggining and end.",
+      "icon": "🔊",
+      "filename": "sample-voice-neigh-dude-pig.wav",
+      "file": "sounds/mixer-samples/sample-voice-neigh-dude-pig.wav"
+    },
+    {
+      "id": "sound-mueskf03",
+      "category": "mixer-samples",
+      "name": "Sample Voice News Drums",
+      "description": "sample voice with news intro and drum pecussions at the end.",
+      "icon": "🔊",
+      "filename": "sample-voice-news-drums.mp3",
+      "file": "sounds/mixer-samples/sample-voice-news-drums.mp3"
+    },
+    {
+      "id": "sound-muesmzzt",
+      "category": "mixer-samples",
+      "name": "Sample Voice Agent George News Montor",
+      "description": "sample of voice agent George, News intro and monstor ending sound.",
+      "icon": "🔊",
+      "filename": "sample-voice-news-george-horror-monstor.wav",
+      "file": "sounds/mixer-samples/sample-voice-news-george-horror-monstor.wav"
+    },
+    {
+      "id": "sound-muesowaw",
+      "category": "mixer-samples",
+      "name": "Sample Comedy Voice and Real Phone Call",
+      "description": "Sample voice, comedy with real phone call added",
+      "icon": "🔊",
+      "filename": "sample-voice-tow-yard-complaint.mp3",
+      "file": "sounds/mixer-samples/sample-voice-tow-yard-complaint.mp3"
+    },
+    {
+      "id": "sound-muesqog1",
+      "category": "mixer-samples",
+      "name": "Sample Voice Witch Police",
+      "description": "The hosting agent voice is concerned of the wicked witch of the west and calls authorities.",
+      "icon": "🔊",
+      "filename": "sample-voice-witch-police.mp3",
+      "file": "sounds/mixer-samples/sample-voice-witch-police.mp3"
     }
   ]
 };
