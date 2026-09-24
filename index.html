@@ -394,6 +394,28 @@ canvas{width:100%;height:100%;display:block}
 .main .sound-grid::-webkit-scrollbar{width:13px}
 .main .sound-grid::-webkit-scrollbar-track{background:#07101a;border-radius:10px}
 .main .sound-grid::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#43efff,#258dff);border:3px solid #07101a;border-radius:10px}
+
+/* Quick play button stays visible at the bottom of the CHOOSE A SOUND panel. */
+.main .sound-quick-play{
+  flex:0 0 auto;
+  width:100%;
+  margin:9px 0 0;
+  padding:11px 12px;
+  border-radius:11px;
+  border:1px solid rgba(98,245,155,.42);
+  background:linear-gradient(180deg,rgba(18,54,39,.98),rgba(7,24,17,.99));
+  color:#caffdc;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.045em;
+  cursor:pointer;
+  text-shadow:0 0 9px rgba(98,245,155,.28);
+  box-shadow:0 4px 10px rgba(0,0,0,.34),0 0 16px rgba(98,245,155,.11),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:filter .14s ease,transform .14s ease,box-shadow .14s ease;
+}
+.main .sound-quick-play:hover:not(:disabled){filter:brightness(1.14);transform:translateY(-1px);box-shadow:0 5px 12px rgba(0,0,0,.38),0 0 20px rgba(98,245,155,.20),inset 0 1px 0 rgba(255,255,255,.11)}
+.main .sound-quick-play:active:not(:disabled){transform:translateY(1px)}
+.main .sound-quick-play:disabled{opacity:.42;cursor:not-allowed;filter:none;transform:none}
 .main .sound{min-height:78px;padding:10px 10px;border-radius:11px}
 .main .sound .icon{font-size:19px}
 .main .sound b{margin-top:4px;font-size:12px}
@@ -1041,6 +1063,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <button class="sound" data-type="heartbeat" data-cat="horror"><span class="icon">🫀</span><b>Heartbeat</b><small>Calm pulse to panic</small></button>
         <button class="sound" data-type="creakingDoor" data-cat="horror"><span class="icon">🕯️</span><b>Creaking Door</b><small>Old hinge and wooden groan</small></button>
       </div>
+      <button id="soundQuickPlay" class="sound-quick-play" type="button" disabled>▶ PLAY SELECTED SOUND</button>
     </div>
 
     <aside class="panel side" id="workbench">
@@ -4871,6 +4894,22 @@ updateVoiceLayerPanel();
 
 $('#generate').addEventListener('click',generate);
 $('#play').addEventListener('click',playCurrent);
+
+// Mirror the main Play Again button at the bottom of the left sound panel.
+// It uses the exact same playback path as the original button.
+const soundQuickPlay=$('#soundQuickPlay');
+const mainPlayButton=$('#play');
+function syncSoundQuickPlay(){
+  if(!soundQuickPlay||!mainPlayButton)return;
+  soundQuickPlay.disabled=mainPlayButton.disabled;
+}
+if(soundQuickPlay&&mainPlayButton){
+  soundQuickPlay.addEventListener('click',()=>{
+    if(!mainPlayButton.disabled) mainPlayButton.click();
+  });
+  new MutationObserver(syncSoundQuickPlay).observe(mainPlayButton,{attributes:true,attributeFilter:['disabled']});
+  syncSoundQuickPlay();
+}
 $('#stop').addEventListener('click',stopCurrent);
 $('#loopToggle').addEventListener('click',toggleLoop);
 $('#download').addEventListener('click',download);
