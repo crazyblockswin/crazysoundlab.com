@@ -1775,6 +1775,24 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🎤",
       "filename": "Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3",
       "file": "sounds/mixer-samples/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
+    },
+    {
+      "id": "sound-mug35y4d",
+      "category": "mixer-samples",
+      "name": "Scene Builder",
+      "description": "how to use scene builder by adding clips",
+      "icon": "🔊",
+      "filename": "scene-builder.mp3",
+      "file": "sounds/mixer-samples/scene-builder.mp3"
+    },
+    {
+      "id": "sound-mug3h7hv",
+      "category": "mixer-samples",
+      "name": "Breaking News",
+      "description": "Chump breaking news",
+      "icon": "🔊",
+      "filename": "crazy-lab-story-news-chump.mp3",
+      "file": "sounds/mixer-samples/crazy-lab-story-news-chump.mp3"
     }
   ]
 };
