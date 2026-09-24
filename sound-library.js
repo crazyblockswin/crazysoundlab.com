@@ -1633,31 +1633,22 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/music/short-rock1.mp3"
     },
     {
-      "id": "sound-muehx08v",
+      "id": "sound-muf00bey",
       "category": "mixer-samples",
-      "name": "Sample Voice and Sound Mix mp3",
-      "description": "Sample Voice and Sound Mix mp3",
-      "icon": "🎤",
-      "filename": "Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3",
-      "file": "sounds/mixer-samples/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
-    },
-    {
-      "id": "sound-muehzjka",
-      "category": "mixer-samples",
-      "name": "Sample Voice and Sound Mix WAV",
-      "description": "Sample Voice and Sound Mix WAV",
-      "icon": "🔊🎤",
-      "filename": "Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav",
-      "file": "sounds/mixer-samples/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
-    },
-    {
-      "id": "sound-mues4udh",
-      "category": "mixer-samples",
-      "name": "Sample Voicee Airplane Bear",
-      "description": "voice and sound combinations",
+      "name": "Sample of Crazy Lab Story with Voice",
+      "description": "crazy lab story with voice and sounds",
       "icon": "🔊",
-      "filename": "sample-voice-airplane-bear.mp3",
-      "file": "sounds/mixer-samples/sample-voice-airplane-bear.mp3"
+      "filename": "crazy-lab-story.mp3",
+      "file": "sounds/mixer-samples/crazy-lab-story.mp3"
+    },
+    {
+      "id": "sound-muesqog1",
+      "category": "mixer-samples",
+      "name": "Sample Voice Witch Police",
+      "description": "The hosting agent voice is concerned of the wicked witch of the west and calls authorities.",
+      "icon": "🔊",
+      "filename": "sample-voice-witch-police.mp3",
+      "file": "sounds/mixer-samples/sample-voice-witch-police.mp3"
     },
     {
       "id": "sound-mues6rd7",
@@ -1667,6 +1658,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "sample-voice-breaking-news-motorcycle.mp3",
       "file": "sounds/mixer-samples/sample-voice-breaking-news-motorcycle.mp3"
+    },
+    {
+      "id": "sound-mues4udh",
+      "category": "mixer-samples",
+      "name": "Sample Voicee Airplane Bear",
+      "description": "voice and sound combinations",
+      "icon": "🔊",
+      "filename": "sample-voice-airplane-bear.mp3",
+      "file": "sounds/mixer-samples/sample-voice-airplane-bear.mp3"
     },
     {
       "id": "sound-mues7xf1",
@@ -1759,22 +1759,22 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/mixer-samples/sample-voice-tow-yard-complaint.mp3"
     },
     {
-      "id": "sound-muesqog1",
+      "id": "sound-muehzjka",
       "category": "mixer-samples",
-      "name": "Sample Voice Witch Police",
-      "description": "The hosting agent voice is concerned of the wicked witch of the west and calls authorities.",
-      "icon": "🔊",
-      "filename": "sample-voice-witch-police.mp3",
-      "file": "sounds/mixer-samples/sample-voice-witch-police.mp3"
+      "name": "Sample Voice and Sound Mix WAV",
+      "description": "Sample Voice and Sound Mix WAV",
+      "icon": "🔊🎤",
+      "filename": "Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav",
+      "file": "sounds/mixer-samples/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
     },
     {
-      "id": "sound-muf00bey",
+      "id": "sound-muehx08v",
       "category": "mixer-samples",
-      "name": "Sample of Crazy Lab Story with Voice",
-      "description": "crazy lab story with voice and sounds",
-      "icon": "🔊",
-      "filename": "crazy-lab-story.mp3",
-      "file": "sounds/mixer-samples/crazy-lab-story.mp3"
+      "name": "Sample Voice and Sound Mix mp3",
+      "description": "Sample Voice and Sound Mix mp3",
+      "icon": "🎤",
+      "filename": "Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3",
+      "file": "sounds/mixer-samples/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
     }
   ]
 };
