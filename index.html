@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crazy Voice and Sound Lab V8.4</title>
+<title>Crazy Voice and Sound Lab V8.5</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
 <link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
@@ -487,6 +487,26 @@ canvas{width:100%;height:100%;display:block}
 .scene-auto-join{min-height:43px;padding:7px 9px;border-radius:8px;border:1px solid rgba(67,239,255,.22);background:rgba(67,239,255,.055);color:#bff9ff;font-size:9px;font-weight:950;cursor:pointer;white-space:nowrap}
 .scene-auto-join:hover{filter:brightness(1.15);border-color:rgba(67,239,255,.42)}
 .scene-timeline-note{margin-top:4px;color:#c9a9dc!important;font-size:9px!important}
+
+/* v8.5 — draggable per-scene timeline. */
+.scene-drag-timeline{
+  grid-column:1/-1;display:grid;gap:5px;margin-top:2px;padding:7px 8px 8px;
+  border-radius:9px;border:1px solid rgba(217,140,255,.16);
+  background:linear-gradient(180deg,rgba(217,140,255,.045),rgba(67,239,255,.025));
+}
+.scene-drag-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:8px;font-weight:950;letter-spacing:.045em;color:#c9b1d8}
+.scene-drag-head span:last-child{color:#8298ad;font-weight:850;letter-spacing:0}
+.scene-drag-track{position:relative;height:42px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#050911}
+.scene-drag-grid{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 10%)}
+.scene-drag-clip{position:absolute;top:8px;height:24px;min-width:18px;border-radius:7px;border:1px solid rgba(255,133,213,.58);background:linear-gradient(90deg,rgba(255,133,213,.82),rgba(184,140,255,.82));box-shadow:0 0 14px rgba(217,140,255,.19);color:#16051b;font-size:8px;font-weight:950;display:flex;align-items:center;justify-content:center;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.scene-drag-range{position:absolute;inset:0;width:100%;height:42px;margin:0;cursor:ew-resize;background:transparent;-webkit-appearance:none;appearance:none}
+.scene-drag-range::-webkit-slider-runnable-track{height:42px;background:transparent}
+.scene-drag-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:38px;margin-top:2px;border-radius:7px;border:1px solid rgba(67,239,255,.72);background:rgba(67,239,255,.13);box-shadow:0 0 13px rgba(67,239,255,.22);cursor:ew-resize}
+.scene-drag-range::-moz-range-track{height:42px;background:transparent;border:0}
+.scene-drag-range::-moz-range-thumb{width:16px;height:36px;border-radius:7px;border:1px solid rgba(67,239,255,.72);background:rgba(67,239,255,.13);box-shadow:0 0 13px rgba(67,239,255,.22);cursor:ew-resize}
+.scene-drag-scale{display:flex;justify-content:space-between;color:#60778e;font-size:8px;font-weight:850}
+.scene-drag-timeline.dragging{border-color:rgba(67,239,255,.42);box-shadow:0 0 16px rgba(67,239,255,.08)}
+@media(max-width:760px){.scene-drag-head{align-items:flex-start;flex-direction:column;gap:2px}.scene-drag-track{height:46px}.scene-drag-range{height:46px}}
 .scene-row-actions{align-content:center;align-items:stretch}
 @media(max-width:1050px){.scene-row{grid-template-columns:38px minmax(140px,.75fr) minmax(0,1.6fr)}.scene-row-actions{grid-column:2/-1;min-width:0;grid-template-columns:repeat(4,minmax(105px,1fr))}.scene-mix-controls{grid-template-columns:repeat(4,minmax(80px,1fr)) auto}}
 @media(max-width:760px){.scene-row{grid-template-columns:36px 1fr}.scene-mix-controls{grid-column:1/-1;grid-template-columns:1fr 1fr}.scene-auto-join{grid-column:1/-1}.scene-row-actions{grid-column:1/-1;min-width:0;grid-template-columns:1fr 1fr}}
@@ -1260,7 +1280,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
   <details class="scene-builder" id="sceneBuilder">
     <summary><span>🎬 SCENE BUILDER — BUILD A FULL STORY</span><small>ADD CLIPS → ARRANGE THEM → PLAY → DOWNLOAD</small></summary>
     <div class="scene-builder-body">
-      <div class="scene-builder-intro"><strong>Build with blocks — now with real overlap mixing.</strong> Add story clips, sounds, music, or finished Crazy Lab productions. Every scene can start while another scene is still playing, with its own volume, fade in, and fade out.</div>
+      <div class="scene-builder-intro"><strong>Build with blocks — now with real overlap mixing.</strong> Add story clips, sounds, music, or finished Crazy Lab productions. Drag any scene across its timeline for fast placement, then fine-tune the exact start time with the number box or arrows. Every scene can start while another scene is still playing, with its own volume, fade in, and fade out.</div>
       <div class="scene-builder-toolbar">
         <button id="sceneAddCurrent" type="button" disabled>➕ ADD CURRENT MIX</button>
         <label class="scene-file-label" for="sceneFileInput">📁 ADD A CLIP FROM YOUR COMPUTER</label>
@@ -1276,7 +1296,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <button class="clear" id="sceneClear" type="button" disabled>✕ CLEAR STORY</button>
       </div>
       <div class="scene-status" id="sceneStatus">Add two or more clips to turn separate moments into one finished story.</div>
-      <div class="scene-limit-note">Scene Builder supports up to 20 clips. Use START / JOIN AT to overlap any clip anywhere on the story timeline.</div>
+      <div class="scene-limit-note">Scene Builder supports up to 20 clips. Drag a scene on its timeline for fast placement, then use START / JOIN AT or the arrows for exact timing.</div>
     </div>
   </details>
 </section>
@@ -1308,7 +1328,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
-<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.4 • Voice Lab + Scene Builder</div>
+<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.5 • Voice Lab + Draggable Scene Timeline</div>
 
 <script src="sound-library.js?v=20260923-sound-order-fix"></script>
 <script>
@@ -5079,6 +5099,70 @@ function sceneAutoJoin(index){
   }
   sceneMarkDirty(`${clip.name||'Scene'} joined to the previous scene.`);sceneRenderList();
 }
+function sceneTimelineScale(){
+  const total=Math.max(0,sceneTotalSeconds());
+  if(total<=45)return 60;
+  if(total<=90)return 120;
+  if(total<=180)return 240;
+  if(total<=300)return 360;
+  return Math.min(SCENE_MAX_SECONDS,Math.max(420,Math.ceil((total*1.15)/60)*60));
+}
+function sceneTimelineShort(seconds){
+  seconds=Math.max(0,+seconds||0);
+  if(seconds<60)return `${Math.round(seconds)}s`;
+  const m=Math.floor(seconds/60),s=Math.round(seconds%60);
+  return s?`${m}m ${s}s`:`${m}m`;
+}
+function sceneCreateDragTimeline(clip,index,timelineMax,timingNode){
+  const wrap=document.createElement('div');wrap.className='scene-drag-timeline';
+  const head=document.createElement('div');head.className='scene-drag-head';
+  const title=document.createElement('span');title.textContent='↔ DRAG SCENE TO SET START TIME';
+  const readout=document.createElement('span');
+  head.append(title,readout);
+
+  const track=document.createElement('div');track.className='scene-drag-track';
+  const grid=document.createElement('div');grid.className='scene-drag-grid';
+  const block=document.createElement('div');block.className='scene-drag-clip';block.textContent=`SCENE ${index+1}`;
+  const range=document.createElement('input');range.className='scene-drag-range';range.type='range';range.min='0';range.max=String(timelineMax);range.step='0.1';range.value=String(sceneClamp(clip.startAt,0,timelineMax));
+  range.setAttribute('aria-label',`Drag Scene ${index+1} start time`);
+  range.title='Drag left or right to move this scene quickly';
+  track.append(grid,block,range);
+
+  const scale=document.createElement('div');scale.className='scene-drag-scale';
+  const zero=document.createElement('span');zero.textContent='0s';
+  const middle=document.createElement('span');middle.textContent=sceneTimelineShort(timelineMax/2);
+  const end=document.createElement('span');end.textContent=sceneTimelineShort(timelineMax);
+  scale.append(zero,middle,end);
+
+  const paint=()=>{
+    const start=sceneClamp(range.value,0,timelineMax);
+    const duration=Math.max(.01,clip.buffer?.duration||0);
+    const left=(start/timelineMax)*100;
+    const rawWidth=(duration/timelineMax)*100;
+    const width=Math.max(2,Math.min(100-left,rawWidth));
+    block.style.left=`${left}%`;
+    block.style.width=`${width}%`;
+    readout.textContent=`START ${start.toFixed(1)}s • END ${(start+duration).toFixed(1)}s • WINDOW ${sceneTimelineShort(timelineMax)}`;
+    if(timingNode)timingNode.textContent=`Starts ${start.toFixed(2)}s • Ends ${(start+duration).toFixed(2)}s`;
+  };
+  paint();
+
+  range.addEventListener('pointerdown',()=>wrap.classList.add('dragging'));
+  range.addEventListener('pointerup',()=>wrap.classList.remove('dragging'));
+  range.addEventListener('pointercancel',()=>wrap.classList.remove('dragging'));
+  range.addEventListener('input',()=>{
+    clip.startAt=sceneClamp(range.value,0,SCENE_MAX_SECONDS);
+    sceneDirty=true;sceneRenderedBuffer=null;sceneSyncButtons();paint();
+    $('#sceneStatus').textContent=`Moving ${clip.name||`Scene ${index+1}`} — starts at ${clip.startAt.toFixed(1)} sec.`;
+  });
+  range.addEventListener('change',()=>{
+    wrap.classList.remove('dragging');
+    sceneMarkDirty(`${clip.name||`Scene ${index+1}`} moved to ${clip.startAt.toFixed(1)} sec.`);
+    sceneRenderList();
+  });
+
+  wrap.append(head,track,scale);return wrap;
+}
 function sceneRenderList(){
   const list=$('#sceneList');if(!list)return;
   list.innerHTML='';
@@ -5086,6 +5170,7 @@ function sceneRenderList(){
     list.innerHTML='<div class="scene-empty">Your story is empty. Pick a sound or Mixer Sample above and click <b>ADD SELECTED TO STORY</b>, or add one of your own clips.</div>';
     sceneSyncButtons();return;
   }
+  const timelineMax=sceneTimelineScale();
   sceneClips.forEach((clip,index)=>{
     const row=document.createElement('div');row.className='scene-row';
     const num=document.createElement('div');num.className='scene-num';num.textContent=String(index+1);
@@ -5127,6 +5212,7 @@ function sceneRenderList(){
     );
     const auto=document.createElement('button');auto.type='button';auto.className='scene-auto-join';auto.textContent=index===0?'START AT 0':'AUTO JOIN';auto.title=index===0?'Start this clip at the beginning':'Place this clip near the end of the previous clip using the Default Overlap setting';
     auto.addEventListener('click',()=>sceneAutoJoin(index));mix.append(auto);
+    mix.append(sceneCreateDragTimeline(clip,index,timelineMax,timing));
 
     const actions=document.createElement('div');actions.className='scene-row-actions';
     const preview=document.createElement('button');preview.type='button';preview.textContent='▶ PREVIEW';preview.title='Play this scene with its volume and fades';
