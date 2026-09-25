@@ -1096,8 +1096,6 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
   .voice-setting{padding:13px 14px}
   .voice-setting select{margin-top:9px;padding:11px 12px;font-size:14px}
   .voice-setting-line span:last-child{font-size:16px}
-  .voice-agent-intro{min-height:44px;padding:10px 12px;font-size:11.5px}
-  .voice-agent-intro-note{margin-top:7px;font-size:9.5px}
 
   .voice-lab-actions{
     grid-template-columns:minmax(240px,1.35fr) minmax(160px,.8fr) minmax(150px,.8fr) minmax(300px,1.2fr);
@@ -1470,6 +1468,13 @@ if(voiceAgentIntroBtn && voiceAgentIntroAudio){
   };
   voiceAgentIntroAudio.addEventListener('loadedmetadata',voiceIntroReady);
   voiceAgentIntroAudio.addEventListener('canplay',voiceIntroReady,{once:true});
+  // If the browser loaded the cached intro before these listeners were attached,
+  // enable the button immediately instead of leaving it stuck disabled.
+  if(voiceAgentIntroAudio.readyState>=1){
+    voiceIntroReady();
+  }else{
+    try{voiceAgentIntroAudio.load();}catch(_){ }
+  }
   voiceAgentIntroAudio.addEventListener('error',()=>{
     voiceAgentIntroBtn.disabled=true;
     voiceAgentIntroBtn.classList.remove('playing');
