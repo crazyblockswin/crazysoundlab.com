@@ -6,9 +6,9 @@
 <title>Crazy Voice and Sound Lab V8.9</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
-<link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
-<link rel="shortcut icon" href="crazy-voice-sound-favicon.png">
-<link rel="apple-touch-icon" href="crazy-voice-sound-favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon-cvsl.ico?v=2">
+<link rel="shortcut icon" type="image/x-icon" href="favicon-cvsl.ico?v=2">
+<link rel="apple-touch-icon" href="crazy-voice-sound-favicon.png?v=2">
 <style>
 :root{
   --bg:#05070c; --panel:#0b101a; --panel2:#101827; --text:#f5f8ff; --muted:#94a6bd;
@@ -1043,6 +1043,89 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
     justify-self:end !important;
   }
 }
+
+
+/* ===== V8.9 VOICE LAB DESKTOP READABILITY TUNE =====
+   Keeps the outer Voice Lab style, but makes the working area easier to read
+   at normal 100% browser zoom on wide desktop and TV displays. */
+@media (min-width:1051px){
+  .voice-lab{padding:20px 22px 22px}
+  .voice-lab>.voice-lab-head,
+  .voice-lab>.voice-mixer-tip,
+  .voice-lab>.voice-lab-grid,
+  .voice-lab>.voice-lab-actions,
+  .voice-lab>.voice-lab-bottom{
+    width:min(100%,1280px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .voice-lab-head{margin-bottom:15px}
+  .voice-lab-title{gap:12px}
+  .voice-lab-title b{font-size:20px}
+  .voice-lab-title small{font-size:12px;margin-top:4px}
+  .voice-engine-status{padding:9px 14px;font-size:12px}
+
+  .voice-mixer-tip{
+    margin-bottom:16px;
+    padding:11px 15px;
+    font-size:13px;
+    line-height:1.5;
+  }
+
+  .voice-lab-grid{
+    grid-template-columns:minmax(0,1.35fr) minmax(330px,.85fr);
+    gap:16px;
+  }
+  .voice-script{gap:9px}
+  .voice-script label,.voice-setting label{font-size:13px}
+  .voice-script textarea{
+    min-height:150px;
+    padding:15px 16px;
+    font-size:17px;
+    line-height:1.5;
+  }
+  .voice-pause-help{
+    padding:10px 12px;
+    font-size:12px;
+    line-height:1.5;
+  }
+  .voice-pause-help code{min-width:28px;padding:2px 6px}
+  .voice-pause-help span{margin-top:5px;font-size:11.5px}
+
+  .voice-settings{gap:12px}
+  .voice-setting{padding:13px 14px}
+  .voice-setting select{margin-top:9px;padding:11px 12px;font-size:14px}
+  .voice-setting-line span:last-child{font-size:16px}
+  .voice-agent-intro{min-height:44px;padding:10px 12px;font-size:11.5px}
+  .voice-agent-intro-note{margin-top:7px;font-size:9.5px}
+
+  .voice-lab-actions{
+    grid-template-columns:minmax(240px,1.35fr) minmax(160px,.8fr) minmax(150px,.8fr) minmax(300px,1.2fr);
+    gap:10px;
+    margin-top:15px;
+  }
+  .voice-lab-actions button{min-height:50px;padding:12px 13px;font-size:13px}
+  .voice-download-choices{gap:8px}
+  .voice-download-choices .voice-download{padding:12px 8px;font-size:11.5px}
+
+  .voice-lab-bottom{
+    grid-template-columns:minmax(0,1.35fr) minmax(320px,.85fr);
+    gap:12px;
+    margin-top:11px;
+    padding:11px 12px;
+  }
+  .voice-lab-status{font-size:14.5px}
+  .voice-lab-bottom .voice-to-mixer{min-height:48px;font-size:12.5px}
+  .voice-next-note{padding:9px 12px;font-size:11.5px}
+
+  html.chrome-dpi-compact .voice-lab-grid{
+    grid-template-columns:minmax(0,1.35fr) minmax(330px,.85fr)!important;
+  }
+  html.chrome-dpi-compact .voice-lab-actions{
+    grid-template-columns:minmax(240px,1.35fr) minmax(160px,.8fr) minmax(150px,.8fr) minmax(300px,1.2fr)!important;
+  }
+}
+
 </style>
 
 <script>
@@ -1108,11 +1191,6 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
   <section class="hero">
     <h1>CREATE CUSTOM SOUNDS &amp; VOICES OR USE <span>READY-MADE SOUNDS</span></h1>
   </section>
-
-  <div style="margin:-1px 0 14px;padding:11px 14px;border-radius:13px;border:1px solid rgba(98,245,155,.24);background:linear-gradient(90deg,rgba(98,245,155,.055),rgba(67,239,255,.045),rgba(165,102,255,.05));display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.18)">
-    <span style="color:#aec4b8;font-size:12px;font-weight:800">🎬 WANT US TO MAKE IT FOR YOU?</span>
-    <a href="custom-production.html" style="color:#bdf8d1;font-size:12px;font-weight:950;text-decoration:underline;text-underline-offset:3px;text-shadow:0 0 10px rgba(98,245,155,.24)">CUSTOM SOUND SCENES, STORIES &amp; PRODUCTIONS →</a>
-  </div>
 
   <section class="voice-lab" id="voiceLab" aria-label="Voice Lab text to voice generator">
     <div class="voice-lab-head">
