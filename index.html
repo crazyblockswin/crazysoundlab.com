@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crazy Voice and Sound Lab V8.8</title>
+<title>Crazy Voice and Sound Lab V8.9</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
 <link rel="icon" type="image/png" href="crazy-voice-sound-favicon.png">
@@ -1327,7 +1327,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <button id="sceneAddCurrent" type="button" disabled>➕ ADD CURRENT MIX</button>
         <label class="scene-file-label" for="sceneFileInput">📁 ADD A CLIP FROM YOUR COMPUTER</label>
         <input id="sceneFileInput" type="file" accept=".mp3,.wav,.ogg,.m4a,.aac,audio/*" multiple hidden>
-        <div class="scene-gap-field"><label for="sceneOverlap">DEFAULT OVERLAP FOR NEW CLIPS</label><select id="sceneOverlap"><option value="0">Join exactly at end</option><option value="0.25">Overlap 0.25 sec</option><option value="0.5" selected>Overlap 0.5 sec</option><option value="1">Overlap 1 sec</option><option value="2">Overlap 2 sec</option><option value="3">Overlap 3 sec</option></select></div>
+        <div class="scene-gap-field"><label for="sceneOverlap">DEFAULT SPACE / OVERLAP BETWEEN CLIPS</label><select id="sceneOverlap"><option value="3">Space 3 sec</option><option value="2">Space 2 sec</option><option value="1">Space 1 sec</option><option value="0.5">Space 0.5 sec</option><option value="0.25">Space 0.25 sec</option><option value="0">Join exactly at end</option><option value="-0.25">Overlap 0.25 sec</option><option value="-0.5" selected>Overlap 0.5 sec</option><option value="-1">Overlap 1 sec</option><option value="-2">Overlap 2 sec</option><option value="-3">Overlap 3 sec</option></select></div>
       </div>
       <div class="scene-list" id="sceneList"><div class="scene-empty">Your story is empty. Pick a sound or Mixer Sample above and click <b>ADD SELECTED TO STORY</b>, or add one of your own clips.</div></div>
       <div class="scene-builder-actions">
@@ -1338,7 +1338,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <button class="clear" id="sceneClear" type="button" disabled>✕ CLEAR STORY</button>
       </div>
       <div class="scene-status" id="sceneStatus">Add two or more clips to turn separate moments into one finished story.</div>
-      <div class="scene-limit-note">Scene Builder supports up to 20 clips. Drag a scene on its timeline for fast placement, then use START / JOIN AT or the arrows for exact timing.</div>
+      <div class="scene-limit-note">Scene Builder supports up to 20 clips. Choose a default space or overlap for new clips, drag a scene for fast placement, then use START / JOIN AT or the arrows for exact timing.</div>
     </div>
   </details>
 </section>
@@ -1370,7 +1370,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 </section>
 
 <div class="brand-promise">USER-FRIENDLY • COMFORTABLE • SURPRISINGLY POWERFUL</div>
-<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.8 • Voice Lab + Voice Agent Introduction + Compact Scene Timeline</div>
+<div class="footer">Crazy Voice and Sound Lab • Studio Build v8.9 • Voice Lab + Voice Agent Introduction + Space/Overlap Scene Timing</div>
 
 <script src="sound-library.js?v=20260923-sound-order-fix"></script>
 <script>
@@ -5159,10 +5159,10 @@ function sceneMarkDirty(message=''){
 function sceneTotalSeconds(){
   return sceneClips.reduce((max,c)=>Math.max(max,sceneClipEnd(c)),0);
 }
-function sceneDefaultOverlap(){return Math.max(0,+($('#sceneOverlap')?.value||0));}
+function sceneDefaultSpacing(){return +($('#sceneOverlap')?.value||0);}
 function sceneSuggestedStart(){
   if(!sceneClips.length)return 0;
-  return Math.max(0,sceneTotalSeconds()-sceneDefaultOverlap());
+  return Math.max(0,sceneTotalSeconds()+sceneDefaultSpacing());
 }
 function sceneSyncButtons(){
   const has=sceneClips.length>0;
@@ -5187,9 +5187,11 @@ function sceneAutoJoin(index){
   if(index===0){clip.startAt=0;}
   else{
     const prev=sceneClips[index-1];
-    clip.startAt=Math.max(0,sceneClipEnd(prev)-sceneDefaultOverlap());
+    clip.startAt=Math.max(0,sceneClipEnd(prev)+sceneDefaultSpacing());
   }
-  sceneMarkDirty(`${clip.name||'Scene'} joined to the previous scene.`);sceneRenderList();
+  const spacing=sceneDefaultSpacing();
+  const placement=spacing>0?`${spacing} sec after the previous scene`:spacing<0?`${Math.abs(spacing)} sec overlap with the previous scene`:'exactly at the end of the previous scene';
+  sceneMarkDirty(`${clip.name||'Scene'} placed ${placement}.`);sceneRenderList();
 }
 function sceneTimelineScale(){
   const total=Math.max(0,sceneTotalSeconds());
@@ -5293,7 +5295,7 @@ function sceneRenderList(){
       field('FADE IN','fadeIn',(+clip.fadeIn||0).toFixed(2),0,Math.max(.1,clip.buffer.duration),.1,'seconds'),
       field('FADE OUT','fadeOut',(+clip.fadeOut||0).toFixed(2),0,Math.max(.1,clip.buffer.duration),.1,'seconds')
     );
-    const auto=document.createElement('button');auto.type='button';auto.className='scene-auto-join';auto.textContent=index===0?'START AT 0':'AUTO JOIN';auto.title=index===0?'Start this clip at the beginning':'Place this clip near the end of the previous clip using the Default Overlap setting';
+    const auto=document.createElement('button');auto.type='button';auto.className='scene-auto-join';auto.textContent=index===0?'START AT 0':'AUTO PLACE';auto.title=index===0?'Start this clip at the beginning':'Place this clip using the selected Default Space / Overlap setting';
     auto.addEventListener('click',()=>sceneAutoJoin(index));mix.append(auto);
     mix.append(sceneCreateDragTimeline(clip,index,timelineMax,timing));
 
@@ -5455,7 +5457,7 @@ function sceneClearStory(){
 $('#sceneAddSelected')?.addEventListener('click',sceneAddSelectedClip);
 $('#sceneAddCurrent')?.addEventListener('click',sceneAddCurrentMix);
 $('#sceneFileInput')?.addEventListener('change',async e=>{const files=e.target.files;if(files?.length)await sceneAddFiles(files);e.target.value='';});
-$('#sceneOverlap')?.addEventListener('change',()=>{$('#sceneStatus').textContent='Default overlap changed. New clips and AUTO JOIN will use this amount.';});
+$('#sceneOverlap')?.addEventListener('change',()=>{$('#sceneStatus').textContent='Default space / overlap changed. New clips and AUTO PLACE will use this timing.';});
 $('#scenePlay')?.addEventListener('click',scenePlayStory);
 $('#sceneStop')?.addEventListener('click',sceneStopPlayback);
 $('#sceneDownloadWav')?.addEventListener('click',sceneDownloadStoryWav);
