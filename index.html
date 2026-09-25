@@ -6,8 +6,8 @@
 <title>Crazy Voice and Sound Lab V8.9</title>
 <!-- Crazy Sound Lab v6.23 — Dashboard Edition -->
 <meta name="theme-color" content="#060810">
-<link rel="icon" type="image/x-icon" href="favicon-cvsl.ico?v=2">
-<link rel="shortcut icon" type="image/x-icon" href="favicon-cvsl.ico?v=2">
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
 <link rel="apple-touch-icon" href="crazy-voice-sound-favicon.png?v=2">
 <style>
 :root{
@@ -431,6 +431,14 @@ canvas{width:100%;height:100%;display:block}
 .mixer-samples-promo .hollywood{display:block;margin-top:5px;color:#ffb6dc;font-weight:950;font-size:11px;letter-spacing:.04em;text-shadow:0 0 10px rgba(255,133,213,.28)}
 .sound-panel-actions{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
 .sound-panel-actions .sound-quick-play{margin:0}
+.main .scene-story-open{
+  grid-column:1/-1;width:100%;min-height:34px;padding:8px 10px;border-radius:10px;
+  border:1px solid rgba(255,207,84,.34);background:linear-gradient(180deg,rgba(52,39,9,.58),rgba(18,14,5,.82));
+  color:#ffe69b;font-size:10px;font-weight:950;letter-spacing:.045em;cursor:pointer;
+  box-shadow:0 3px 9px rgba(0,0,0,.28),0 0 14px rgba(255,207,84,.07),inset 0 1px 0 rgba(255,255,255,.06)
+}
+.main .scene-story-open:hover{filter:brightness(1.14);border-color:rgba(255,207,84,.55);box-shadow:0 4px 11px rgba(0,0,0,.32),0 0 18px rgba(255,207,84,.13)}
+.main .scene-story-open[hidden]{display:none!important}
 .main .scene-add-selected{
   width:100%;padding:11px 10px;border-radius:11px;border:1px solid rgba(255,133,213,.40);
   background:linear-gradient(180deg,rgba(55,24,60,.96),rgba(21,8,27,.99));color:#ffd5ee;
@@ -450,6 +458,12 @@ canvas{width:100%;height:100%;display:block}
 .scene-builder-body{padding:15px}
 .scene-builder-intro{padding:11px 12px;border-radius:11px;border:1px solid rgba(67,239,255,.16);background:rgba(67,239,255,.035);color:#aec1d5;font-size:11px;line-height:1.5}
 .scene-builder-intro strong{color:#effcff}
+.scene-builder-quickbar{display:grid;grid-template-columns:minmax(150px,1fr) minmax(180px,.72fr) minmax(100px,.38fr);gap:8px;align-items:stretch;margin:10px 0 8px;padding:8px;border-radius:11px;border:1px solid rgba(217,140,255,.18);background:rgba(217,140,255,.035)}
+.scene-builder-quickinfo{display:flex;align-items:center;padding:8px 10px;border-radius:9px;border:1px solid rgba(255,255,255,.07);background:#080d15;color:#cdb9da;font-size:10px;font-weight:950;letter-spacing:.045em}
+.scene-builder-quickbar button{min-height:40px;padding:9px 10px;border-radius:9px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-size:10px;font-weight:950;cursor:pointer}
+.scene-builder-quickbar button:disabled{opacity:.38;cursor:not-allowed}
+.scene-builder-quickbar .play{border:0;color:#16051b;background:linear-gradient(90deg,#ff85d5,#b88cff);box-shadow:0 0 16px rgba(217,140,255,.12)}
+.scene-builder-quickbar button:hover:not(:disabled){filter:brightness(1.12)}
 .scene-builder-toolbar{display:grid;grid-template-columns:1fr 1fr minmax(190px,.65fr);gap:8px;margin:10px 0}
 .scene-builder-toolbar button,.scene-file-label{min-height:42px;padding:10px 11px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-size:10px;font-weight:950;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center}
 .scene-builder-toolbar button:hover:not(:disabled),.scene-file-label:hover{filter:brightness(1.14)}
@@ -468,8 +482,8 @@ canvas{width:100%;height:100%;display:block}
 .scene-builder-actions button{min-height:44px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:#0a101a;color:#fff;font-size:10px;font-weight:950;cursor:pointer}.scene-builder-actions button:disabled{opacity:.38;cursor:not-allowed}.scene-builder-actions .play{border:0;color:#16051b;background:linear-gradient(90deg,#ff85d5,#b88cff);box-shadow:0 0 18px rgba(217,140,255,.13)}.scene-builder-actions .download{border-color:rgba(98,245,155,.30);color:#bdf8d1;background:rgba(98,245,155,.07)}.scene-builder-actions .mp3{border-color:rgba(67,239,255,.30);color:#dffcff;background:rgba(67,239,255,.07)}.scene-builder-actions .clear{border-color:rgba(255,93,105,.22);color:#ffadb4;background:rgba(255,93,105,.05)}
 .scene-status{min-height:19px;margin-top:9px;color:#a9bdd1;font-size:10px;text-align:center}
 .scene-limit-note{margin-top:5px;color:#667b91;font-size:9px;text-align:center}
-@media(max-width:820px){.scene-builder-toolbar{grid-template-columns:1fr 1fr}.scene-gap-field{grid-column:1/-1}.scene-builder-actions{grid-template-columns:1fr 1fr 1fr}.scene-builder-actions .clear{grid-column:1/-1}}
-@media(max-width:560px){.scene-builder-shell{width:calc(100% - 28px);margin-top:0}.scene-builder>summary{align-items:flex-start;flex-direction:column}.scene-builder>summary small{text-align:left}.scene-builder-toolbar,.scene-builder-actions{grid-template-columns:1fr}.scene-gap-field,.scene-builder-actions .clear{grid-column:auto}.scene-row{grid-template-columns:36px 1fr}.scene-row-actions{grid-column:1/-1;justify-content:flex-start}}
+@media(max-width:820px){.scene-builder-quickbar{grid-template-columns:1fr 1fr}.scene-builder-quickinfo{grid-column:1/-1}.scene-builder-toolbar{grid-template-columns:1fr 1fr}.scene-gap-field{grid-column:1/-1}.scene-builder-actions{grid-template-columns:1fr 1fr 1fr}.scene-builder-actions .clear{grid-column:1/-1}}
+@media(max-width:560px){.scene-builder-shell{width:calc(100% - 28px);margin-top:0}.scene-builder>summary{align-items:flex-start;flex-direction:column}.scene-builder>summary small{text-align:left}.scene-builder-quickbar,.scene-builder-toolbar,.scene-builder-actions{grid-template-columns:1fr}.scene-builder-quickinfo{grid-column:auto}.scene-gap-field,.scene-builder-actions .clear{grid-column:auto}.scene-row{grid-template-columns:36px 1fr}.scene-row-actions{grid-column:1/-1;justify-content:flex-start}}
 
 /* v8.4 — per-scene mini mixer. */
 .scene-row{grid-template-columns:42px minmax(160px,.9fr) minmax(0,1.8fr) auto;align-items:stretch}
@@ -1291,6 +1305,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       <div class="sound-panel-actions">
         <button id="soundQuickPlay" class="sound-quick-play" type="button" disabled>▶ PLAY SELECTED SOUND</button>
         <button id="sceneAddSelected" class="scene-add-selected" type="button" disabled>➕ ADD SELECTED TO STORY</button>
+        <button id="sceneStoryOpen" class="scene-story-open" type="button" hidden>🎬 STORY: 0 CLIPS — OPEN</button>
       </div>
     </div>
 
@@ -1399,6 +1414,11 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
     <summary><span>🎬 SCENE BUILDER — BUILD A FULL STORY</span><small>ADD CLIPS → ARRANGE THEM → PLAY → DOWNLOAD</small></summary>
     <div class="scene-builder-body">
       <div class="scene-builder-intro"><strong>Build with blocks — now with real overlap mixing.</strong> Add story clips, sounds, music, or finished Crazy Lab productions. Drag any scene across its timeline for fast placement, then fine-tune the exact start time with the number box or arrows. Every scene can start while another scene is still playing, with its own volume, fade in, and fade out.</div>
+      <div class="scene-builder-quickbar" aria-label="Quick story playback controls">
+        <div class="scene-builder-quickinfo" id="sceneQuickInfo">🎬 STORY: 0 CLIPS</div>
+        <button class="play" id="scenePlayTop" type="button" disabled>▶ PLAY FULL STORY</button>
+        <button id="sceneStopTop" type="button" disabled>■ STOP</button>
+      </div>
       <div class="scene-builder-toolbar">
         <button id="sceneAddCurrent" type="button" disabled>➕ ADD CURRENT MIX</button>
         <label class="scene-file-label" for="sceneFileInput">📁 ADD A CLIP FROM YOUR COMPUTER</label>
@@ -3146,8 +3166,8 @@ function bindCategoryButton(btn){
       const first=$$('.sound').find(s=>!s.classList.contains('hidden'));
       if(first) first.click();
     }
-    const soundPanel=document.querySelector('.panel.main');
-    if(soundPanel)requestAnimationFrame(()=>soundPanel.scrollIntoView({behavior:'smooth',block:'start'}));
+    const soundGrid=document.getElementById('soundGrid');
+    if(soundGrid)requestAnimationFrame(()=>{soundGrid.scrollTop=0;});
   });
 }
 function buildCategoryBar(){
@@ -5250,10 +5270,18 @@ function sceneSuggestedStart(){
 function sceneSyncButtons(){
   const has=sceneClips.length>0;
   $('#scenePlay').disabled=!has||sceneRenderBusy;
+  if($('#scenePlayTop'))$('#scenePlayTop').disabled=!has||sceneRenderBusy;
   $('#sceneDownloadWav').disabled=!has||sceneRenderBusy;
   $('#sceneDownloadMp3').disabled=!has||sceneRenderBusy;
   $('#sceneClear').disabled=!has||sceneRenderBusy;
-  if(!sceneSource)$('#sceneStop').disabled=true;
+  $('#sceneStop').disabled=!sceneSource;
+  if($('#sceneStopTop'))$('#sceneStopTop').disabled=!sceneSource;
+  const storyOpen=$('#sceneStoryOpen');
+  if(storyOpen){
+    storyOpen.hidden=!has;
+    storyOpen.textContent=`🎬 STORY: ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'} — OPEN`;
+  }
+  if($('#sceneQuickInfo'))$('#sceneQuickInfo').textContent=`🎬 STORY: ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'}`;
   const currentReady=!$('#download')?.disabled;
   if($('#sceneAddCurrent'))$('#sceneAddCurrent').disabled=!currentReady||sceneRenderBusy;
 }
@@ -5405,7 +5433,7 @@ function sceneAddBuffer(buffer,name){
   const projected=startAt+buffer.duration;
   if(projected>SCENE_MAX_SECONDS)throw new Error('That would make the story longer than 15 minutes.');
   sceneClips.push({id:`scene-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,name:name||'Story Clip',buffer,startAt,volume:100,fadeIn:0,fadeOut:0});
-  sceneMarkDirty(`${name||'Clip'} added as Scene ${sceneClips.length}. Adjust START / JOIN AT to overlap it exactly where you want.`);sceneRenderList();sceneOpenAndShow();
+  sceneMarkDirty(`${name||'Clip'} added as Scene ${sceneClips.length}. Keep choosing sounds, or open Story when you are ready to arrange them.`);sceneRenderList();
 }
 async function sceneDecodeBytes(bytes){
   liveCtx ||= new (window.AudioContext||window.webkitAudioContext)();
@@ -5431,12 +5459,21 @@ async function sceneBufferForSelected(){
   throw new Error(`Generate ${displayName} first, then add it to the story.`);
 }
 async function sceneAddSelectedClip(){
-  const btn=$('#sceneAddSelected'),old=btn?.textContent;
+  const btn=$('#sceneAddSelected');
+  let added=false;
   try{
     if(btn){btn.disabled=true;btn.textContent='⏳ ADDING…';}
-    const clip=await sceneBufferForSelected();sceneAddBuffer(clip.buffer,clip.name);
+    const clip=await sceneBufferForSelected();sceneAddBuffer(clip.buffer,clip.name);added=true;
   }catch(err){console.error(err);$('#sceneStatus').textContent=err.message||'Could not add that clip.';alert(err.message||'Could not add that clip.');}
-  finally{if(btn){btn.textContent=old||'➕ ADD SELECTED TO STORY';btn.disabled=!currentSelectedSoundButton;}}
+  finally{
+    if(btn){
+      btn.disabled=!currentSelectedSoundButton;
+      if(added){
+        btn.textContent=`✓ ADDED — ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'}`;
+        setTimeout(()=>{if(btn.textContent.startsWith('✓ ADDED'))btn.textContent='➕ ADD SELECTED TO STORY';},1000);
+      }else btn.textContent='➕ ADD SELECTED TO STORY';
+    }
+  }
 }
 async function sceneAddCurrentMix(){
   const btn=$('#sceneAddCurrent'),old=btn.textContent;
@@ -5475,8 +5512,8 @@ function sceneStopPlayback(){
 async function scenePreviewBuffer(buffer,label='Clip'){
   sceneStopPlayback();
   liveCtx ||= new (window.AudioContext||window.webkitAudioContext)();if(liveCtx.state==='suspended')await liveCtx.resume();
-  const src=liveCtx.createBufferSource(),gain=liveCtx.createGain();src.buffer=buffer;gain.gain.value=(+($('#previewVolume')?.value||80))/100;src.connect(gain);gain.connect(liveCtx.destination);src.start();sceneSource=src;$('#sceneStop').disabled=false;$('#sceneStatus').textContent=`Playing ${label}…`;
-  src.onended=()=>{if(sceneSource===src){sceneSource=null;$('#sceneStop').disabled=true;sceneSyncButtons();}};
+  const src=liveCtx.createBufferSource(),gain=liveCtx.createGain();src.buffer=buffer;gain.gain.value=(+($('#previewVolume')?.value||80))/100;src.connect(gain);gain.connect(liveCtx.destination);src.start();sceneSource=src;sceneSyncButtons();$('#sceneStatus').textContent=`Playing ${label}…`;
+  src.onended=()=>{if(sceneSource===src){sceneSource=null;sceneSyncButtons();}};
 }
 function sceneScheduleClip(ctx,clip,destination,startOverride=null){
   const start=startOverride===null?Math.max(0,+clip.startAt||0):Math.max(0,+startOverride||0);
@@ -5538,6 +5575,9 @@ function sceneClearStory(){
 }
 
 $('#sceneAddSelected')?.addEventListener('click',sceneAddSelectedClip);
+$('#sceneStoryOpen')?.addEventListener('click',sceneOpenAndShow);
+$('#scenePlayTop')?.addEventListener('click',scenePlayStory);
+$('#sceneStopTop')?.addEventListener('click',sceneStopPlayback);
 $('#sceneAddCurrent')?.addEventListener('click',sceneAddCurrentMix);
 $('#sceneFileInput')?.addEventListener('change',async e=>{const files=e.target.files;if(files?.length)await sceneAddFiles(files);e.target.value='';});
 $('#sceneOverlap')?.addEventListener('change',()=>{$('#sceneStatus').textContent='Default space / overlap changed. New clips and AUTO PLACE will use this timing.';});
