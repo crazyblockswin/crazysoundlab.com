@@ -1150,6 +1150,33 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
   }
 }
 
+
+
+/* ===== Local Demo Video Popup ===== */
+.demo-video-launch{
+  display:flex;justify-content:center;margin:0 0 14px;
+}
+.demo-video-button{
+  min-width:290px;padding:12px 22px;border-radius:12px;cursor:pointer;
+  border:1px solid rgba(67,239,255,.42);
+  background:linear-gradient(90deg,rgba(67,239,255,.13),rgba(165,102,255,.13));
+  color:#effcff;font-size:12px;font-weight:950;letter-spacing:.045em;
+  text-shadow:0 0 10px rgba(67,239,255,.24);
+  box-shadow:0 5px 14px rgba(0,0,0,.30),0 0 18px rgba(67,239,255,.08),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:filter .14s ease,transform .14s ease,box-shadow .14s ease;
+}
+.demo-video-button:hover{filter:brightness(1.14);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.34),0 0 24px rgba(67,239,255,.16),inset 0 1px 0 rgba(255,255,255,.10)}
+.demo-video-button:active{transform:translateY(1px)}
+.demo-video-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:rgba(1,4,9,.86);backdrop-filter:blur(8px)}
+.demo-video-modal[hidden]{display:none!important}
+.demo-video-card{width:min(1050px,94vw);max-height:92vh;padding:14px;border-radius:18px;border:1px solid rgba(67,239,255,.30);background:linear-gradient(180deg,#0b111c,#05080e);box-shadow:0 24px 90px rgba(0,0,0,.68),0 0 34px rgba(67,239,255,.10)}
+.demo-video-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 10px}
+.demo-video-head b{font-size:15px;letter-spacing:.045em;color:#f2fbff}
+.demo-video-close{min-width:86px;padding:9px 12px;border-radius:10px;border:1px solid rgba(255,93,105,.34);background:rgba(255,93,105,.08);color:#ffbac0;font-size:10px;font-weight:950;cursor:pointer}
+.demo-video-close:hover{filter:brightness(1.18);background:rgba(255,93,105,.13)}
+.demo-video-player{display:block;width:100%;max-height:calc(92vh - 86px);aspect-ratio:16/9;border-radius:12px;background:#000;outline:none}
+.demo-video-note{margin:9px 2px 0;color:#8298ad;font-size:10px;text-align:center}
+@media(max-width:560px){.demo-video-launch{margin-bottom:12px}.demo-video-button{width:100%;min-width:0}.demo-video-modal{padding:10px}.demo-video-card{width:98vw;padding:10px}.demo-video-head b{font-size:12px}}
 </style>
 
 <script>
@@ -1215,6 +1242,24 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
   <section class="hero">
     <h1>CREATE CUSTOM SOUNDS &amp; VOICES OR USE <span>READY-MADE SOUNDS</span></h1>
   </section>
+
+  <div class="demo-video-launch">
+    <button class="demo-video-button" id="demoVideoOpen" type="button">▶ WATCH CRAZY SOUND LAB DEMO</button>
+  </div>
+
+  <div class="demo-video-modal" id="demoVideoModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="demoVideoTitle">
+    <div class="demo-video-card" role="document">
+      <div class="demo-video-head">
+        <b id="demoVideoTitle">🎬 CRAZY SOUND LAB DEMO</b>
+        <button class="demo-video-close" id="demoVideoClose" type="button">✕ CLOSE</button>
+      </div>
+      <video class="demo-video-player" id="demoVideoPlayer" controls playsinline preload="metadata">
+        <source src="crazy-sound-lab-demo.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+      <div class="demo-video-note">Video plays directly from CrazySoundLab.com.</div>
+    </div>
+  </div>
 
   <section class="voice-lab" id="voiceLab" aria-label="Voice Lab text to voice generator">
     <div class="voice-lab-head">
@@ -5725,6 +5770,36 @@ updateAmbienceUI();
   if(buddy) buddy.addEventListener('click',()=>playBannerSound('buddyBark'));
   if(logo) logo.addEventListener('click',()=>playBannerSound('studioMusic'));
   if(pig) pig.addEventListener('click',()=>playBannerSound('porkchopOink'));
+})();
+</script>
+
+
+<script>
+(function(){
+  const modal=document.getElementById('demoVideoModal');
+  const openBtn=document.getElementById('demoVideoOpen');
+  const closeBtn=document.getElementById('demoVideoClose');
+  const player=document.getElementById('demoVideoPlayer');
+  if(!modal||!openBtn||!closeBtn||!player)return;
+
+  function openDemo(){
+    modal.hidden=false;
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+  function closeDemo(){
+    try{player.pause();}catch(e){}
+    modal.hidden=true;
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener('click',openDemo);
+  closeBtn.addEventListener('click',closeDemo);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeDemo();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeDemo();});
 })();
 </script>
 
