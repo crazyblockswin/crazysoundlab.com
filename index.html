@@ -614,6 +614,18 @@ canvas{width:100%;height:100%;display:block}
 .side .bottom-download:not(:disabled){border-color:rgba(98,245,155,.32);background:rgba(98,245,155,.10);color:#bdf8d1;box-shadow:0 0 14px rgba(98,245,155,.08)}
 .side .bottom-download.mp3:not(:disabled){border-color:rgba(67,239,255,.32);background:rgba(67,239,255,.09);color:#dffcff;box-shadow:0 0 14px rgba(67,239,255,.08)}
 .side .bottom-download:disabled{opacity:.4;cursor:not-allowed}
+.side .mixer-story-add{
+  width:100%;margin:0 0 8px;padding:11px 10px;border-radius:11px;
+  border:1px solid rgba(255,133,213,.40);
+  background:linear-gradient(180deg,rgba(55,24,60,.96),rgba(21,8,27,.99));
+  color:#ffd5ee;font-size:11px;font-weight:950;letter-spacing:.035em;cursor:pointer;
+  text-shadow:0 0 9px rgba(255,133,213,.24);
+  box-shadow:0 4px 10px rgba(0,0,0,.34),0 0 16px rgba(255,133,213,.08),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:filter .14s ease,transform .14s ease,box-shadow .14s ease;
+}
+.side .mixer-story-add:hover:not(:disabled){filter:brightness(1.15);transform:translateY(-1px);box-shadow:0 5px 12px rgba(0,0,0,.38),0 0 20px rgba(255,133,213,.18),inset 0 1px 0 rgba(255,255,255,.11)}
+.side .mixer-story-add:active:not(:disabled){transform:translateY(1px)}
+.side .mixer-story-add:disabled{opacity:.4;cursor:not-allowed;filter:none;transform:none}
 @media(max-width:520px){.side .bottom-download-row{grid-template-columns:1fr}}
 .side .tagline-copy{line-height:1.45}
 .side>.transport{
@@ -1466,6 +1478,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       </div>
 
       <div class="tagline">
+        <button id="mixerAddToStory" class="mixer-story-add" type="button" disabled>➕ ADD CURRENT MIX TO STORY</button>
         <div class="bottom-download-row" aria-label="Download finished audio">
           <button id="downloadBottomWav" class="download-action bottom-download" disabled>⬇ DOWNLOAD WAV</button>
           <button id="downloadBottomMp3" class="download-action bottom-download mp3" disabled>⬇ DOWNLOAD MP3</button>
@@ -5349,6 +5362,7 @@ function sceneSyncButtons(){
   });
   const currentReady=!$('#download')?.disabled;
   if($('#sceneAddCurrent'))$('#sceneAddCurrent').disabled=!currentReady||sceneRenderBusy;
+  if($('#mixerAddToStory'))$('#mixerAddToStory').disabled=!currentReady||sceneRenderBusy;
 }
 function sceneUpdateClip(index,key,value){
   const clip=sceneClips[index];if(!clip)return;
@@ -5557,6 +5571,30 @@ async function sceneAddCurrentMix(){
   }catch(err){console.error(err);$('#sceneStatus').textContent=err.message||'Create a mix first.';alert(err.message||'Create a mix first.');}
   finally{btn.textContent=old;sceneSyncButtons();}
 }
+async function mixerAddCurrentMixToStory(){
+  const btn=$('#mixerAddToStory');
+  if(!btn)return;
+  const old='➕ ADD CURRENT MIX TO STORY';
+  let added=false;
+  try{
+    btn.disabled=true;btn.textContent='⏳ ADDING TO STORY…';
+    const buffer=await currentAudioBufferForMp3();
+    let name='Current Crazy Mix';
+    if(isVoiceLabInMixer())name=hasVoiceLayers()?`Voice + ${voiceLayerNames()}`:'Voice Lab Mix';
+    else if(currentSample?.name)name=`${currentSample.name} Mix`;
+    sceneAddBuffer(buffer,name,false);
+    added=true;
+    btn.textContent=`✓ ADDED TO STORY — ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'}`;
+  }catch(err){
+    console.error(err);
+    $('#sceneStatus').textContent=err.message||'Create a mix first.';
+    alert(err.message||'Create a mix first.');
+  }finally{
+    sceneSyncButtons();
+    if(added)setTimeout(()=>{if($('#mixerAddToStory'))$('#mixerAddToStory').textContent=old;},1300);
+    else btn.textContent=old;
+  }
+}
 async function sceneAddFiles(files){
   for(const file of [...files]){
     if(sceneClips.length>=SCENE_MAX_CLIPS)break;
@@ -5651,6 +5689,7 @@ $('#sceneStoryOpenTop')?.addEventListener('click',sceneOpenAndShow);
 $('#scenePlayTop')?.addEventListener('click',scenePlayStory);
 $('#sceneStopTop')?.addEventListener('click',sceneStopPlayback);
 $('#sceneAddCurrent')?.addEventListener('click',sceneAddCurrentMix);
+$('#mixerAddToStory')?.addEventListener('click',mixerAddCurrentMixToStory);
 $('#sceneFileInput')?.addEventListener('change',async e=>{const files=e.target.files;if(files?.length)await sceneAddFiles(files);e.target.value='';});
 $('#sceneOverlap')?.addEventListener('change',()=>{$('#sceneStatus').textContent='Default space / overlap changed. New clips and AUTO PLACE will use this timing.';});
 $('#scenePlay')?.addEventListener('click',scenePlayStory);
@@ -5704,6 +5743,7 @@ function syncBottomDownload(){
   if(bottomDownloadWav)bottomDownloadWav.disabled=!ready;
   if(bottomDownloadMp3&&!mp3DownloadBusy)bottomDownloadMp3.disabled=!ready;
   if($('#sceneAddCurrent')&&!sceneRenderBusy)$('#sceneAddCurrent').disabled=!ready;
+  if($('#mixerAddToStory')&&!sceneRenderBusy)$('#mixerAddToStory').disabled=!ready;
 }
 if(mainDownloadBtn){
   bottomDownloadWav?.addEventListener('click',()=>{if(!mainDownloadBtn.disabled)mainDownloadBtn.click()});
