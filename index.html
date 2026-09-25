@@ -429,25 +429,37 @@ canvas{width:100%;height:100%;display:block}
 .mixer-samples-promo b{display:block;margin-bottom:4px;color:#ffe58f;font-size:11px;letter-spacing:.055em;text-shadow:0 0 9px rgba(255,207,84,.22)}
 .mixer-samples-promo strong{color:#fff}
 .mixer-samples-promo .hollywood{display:block;margin-top:5px;color:#ffb6dc;font-weight:950;font-size:11px;letter-spacing:.04em;text-shadow:0 0 10px rgba(255,133,213,.28)}
-.sound-panel-actions{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+/* User-friendly sound action docks: one compact set above the list and one full set below it. */
+.sound-action-dock{
+  flex:0 0 auto;margin:0 0 9px;padding:8px;border-radius:11px;
+  border:1px solid rgba(67,239,255,.18);background:linear-gradient(180deg,rgba(8,18,29,.88),rgba(6,11,18,.94));
+  box-shadow:0 4px 12px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.035)
+}
+.sound-action-dock-head{display:flex;align-items:center;gap:6px;min-width:0;margin-bottom:7px;font-size:9px;letter-spacing:.045em}
+.sound-action-dock-head b{flex:0 0 auto;color:#90a8bd}
+.sound-action-dock-head span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#f4fbff;font-size:10px;font-weight:950}
+.sound-action-dock-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.sound-action-dock button,.sound-panel-actions button{min-width:0;cursor:pointer;transition:filter .14s ease,transform .14s ease,box-shadow .14s ease}
+.sound-action-dock button:disabled,.sound-panel-actions button:disabled{opacity:.42;cursor:not-allowed;filter:none;transform:none}
+.sound-action-dock-buttons button{min-height:34px;padding:7px 5px;border-radius:9px;font-size:9px;font-weight:950;letter-spacing:.02em}
+.sound-action-dock .dock-play{border:1px solid rgba(98,245,155,.38);background:linear-gradient(180deg,rgba(18,54,39,.96),rgba(7,24,17,.98));color:#caffdc}
+.sound-action-dock .dock-mixer,.main .go-to-mixer{border:1px solid rgba(67,239,255,.40);background:linear-gradient(180deg,rgba(12,44,58,.96),rgba(5,22,31,.99));color:#c9faff;text-shadow:0 0 9px rgba(67,239,255,.22)}
+.sound-action-dock .dock-story,.main .scene-add-selected{border:1px solid rgba(255,133,213,.40);background:linear-gradient(180deg,rgba(55,24,60,.96),rgba(21,8,27,.99));color:#ffd5ee;text-shadow:0 0 9px rgba(255,133,213,.24)}
+.sound-action-dock button:hover:not(:disabled),.sound-panel-actions button:hover:not(:disabled){filter:brightness(1.15);transform:translateY(-1px)}
+.sound-panel-actions{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}
 .sound-panel-actions .sound-quick-play{margin:0}
+.sound-panel-actions>.sound-quick-play,.sound-panel-actions>.go-to-mixer,.sound-panel-actions>.scene-add-selected{width:100%;min-height:40px;padding:9px 6px;border-radius:10px;font-size:9px;font-weight:950;letter-spacing:.025em}
+.main .scene-add-selected{box-shadow:0 4px 10px rgba(0,0,0,.34),0 0 16px rgba(255,133,213,.08),inset 0 1px 0 rgba(255,255,255,.08)}
+.main .go-to-mixer{box-shadow:0 4px 10px rgba(0,0,0,.34),0 0 16px rgba(67,239,255,.08),inset 0 1px 0 rgba(255,255,255,.08)}
 .main .scene-story-open{
-  grid-column:1/-1;width:100%;min-height:34px;padding:8px 10px;border-radius:10px;
+  grid-column:1/-1;width:100%;min-height:32px;margin-top:1px;padding:7px 9px;border-radius:9px;
   border:1px solid rgba(255,207,84,.34);background:linear-gradient(180deg,rgba(52,39,9,.58),rgba(18,14,5,.82));
-  color:#ffe69b;font-size:10px;font-weight:950;letter-spacing:.045em;cursor:pointer;
+  color:#ffe69b;font-size:9px;font-weight:950;letter-spacing:.04em;cursor:pointer;
   box-shadow:0 3px 9px rgba(0,0,0,.28),0 0 14px rgba(255,207,84,.07),inset 0 1px 0 rgba(255,255,255,.06)
 }
-.main .scene-story-open:hover{filter:brightness(1.14);border-color:rgba(255,207,84,.55);box-shadow:0 4px 11px rgba(0,0,0,.32),0 0 18px rgba(255,207,84,.13)}
+.main .scene-story-open:hover{filter:brightness(1.14);border-color:rgba(255,207,84,.55)}
 .main .scene-story-open[hidden]{display:none!important}
-.main .scene-add-selected{
-  width:100%;padding:11px 10px;border-radius:11px;border:1px solid rgba(255,133,213,.40);
-  background:linear-gradient(180deg,rgba(55,24,60,.96),rgba(21,8,27,.99));color:#ffd5ee;
-  font-size:10px;font-weight:950;letter-spacing:.035em;cursor:pointer;text-shadow:0 0 9px rgba(255,133,213,.24);
-  box-shadow:0 4px 10px rgba(0,0,0,.34),0 0 16px rgba(255,133,213,.08),inset 0 1px 0 rgba(255,255,255,.08)
-}
-.main .scene-add-selected:hover:not(:disabled){filter:brightness(1.15);box-shadow:0 5px 12px rgba(0,0,0,.38),0 0 20px rgba(255,133,213,.18),inset 0 1px 0 rgba(255,255,255,.11)}
-.main .scene-add-selected:disabled{opacity:.42;cursor:not-allowed}
-@media(max-width:560px){.sound-panel-actions{grid-template-columns:1fr}}
+@media(max-width:560px){.sound-panel-actions{grid-template-columns:1fr}.sound-action-dock-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 .scene-builder-shell{width:min(1380px,calc(100% - 28px));margin:-20px auto 24px}
 .scene-builder{border:1px solid rgba(255,133,213,.34);border-radius:18px;background:linear-gradient(180deg,rgba(24,13,32,.97),rgba(7,10,18,.99));box-shadow:0 14px 34px rgba(0,0,0,.36),0 0 22px rgba(217,140,255,.08);overflow:hidden}
@@ -1259,6 +1271,15 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         You’re not just making sounds — you’re the storyteller, the producer, and the master of your own production.
         <span class="hollywood">LOOK OUT, HOLLYWOOD! 🎬</span>
       </div>
+      <div class="sound-action-dock" aria-label="Selected sound quick actions">
+        <div class="sound-action-dock-head"><b>SELECTED:</b><span id="selectedActionName">Choose a sound</span></div>
+        <div class="sound-action-dock-buttons">
+          <button id="soundQuickPlayTop" class="dock-play" type="button" disabled>▶ PLAY</button>
+          <button id="goToMixerTop" class="dock-mixer" type="button" disabled>🎛️ MIXER</button>
+          <button id="sceneAddSelectedTop" class="dock-story" type="button" disabled>➕ STORY</button>
+        </div>
+        <button id="sceneStoryOpenTop" class="scene-story-open" type="button" hidden>🎬 STORY: 0 CLIPS — OPEN</button>
+      </div>
 <div class="sound-grid" id="soundGrid">
         <button class="sound" data-type="impact" data-cat="game"><span class="icon">💥</span><b>Impact</b><small>Hits, crashes, punches</small></button>
         <button class="sound" data-type="explosion" data-cat="game"><span class="icon">🔥</span><b>Explosion</b><small>Booms with debris</small></button>
@@ -1303,8 +1324,9 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <button class="sound" data-type="creakingDoor" data-cat="horror"><span class="icon">🕯️</span><b>Creaking Door</b><small>Old hinge and wooden groan</small></button>
       </div>
       <div class="sound-panel-actions">
-        <button id="soundQuickPlay" class="sound-quick-play" type="button" disabled>▶ PLAY SELECTED SOUND</button>
-        <button id="sceneAddSelected" class="scene-add-selected" type="button" disabled>➕ ADD SELECTED TO STORY</button>
+        <button id="soundQuickPlay" class="sound-quick-play" type="button" disabled>▶ PLAY SOUND</button>
+        <button id="goToMixer" class="go-to-mixer" type="button" disabled>🎛️ GO TO MIXER</button>
+        <button id="sceneAddSelected" class="scene-add-selected" type="button" disabled>➕ ADD TO STORY</button>
         <button id="sceneStoryOpen" class="scene-story-open" type="button" hidden>🎬 STORY: 0 CLIPS — OPEN</button>
       </div>
     </div>
@@ -3106,8 +3128,7 @@ function bindSoundButton(btn){
     $$('.sound').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
     $('#chosen').textContent=btn.querySelector('b').textContent+' selected';
     currentSelectedSoundButton=btn;
-    const sceneAddSelected=$('#sceneAddSelected');
-    if(sceneAddSelected)sceneAddSelected.disabled=false;
+    syncSelectedSoundActions();
     if(btn.dataset.sampleId){
       await selectLibrarySample(btn.dataset.sampleId,btn);
       return;
@@ -3166,8 +3187,8 @@ function bindCategoryButton(btn){
       const first=$$('.sound').find(s=>!s.classList.contains('hidden'));
       if(first) first.click();
     }
-    const soundGrid=document.getElementById('soundGrid');
-    if(soundGrid)requestAnimationFrame(()=>{soundGrid.scrollTop=0;});
+    const soundPanel=document.querySelector('.panel.main');
+    if(soundPanel)requestAnimationFrame(()=>soundPanel.scrollIntoView({behavior:'smooth',block:'start'}));
   });
 }
 function buildCategoryBar(){
@@ -5276,12 +5297,11 @@ function sceneSyncButtons(){
   $('#sceneClear').disabled=!has||sceneRenderBusy;
   $('#sceneStop').disabled=!sceneSource;
   if($('#sceneStopTop'))$('#sceneStopTop').disabled=!sceneSource;
-  const storyOpen=$('#sceneStoryOpen');
-  if(storyOpen){
-    storyOpen.hidden=!has;
-    storyOpen.textContent=`🎬 STORY: ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'} — OPEN`;
-  }
-  if($('#sceneQuickInfo'))$('#sceneQuickInfo').textContent=`🎬 STORY: ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'}`;
+  const storyText=`🎬 STORY: ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'}`;
+  if($('#sceneQuickInfo'))$('#sceneQuickInfo').textContent=storyText;
+  [$('#sceneStoryOpen'),$('#sceneStoryOpenTop')].filter(Boolean).forEach(btn=>{
+    btn.hidden=!has;btn.textContent=`${storyText} — OPEN`;
+  });
   const currentReady=!$('#download')?.disabled;
   if($('#sceneAddCurrent'))$('#sceneAddCurrent').disabled=!currentReady||sceneRenderBusy;
 }
@@ -5426,14 +5446,18 @@ function sceneRenderList(){
 function sceneOpenAndShow(){
   const details=$('#sceneBuilder');if(details){details.open=true;requestAnimationFrame(()=>details.scrollIntoView({behavior:'smooth',block:'start'}));}
 }
-function sceneAddBuffer(buffer,name){
+function sceneAddBuffer(buffer,name,showBuilder=true){
   if(!buffer)throw new Error('No audio clip is ready to add.');
   if(sceneClips.length>=SCENE_MAX_CLIPS)throw new Error(`Scene Builder holds up to ${SCENE_MAX_CLIPS} clips.`);
   const startAt=sceneSuggestedStart();
   const projected=startAt+buffer.duration;
   if(projected>SCENE_MAX_SECONDS)throw new Error('That would make the story longer than 15 minutes.');
   sceneClips.push({id:`scene-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,name:name||'Story Clip',buffer,startAt,volume:100,fadeIn:0,fadeOut:0});
-  sceneMarkDirty(`${name||'Clip'} added as Scene ${sceneClips.length}. Keep choosing sounds, or open Story when you are ready to arrange them.`);sceneRenderList();
+  sceneMarkDirty(showBuilder
+    ?`${name||'Clip'} added as Scene ${sceneClips.length}. Adjust START / JOIN AT to overlap it exactly where you want.`
+    :`${name||'Clip'} added as Scene ${sceneClips.length}. Keep choosing sounds, or open Story when you are ready.`);
+  sceneRenderList();
+  if(showBuilder)sceneOpenAndShow();
 }
 async function sceneDecodeBytes(bytes){
   liveCtx ||= new (window.AudioContext||window.webkitAudioContext)();
@@ -5459,19 +5483,20 @@ async function sceneBufferForSelected(){
   throw new Error(`Generate ${displayName} first, then add it to the story.`);
 }
 async function sceneAddSelectedClip(){
-  const btn=$('#sceneAddSelected');
+  const buttons=[$('#sceneAddSelected'),$('#sceneAddSelectedTop')].filter(Boolean);
   let added=false;
   try{
-    if(btn){btn.disabled=true;btn.textContent='⏳ ADDING…';}
-    const clip=await sceneBufferForSelected();sceneAddBuffer(clip.buffer,clip.name);added=true;
+    buttons.forEach(btn=>{btn.disabled=true;btn.textContent='⏳ ADDING…';});
+    const clip=await sceneBufferForSelected();sceneAddBuffer(clip.buffer,clip.name,false);added=true;
   }catch(err){console.error(err);$('#sceneStatus').textContent=err.message||'Could not add that clip.';alert(err.message||'Could not add that clip.');}
   finally{
-    if(btn){
-      btn.disabled=!currentSelectedSoundButton;
-      if(added){
-        btn.textContent=`✓ ADDED — ${sceneClips.length} CLIP${sceneClips.length===1?'':'S'}`;
-        setTimeout(()=>{if(btn.textContent.startsWith('✓ ADDED'))btn.textContent='➕ ADD SELECTED TO STORY';},1000);
-      }else btn.textContent='➕ ADD SELECTED TO STORY';
+    syncSelectedSoundActions();
+    if(added){
+      buttons.forEach(btn=>btn.textContent=`✓ ADDED — ${sceneClips.length}`);
+      setTimeout(()=>{
+        if($('#sceneAddSelected'))$('#sceneAddSelected').textContent='➕ ADD TO STORY';
+        if($('#sceneAddSelectedTop'))$('#sceneAddSelectedTop').textContent='➕ STORY';
+      },1100);
     }
   }
 }
@@ -5507,7 +5532,7 @@ function sceneRemoveClip(index){
 }
 function sceneStopPlayback(){
   if(sceneSource){try{sceneSource.stop()}catch(e){}try{sceneSource.disconnect()}catch(e){}sceneSource=null;}
-  $('#sceneStop').disabled=true;sceneSyncButtons();
+  sceneSyncButtons();
 }
 async function scenePreviewBuffer(buffer,label='Clip'){
   sceneStopPlayback();
@@ -5575,7 +5600,9 @@ function sceneClearStory(){
 }
 
 $('#sceneAddSelected')?.addEventListener('click',sceneAddSelectedClip);
+$('#sceneAddSelectedTop')?.addEventListener('click',sceneAddSelectedClip);
 $('#sceneStoryOpen')?.addEventListener('click',sceneOpenAndShow);
+$('#sceneStoryOpenTop')?.addEventListener('click',sceneOpenAndShow);
 $('#scenePlayTop')?.addEventListener('click',scenePlayStory);
 $('#sceneStopTop')?.addEventListener('click',sceneStopPlayback);
 $('#sceneAddCurrent')?.addEventListener('click',sceneAddCurrentMix);
@@ -5591,18 +5618,30 @@ sceneRenderList();
 $('#generate').addEventListener('click',generate);
 $('#play').addEventListener('click',playCurrent);
 
-// Mirror the main Play Again button at the bottom of the left sound panel.
-// It uses the exact same playback path as the original button.
+// Keep the top and bottom sound action docks synchronized with Crazy Mixer.
 const soundQuickPlay=$('#soundQuickPlay');
+const soundQuickPlayTop=$('#soundQuickPlayTop');
 const mainPlayButton=$('#play');
 function syncSoundQuickPlay(){
-  if(!soundQuickPlay||!mainPlayButton)return;
-  soundQuickPlay.disabled=mainPlayButton.disabled;
+  if(!mainPlayButton)return;
+  [soundQuickPlay,soundQuickPlayTop].filter(Boolean).forEach(btn=>btn.disabled=mainPlayButton.disabled);
 }
-if(soundQuickPlay&&mainPlayButton){
-  soundQuickPlay.addEventListener('click',()=>{
-    if(!mainPlayButton.disabled) mainPlayButton.click();
-  });
+function syncSelectedSoundActions(){
+  const has=!!currentSelectedSoundButton;
+  const name=currentSelectedSoundButton?.querySelector('b')?.textContent?.trim()||'Choose a sound';
+  if($('#selectedActionName'))$('#selectedActionName').textContent=name;
+  [$('#goToMixer'),$('#goToMixerTop'),$('#sceneAddSelected'),$('#sceneAddSelectedTop')].filter(Boolean).forEach(btn=>btn.disabled=!has);
+}
+function goToSelectedMixer(){
+  const mixer=document.getElementById('workbench');if(!mixer)return;
+  const target=Math.max(0,mixer.getBoundingClientRect().top+window.pageYOffset-92);
+  window.scrollTo({top:target,behavior:'smooth'});
+}
+[soundQuickPlay,soundQuickPlayTop].filter(Boolean).forEach(btn=>btn.addEventListener('click',()=>{
+  if(mainPlayButton&&!mainPlayButton.disabled)mainPlayButton.click();
+}));
+[$('#goToMixer'),$('#goToMixerTop')].filter(Boolean).forEach(btn=>btn.addEventListener('click',goToSelectedMixer));
+if(mainPlayButton){
   new MutationObserver(syncSoundQuickPlay).observe(mainPlayButton,{attributes:true,attributeFilter:['disabled']});
   syncSoundQuickPlay();
 }
@@ -5645,7 +5684,7 @@ window.addEventListener('resize',()=>currentBuffer&&drawWave(currentBuffer));
 buildCategoryBar();
 renderLibraryCards();
 currentSelectedSoundButton=$('.sound.active')||currentSelectedSoundButton;
-if($('#sceneAddSelected'))$('#sceneAddSelected').disabled=!currentSelectedSoundButton;
+syncSelectedSoundActions();
 renderControls();
 updateAmbienceUI();
 </script>
