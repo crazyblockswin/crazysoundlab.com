@@ -1793,6 +1793,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🎤",
       "filename": "Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3",
       "file": "sounds/mixer-samples/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
+    },
+    {
+      "id": "sound-mugf9ui4",
+      "category": "people",
+      "name": "Crowd Panics Screams",
+      "description": "Crowd panics and screams",
+      "icon": "🔊",
+      "filename": "crowd-panic-scream.mp3",
+      "file": "sounds/people/crowd-panic-scream.mp3"
     }
   ]
 };
