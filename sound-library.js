@@ -1777,15 +1777,6 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/mixer-samples/sample-voice-tow-yard-complaint.mp3"
     },
     {
-      "id": "sound-muehzjka",
-      "category": "mixer-samples",
-      "name": "Sample Voice and Sound Mix WAV",
-      "description": "Sample Voice and Sound Mix WAV",
-      "icon": "🔊🎤",
-      "filename": "Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav",
-      "file": "sounds/mixer-samples/Sample-WAV-Crazy-Voice-Sound-Lab-Recording-mixed.wav"
-    },
-    {
       "id": "sound-muehx08v",
       "category": "mixer-samples",
       "name": "Sample Voice and Sound Mix mp3",
