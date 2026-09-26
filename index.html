@@ -1267,8 +1267,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       </div>
       <iframe class="demo-video-player" id="demoVideoPlayer"
         title="Crazy Sound Lab Demo"
-        src=""
-        data-youtube-src="https://www.youtube-nocookie.com/embed/vGnuLYFll4I?autoplay=1&rel=0"
+        data-youtube-src="https://www.youtube.com/embed/vGnuLYFll4I?autoplay=1&rel=0"
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
         allowfullscreen></iframe>
       <div class="demo-video-note">Demo video hosted by YouTube.</div>
@@ -5825,14 +5824,14 @@ updateAmbienceUI();
   if(!modal||!openBtn||!closeBtn||!player)return;
 
   function openDemo(){
-    if(!player.src) player.src=player.dataset.youtubeSrc || '';
+    player.src=player.dataset.youtubeSrc || '';
     modal.hidden=false;
     modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     closeBtn.focus();
   }
   function closeDemo(){
-    player.src='';
+    player.removeAttribute('src');
     modal.hidden=true;
     modal.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
