@@ -1186,7 +1186,7 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
 .demo-video-head b{font-size:15px;letter-spacing:.045em;color:#f2fbff}
 .demo-video-close{min-width:86px;padding:9px 12px;border-radius:10px;border:1px solid rgba(255,93,105,.34);background:rgba(255,93,105,.08);color:#ffbac0;font-size:10px;font-weight:950;cursor:pointer}
 .demo-video-close:hover{filter:brightness(1.18);background:rgba(255,93,105,.13)}
-.demo-video-player{display:block;width:100%;max-height:calc(92vh - 86px);aspect-ratio:16/9;border-radius:12px;background:#000;outline:none}
+.demo-video-player{display:block;width:100%;max-height:calc(92vh - 86px);aspect-ratio:16/9;border:0;border-radius:12px;background:#000;outline:none}
 .demo-video-note{margin:9px 2px 0;color:#8298ad;font-size:10px;text-align:center}
 @media(max-width:560px){.demo-video-launch{margin-bottom:12px}.demo-video-button{width:100%;min-width:0}.demo-video-modal{padding:10px}.demo-video-card{width:98vw;padding:10px}.demo-video-head b{font-size:12px}}
 </style>
@@ -1265,11 +1265,13 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
         <b id="demoVideoTitle">🎬 CRAZY SOUND LAB DEMO</b>
         <button class="demo-video-close" id="demoVideoClose" type="button">✕ CLOSE</button>
       </div>
-      <video class="demo-video-player" id="demoVideoPlayer" controls playsinline preload="metadata">
-        <source src="crazy-sound-lab-demo.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-      <div class="demo-video-note">Video plays directly from CrazySoundLab.com.</div>
+      <iframe class="demo-video-player" id="demoVideoPlayer"
+        title="Crazy Sound Lab Demo"
+        src=""
+        data-youtube-src="https://www.youtube-nocookie.com/embed/vGnuLYFll4I?autoplay=1&rel=0"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        allowfullscreen></iframe>
+      <div class="demo-video-note">Demo video hosted by YouTube.</div>
     </div>
   </div>
 
@@ -5823,13 +5825,14 @@ updateAmbienceUI();
   if(!modal||!openBtn||!closeBtn||!player)return;
 
   function openDemo(){
+    if(!player.src) player.src=player.dataset.youtubeSrc || '';
     modal.hidden=false;
     modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     closeBtn.focus();
   }
   function closeDemo(){
-    try{player.pause();}catch(e){}
+    player.src='';
     modal.hidden=true;
     modal.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
