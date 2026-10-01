@@ -108,6 +108,12 @@ window.CSL_SOUND_LIBRARY = {
       "name": "Sports",
       "icon": "🤾‍♂️",
       "builtIn": false
+    },
+    {
+      "id": "boat-sounds",
+      "name": "Boat Sounds",
+      "icon": "🔊",
+      "builtIn": false
     }
   ],
   "sounds": [
@@ -1793,6 +1799,33 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "crowd-panic-scream.mp3",
       "file": "sounds/people/crowd-panic-scream.mp3"
+    },
+    {
+      "id": "sound-muoz1dcc",
+      "category": "boat-sounds",
+      "name": "Yacht Engine Running",
+      "description": "Yacht running",
+      "icon": "🚤",
+      "filename": "yacht.mp3",
+      "file": "sounds/boat-sounds/yacht.mp3"
+    },
+    {
+      "id": "sound-muoz37p1",
+      "category": "animals",
+      "name": "Bee Buzzing",
+      "description": "bee buzz sound",
+      "icon": "🔊",
+      "filename": "bee.mp3",
+      "file": "sounds/animals/bee.mp3"
+    },
+    {
+      "id": "sound-muoz514i",
+      "category": "animals",
+      "name": "Dolphin",
+      "description": "dolphin sound",
+      "icon": "🔊",
+      "filename": "dolphin.mp3",
+      "file": "sounds/animals/dolphin.mp3"
     }
   ]
 };
