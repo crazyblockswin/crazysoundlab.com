@@ -784,6 +784,15 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/people/luffy-laugh.mp3"
     },
     {
+      "id": "sound-mupxraes",
+      "category": "people",
+      "name": "Crowd Shopping",
+      "description": "crowd shopping outdoors",
+      "icon": "🔊",
+      "filename": "crowd-shopping.mp3",
+      "file": "sounds/people/crowd-shopping.mp3"
+    },
+    {
       "id": "sound-mud6rwps",
       "category": "people",
       "name": "MMMMM",
@@ -845,15 +854,6 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "gulp.mp3",
       "file": "sounds/people/gulp.mp3"
-    },
-    {
-      "id": "sound-mud7zwbt",
-      "category": "people",
-      "name": "Girl Giggling",
-      "description": "girl giggling",
-      "icon": "👧",
-      "filename": "girl-giggling.mp3",
-      "file": "sounds/people/girl-giggling.mp3"
     },
     {
       "id": "sound-mud8zbfu",
@@ -1792,13 +1792,13 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/mixer-samples/Sample-mp3-Crazy-Voice-Sound-Lab-Recording-mixed.mp3"
     },
     {
-      "id": "sound-mugf9ui4",
+      "id": "sound-mud7zwbt",
       "category": "people",
-      "name": "Crowd Panics Screams",
-      "description": "Crowd panics and screams",
-      "icon": "🔊",
-      "filename": "crowd-panic-scream.mp3",
-      "file": "sounds/people/crowd-panic-scream.mp3"
+      "name": "Girl Giggling",
+      "description": "girl giggling",
+      "icon": "👧",
+      "filename": "girl-giggling.mp3",
+      "file": "sounds/people/girl-giggling.mp3"
     },
     {
       "id": "sound-muoz1dcc",
@@ -1826,6 +1826,24 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "dolphin.mp3",
       "file": "sounds/animals/dolphin.mp3"
+    },
+    {
+      "id": "sound-mugf9ui4",
+      "category": "people",
+      "name": "Crowd Panics Screams",
+      "description": "Crowd panics and screams",
+      "icon": "🔊",
+      "filename": "crowd-panic-scream.mp3",
+      "file": "sounds/people/crowd-panic-scream.mp3"
+    },
+    {
+      "id": "sound-mupxzgi7",
+      "category": "people",
+      "name": "Crowd Shopping",
+      "description": "crowd shopping outdoors",
+      "icon": "🔊",
+      "filename": "crowd-shopping.mp3",
+      "file": "sounds/people/crowd-shopping.mp3"
     }
   ]
 };
