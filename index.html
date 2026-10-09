@@ -4970,13 +4970,49 @@ function parseVoicePauseScript(text){
   while(items.length&&items[items.length-1].pause)items.pop();
   return items;
 }
+// Keep every Kokoro request comfortably short. Long single requests can
+// return valid audio that stops before the end of the submitted paragraph.
+function splitVoiceTextSafely(text,maxChars=155){
+  const sentences=(text.match(/[^.!?\n]+(?:[.!?]+|$)|\n+/g)||[text]).map(x=>x.trim()).filter(Boolean);
+  const result=[];
+  let pending='';
+  const flush=()=>{if(pending.trim())result.push(pending.trim());pending='';};
+  for(const sentence of sentences){
+    if(sentence.length<=maxChars){
+      if(pending && (pending.length+1+sentence.length)>maxChars)flush();
+      pending+=(pending?' ':'')+sentence;
+      continue;
+    }
+    flush();
+    // Even a very long sentence is split at word boundaries, never mid-word.
+    for(const word of sentence.split(/\s+/).filter(Boolean)){
+      if(pending && pending.length+1+word.length>maxChars)flush();
+      if(word.length>maxChars){
+        // Rare unbroken input: preserve every character in successive pieces.
+        for(let i=0;i<word.length;i+=maxChars)result.push(word.slice(i,i+maxChars));
+      }else pending+=(pending?' ':'')+word;
+    }
+    flush();
+  }
+  flush();
+  return result;
+}
 async function generateVoiceWithHashPauses(tts,text,options){
-  if(!text.includes('#')){
+  // Preserve the original fast path for short scripts, with no stitching.
+  if(!text.includes('#')&&text.length<=155){
     const audio=await tts.generate(text,options);
     if(!audio||typeof audio.toBlob!=='function')throw new Error('The browser did not return usable voice audio.');
     return audio.toBlob();
   }
-  const items=parseVoicePauseScript(text);
+  const items=[];
+  for(const item of parseVoicePauseScript(text)){
+    if(item.pause){items.push(item);continue;}
+    const pieces=splitVoiceTextSafely(item.text);
+    for(let i=0;i<pieces.length;i++){
+      if(i>0)items.push({pause:0.12});
+      items.push({text:pieces[i]});
+    }
+  }
   const phraseCount=items.filter(x=>x.text).length;
   if(!phraseCount)throw new Error('Type some words as well as the pause marks.');
   const chunks=[];
