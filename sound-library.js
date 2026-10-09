@@ -1844,6 +1844,15 @@ window.CSL_SOUND_LIBRARY = {
       "icon": "🔊",
       "filename": "crowd-shopping.mp3",
       "file": "sounds/people/crowd-shopping.mp3"
+    },
+    {
+      "id": "sound-mv1cdn18",
+      "category": "people",
+      "name": "Crowd Cheering Race",
+      "description": "crowd cheering",
+      "icon": "🔊",
+      "filename": "crowd-cheering-nasa.mp3",
+      "file": "sounds/people/crowd-cheering-nasa.mp3"
     }
   ]
 };
