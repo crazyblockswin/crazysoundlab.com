@@ -1837,15 +1837,6 @@ window.CSL_SOUND_LIBRARY = {
       "file": "sounds/people/crowd-panic-scream.mp3"
     },
     {
-      "id": "sound-mupxzgi7",
-      "category": "people",
-      "name": "Crowd Shopping",
-      "description": "crowd shopping outdoors",
-      "icon": "🔊",
-      "filename": "crowd-shopping.mp3",
-      "file": "sounds/people/crowd-shopping.mp3"
-    },
-    {
       "id": "sound-mv1cdn18",
       "category": "people",
       "name": "Crowd Cheering Race",
