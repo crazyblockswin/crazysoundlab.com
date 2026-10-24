@@ -1402,6 +1402,12 @@ html.chrome-dpi-compact .layout:has(.side.voice-layer-expanded) .main{height:aut
       <div class="mixer-controls-stack">
       <div id="dynamicControls" class="controls"></div>
 
+      <div class="pc-mixer-import" style="display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:8px 0 12px;padding:10px;border:1px solid rgba(67,239,255,.24);border-radius:11px;background:rgba(67,239,255,.045)">
+        <label for="pcMixerFile" style="cursor:pointer;padding:11px 15px;border-radius:9px;background:linear-gradient(90deg,#43efff,#73b0ff);color:#041018;font-weight:950">📁 IMPORT PC SOUND TO MIXER</label>
+        <input id="pcMixerFile" type="file" accept=".mp3,.wav,.ogg,.m4a,.aac,audio/*" hidden>
+        <span style="color:#b5c9dc;font-size:12px">Mix it, then use ADD CURRENT MIX TO STORY. No library installation.</span>
+      </div>
+      <button id="applyMixBelow" class="big" type="button" style="margin:7px 0 12px">🔊 APPLY MIX &amp; PLAY</button>
       <div class="mixer-action-tools main-mixer-actions">
         <button id="randomize" class="secondary">🎲 RANDOMIZE CONTROLS</button>
         <button id="resetOriginal" class="secondary" style="display:none">↩ RESET MIX TO ORIGINAL</button>
@@ -5790,6 +5796,32 @@ if(mainDownloadBtn){
   new MutationObserver(syncBottomDownload).observe(mainDownloadBtn,{attributes:true,attributeFilter:['disabled']});
   syncBottomDownload();
 }
+// Extra apply control shares the original button's full processing path.
+$('#applyMixBelow')?.addEventListener('click',()=>{
+  const original=$('#generate');
+  if(original && original.style.display!=='none' && !original.disabled)original.click();
+  else $('#status').textContent='Choose or load a sound first, then apply the mix.';
+});
+// Temporary PC audio goes straight to the existing Crazy Mixer without adding
+// anything to the permanent sound library or replacing an installed sound.
+let pcMixerObjectUrl='';
+$('#pcMixerFile')?.addEventListener('change',async e=>{
+  const file=e.target.files?.[0];if(!file)return;
+  const previous=pcMixerObjectUrl;
+  pcMixerObjectUrl=URL.createObjectURL(file);
+  const record={id:'pc-mixer-temporary',name:file.name.replace(/\.[^.]+$/,''),filename:file.name,file:pcMixerObjectUrl};
+  const old=libraryRecords.findIndex(r=>r.id===record.id);
+  if(old>=0)libraryRecords.splice(old,1);
+  libraryRecords.push(record);
+  try{
+    await selectLibrarySample(record.id,null);
+    $('#status').textContent=record.name+' imported from your PC. Adjust the mixer, apply, then add to story.';
+  }finally{
+    // Preserve the previous URL until the new selection is loaded.
+    if(previous)URL.revokeObjectURL(previous);
+    e.target.value='';
+  }
+});
 $('#randomize').addEventListener('click',randomizeControls);
 $('#resetOriginal').addEventListener('click',resetToOriginal);
 $('#replaceSound').addEventListener('click',chooseReplacementSound);
