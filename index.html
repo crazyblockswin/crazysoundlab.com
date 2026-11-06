@@ -4959,6 +4959,21 @@ function trimVoicePhraseEdgeSilence(samples,sampleRate){
   first=Math.max(0,first-safety);last=Math.min(count-1,last+safety);
   return samples.slice(first*windowSize,Math.min(samples.length,(last+1)*windowSize));
 }
+// Smooth each synthesized phrase at its boundaries before assembling the WAV.
+// A short raised-cosine envelope avoids sharp sample jumps (clicks) while
+// keeping consonants intact. Never blend across deliberate # pauses.
+function smoothVoicePhraseEdges(samples,sampleRate){
+  if(!samples||!samples.length)return samples;
+  const result=samples.slice();
+  const edge=Math.min(Math.round(sampleRate*0.018),Math.floor(result.length/4));
+  if(edge<2)return result;
+  for(let i=0;i<edge;i++){
+    const fade=(1-Math.cos(Math.PI*i/(edge-1)))/2;
+    result[i]*=fade;
+    result[result.length-1-i]*=fade;
+  }
+  return result;
+}
 function parseVoicePauseScript(text){
   const parts=text.split(/(#+)/g);
   const items=[];
@@ -5015,7 +5030,7 @@ async function generateVoiceWithHashPauses(tts,text,options){
     if(item.pause){items.push(item);continue;}
     const pieces=splitVoiceTextSafely(item.text);
     for(let i=0;i<pieces.length;i++){
-      if(i>0)items.push({pause:0.12});
+      if(i>0)items.push({pause:0.09});
       items.push({text:pieces[i]});
     }
   }
@@ -5035,7 +5050,7 @@ async function generateVoiceWithHashPauses(tts,text,options){
     let part=await voiceAudioSamples(raw);
     if(!sampleRate)sampleRate=part.sampleRate;
     if(part.sampleRate!==sampleRate)part={samples:resampleVoiceSamples(part.samples,part.sampleRate,sampleRate),sampleRate};
-    part.samples=trimVoicePhraseEdgeSilence(part.samples,sampleRate);
+    part.samples=smoothVoicePhraseEdges(trimVoicePhraseEdgeSilence(part.samples,sampleRate),sampleRate);
     chunks.push({samples:part.samples});
   }
   // Calculate after sample rate is known so leading marker oddities cannot affect timing.
