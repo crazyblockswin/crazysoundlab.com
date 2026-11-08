@@ -4965,7 +4965,7 @@ function trimVoicePhraseEdgeSilence(samples,sampleRate){
 function smoothVoicePhraseEdges(samples,sampleRate){
   if(!samples||!samples.length)return samples;
   const result=samples.slice();
-  const edge=Math.min(Math.round(sampleRate*0.018),Math.floor(result.length/4));
+  const edge=Math.min(Math.round(sampleRate*0.006),Math.floor(result.length/4));
   if(edge<2)return result;
   for(let i=0;i<edge;i++){
     const fade=(1-Math.cos(Math.PI*i/(edge-1)))/2;
@@ -4994,29 +4994,43 @@ function parseVoicePauseScript(text){
 // Keep every Kokoro request comfortably short. Long single requests can
 // return valid audio that stops before the end of the submitted paragraph.
 function splitVoiceTextSafely(text,maxChars=155){
+  // Prefer natural sentence and clause boundaries over arbitrary word counts.
+  // Keep the last short clause attached to the previous chunk when possible.
   const sentences=(text.match(/[^.!?\n]+(?:[.!?]+|$)|\n+/g)||[text]).map(x=>x.trim()).filter(Boolean);
   const result=[];
   let pending='';
   const flush=()=>{if(pending.trim())result.push(pending.trim());pending='';};
+  const add=(part)=>{
+    part=part.trim();if(!part)return;
+    if(pending && pending.length+1+part.length>maxChars)flush();
+    pending+=(pending?' ':'')+part;
+  };
   for(const sentence of sentences){
-    if(sentence.length<=maxChars){
-      if(pending && (pending.length+1+sentence.length)>maxChars)flush();
-      pending+=(pending?' ':'')+sentence;
-      continue;
-    }
+    if(sentence.length<=maxChars){add(sentence);continue;}
     flush();
-    // Even a very long sentence is split at word boundaries, never mid-word.
-    for(const word of sentence.split(/\s+/).filter(Boolean)){
-      if(pending && pending.length+1+word.length>maxChars)flush();
-      if(word.length>maxChars){
-        // Rare unbroken input: preserve every character in successive pieces.
-        for(let i=0;i<word.length;i+=maxChars)result.push(word.slice(i,i+maxChars));
-      }else pending+=(pending?' ':'')+word;
+    // Split long sentences first at commas, semicolons or colons.
+    const clauses=sentence.match(/[^,;:]+(?:[,;:]|$)/g)||[sentence];
+    for(const clause of clauses){
+      const part=clause.trim();
+      if(part.length<=maxChars){add(part);continue;}
+      // Only exceptionally long clauses need word-based splitting.
+      const words=part.split(/\s+/).filter(Boolean);
+      for(const word of words){
+        if(word.length>maxChars){flush();for(let i=0;i<word.length;i+=maxChars)result.push(word.slice(i,i+maxChars));}
+        else add(word);
+      }
     }
     flush();
   }
   flush();
   return result;
+}
+function voiceJoinPause(previous,next){
+  // Sentence endings need a breath; a comma needs much less; an
+  // unavoidable mid-clause split should be almost continuous.
+  if(/[.!?][\"'’)]*$/.test(previous))return 0.17;
+  if(/[,;:][\"'’)]*$/.test(previous))return 0.055;
+  return 0.018;
 }
 async function generateVoiceWithHashPauses(tts,text,options){
   // Preserve the original fast path for short scripts, with no stitching.
@@ -5030,7 +5044,7 @@ async function generateVoiceWithHashPauses(tts,text,options){
     if(item.pause){items.push(item);continue;}
     const pieces=splitVoiceTextSafely(item.text);
     for(let i=0;i<pieces.length;i++){
-      if(i>0)items.push({pause:0.09});
+      if(i>0)items.push({pause:voiceJoinPause(pieces[i-1],pieces[i])});
       items.push({text:pieces[i]});
     }
   }
