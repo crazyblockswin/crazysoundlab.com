@@ -4996,7 +4996,7 @@ function parseVoicePauseScript(text){
 function splitVoiceTextSafely(text,maxChars=155){
   // Prefer natural sentence and clause boundaries over arbitrary word counts.
   // Keep the last short clause attached to the previous chunk when possible.
-  const sentences=(text.match(/[^.!?\n]+(?:[.!?]+|$)|\n+/g)||[text]).map(x=>x.trim()).filter(Boolean);
+  const sentences=(text.replace(/\s*\r?\n\s*/g,' ').match(/[^.!?]+(?:[.!?]+|$)/g)||[text]).map(x=>x.trim()).filter(Boolean);
   const result=[];
   let pending='';
   const flush=()=>{if(pending.trim())result.push(pending.trim());pending='';};
